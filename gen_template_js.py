@@ -6,7 +6,7 @@ def escape_single_quote(s):
 	return s.replace("'", "\\'")
 
 inp = open('template.html')
-out = open('source.js', 'w')
+out = open('template.js', 'w')
 for line in inp:
 	escaped_line = escape_single_quote(line.strip())
 	print >> out, "document.write('%s');" % escaped_line
