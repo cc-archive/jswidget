@@ -156,7 +156,7 @@
             // OH! You have to convert a list to an array object...
             var jurisdiction_options = $A( $('jurisdiction').options );
 	    jurisdiction_options.each( function(item) {
-		    global jurisdictions_array;
+		    
                if ( ! jurisdictions_array[ item.value ]['sampling'] )
                    item.style.display = 'none';
             });
@@ -415,7 +415,7 @@
      */
     function build_jurisdictions ()
     {
-	global jurisdictions_array;
+	
 
         // TODO: The following is not working in internet explorer on wine
 
