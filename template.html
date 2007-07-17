@@ -38,6 +38,17 @@
       
       
     </div>
+    
+    <div id="jurisdiction_box">
+      <span class="infobox" onmouseover="on_tooltip_html(event,'<p><strong>Jurisdiction</strong> If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</p>');" onmouseout="hide_tip()"><img src="images/information.png" alt="info" class="info"></span>
+      
+      <p><strong class="question" onmouseover="on_tooltip_html(event,'<p><strong>Jurisdiction</strong> If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</p>');" onmouseout="hide_tip()">Jurisdiction of your license</strong>  </p>
+      <select name="jurisdiction" id="jurisdiction" onchange="modify(this);">
+
+	<option id="generic" value="generic">Unported</option>
+	<option tal:repeat="jurisdiction jurisdictions" tal:attributes="id jurisdiction/id; value jurisdiction/id" tal:content="jurisdiction/name">Sample jurisdiction</option>
+      </select>
+    </div>
 
     <div id="license_selected">
       <div id="license_example"></div>
