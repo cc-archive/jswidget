@@ -1,11 +1,30 @@
  <html>
    <head>
      <title>Example Widget Page</title>
+     <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" language="javascript" src="../../cclib/branches/stable/js/prototype.js"></script>
+    <script type="text/javascript" language="javascript" src="../../cclib/branches/stable/js/cc-tooltip.js"></script>
+    <script type="text/javascript" language="javascript" src="../../cclib/branches/stable/js/cc-jurisdictions.js"></script>
+    <script type="text/javascript" language="javascript" src="../../cclib/branches/stable/js/cc-license-old.js"></script>
+    <script type="text/javascript" language="javascript" src="../../cclib/branches/stable/js/cc-lib-freedoms.js"></script>
+    <script type="text/javascript" language="javascript" charset="utf-8">
+    // <![CDATA[
+        // var freedoms = new CCLibFreedoms();
+
+        function pageInit() {
+            init();
+            modify(this);
+            init_tip();
+        }
+window.onload = pageInit;
+
+    // ]]>
+    </script>
    </head>
    <body>
      
      <div id="cc_widget_container">
-       <script src="./source.js"></script>
+       <script src="http://labs.creativecommons.org/jswidget/trunk/complete.js"></script>
      </div>
    </body>
  </html>
