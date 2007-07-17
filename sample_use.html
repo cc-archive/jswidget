@@ -6,13 +6,21 @@
    </head>
    <body>
      
+     <div style="margin-bottom: 5em;">This text is provided by a non-CC developer.</div>
+
      <div id="cc_widget_container">
+       <div>But Creative Commons automatically provides everything from here...</div>
        <script src="http://labs.creativecommons.org/jswidget/trunk/complete.js"></script>
+       <div style="margin-bottom: 10em;">...to here.  After this, the app is all provided by the non-CC developer.</div>
      </div>
      
      <script src="local_app.js" />
      <div>
-       <a href="#" onclick="showChosenLicense()">Annoy me with the license URL</a>
+       Annoy me with:
+       <ul>
+	 <li><a href="#" onclick="showChosenLicenseURI()">the license URL</a></li>
+	 <li><a href="#" onclick="showChosenLicenseName()">the license name</a></li>
+       </ul>
      </div>
 
    </body>
