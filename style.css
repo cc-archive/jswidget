@@ -1,7 +1,3 @@
-h1 {
-	padding-top: 35px;
-	font-size: 2em;
-}
 #license_selected
 {
     border:         1px solid #c2e0cf;
@@ -30,7 +26,6 @@ h1 {
 {
     padding: 0;
     margin: 0;
-		font-weight: bold;
 }
     
 select#jurisdiction
@@ -43,6 +38,7 @@ textarea#result
     width: 91%;
     border: 1px solid #ccc;
     color: gray;
+    margin-top: 1%;
 }
 
 a img
@@ -53,6 +49,7 @@ a img
 
 #more_info
 {
+    border: 1px solid #eee;
     padding: 0.5% 2% 1% 2%;
     margin-bottom: 1%;
     margin-top: 1%;
@@ -72,22 +69,17 @@ a img
 {
     width: 100%;
     border: 1px solid #ccc;
-		padding: 2px;
-}
-
-#more_info #location input {
-	width: auto;
 }
 
 #required
 {
- /*   border: 1px solid #ccc;
-*/    padding: 0.5% 2% 1% 2%;
+    border: 1px solid #ccc;
+    padding: 0.5% 2% 1% 2%;
     margin-bottom: 1%;
     margin-top: 1%;
     /* background: #efefef; */
-/*    background: #eef6e6;
-*/		width: 87%;
+    background: #eef6e6;
+		width: 87%;
 }
 
 #work_title
@@ -96,13 +88,15 @@ a img
 }
 
 
-#location
+#optional
 {
+    border: 1px solid #eee;
     padding: 0.5% 2% 1% 2%;
     margin-bottom: 1%;
     margin-top: 1%;
-		width: 100%;
+		width: 87%;
 }
+
 
 .alert
 {
@@ -128,7 +122,7 @@ img.info {
 }
 
 #lic-menu p, #jurisdiction_box {
-/*	width: 18em;*/
+	width: 18em;
 	padding: 3px 0 5px 0;
 }
 
@@ -189,117 +183,10 @@ img.info {
 
 #nc-ad {
 	display: none;
-}
-
-.options {
-	margin-top: 10px;
-	padding: 5px 10px;
-	border: 1px solid #999;
-	width: 80%;
-	background-color: #f4f4f4;
-}
-
-.options img, .options input {
-	margin-bottom: -5px;
-}
-
-#nc-ad label {
-	margin-right: 15px;
-}
-
-.choose {
-	clear: both;
-	padding-top: 30px;
-}
-.choose-btn {
-	position: relative;
-	float: left;
-	width: 20px;
-}
-.choose-btn input {
-	position: absolute;
-	top: 15px;
-}
-
-.choose-icon {
-	position: relative;
-	float: left;
-	width: 50px;
-	height: 50px;
-	padding: 0 5px;
-	margin-left: 23px;
-}
-
-.choose-icon img {
-	position: absolute;
-	top: -2px;
-}
-
-.choose-txt {
-	position: relative;
-/*	float: left;
-	width: 70%;*/
-	margin-left: 90px;
-	margin-top: 3px;
-}
-
-.choose-txt label, .choose-txt strong {
-	font-size: 107%;
-}
-
-.choose-txt .option_on {
-	color: #333;
-}
-
-.choose-txt .option_off {
-	color: #999;
-}
-
-
-.choose label:hover {
-	background-color: #ddd;
-	cursor: pointer;
-}
-
-.choose label.toggle_off:hover {
-	background-color: #fff;
-	cursor: text;
-}
-
-.choose-jurisdiction {
-	float: left;
-	width:  10.75em;
-	margin-right: 20px;
-	padding-bottom: 35px;
-}
-.choose-jurisdiction select {
-	width: 10.75em;
-}
-
-
-/* migrate me to general css file */
-#more_info .optional {
-	margin-top: 15px;
-	padding: 15px;
-	border-top: 1px solid #ddd;
-	clear: both;
-}
-
-#more_info .first {
-	border-top: none;
-	margin-top: 0;
-}
-
-#more_info .optional-name {
-	float: left;
+	margin: 5px 10px 15px 10px;
+	padding: 5px;
+	border: 1px solid #888;
+	-moz-border-radius: 3px;
 	width: 17em;
-	font-weight: bold;
-	font-size: 107%;
-	margin-bottom: 15px;
-}
-
-#more_info .optional-content {
-	float: left;
-	width: 60%;
-	padding-bottom: 15px;
+	background-color: #eef0e6;
 }
