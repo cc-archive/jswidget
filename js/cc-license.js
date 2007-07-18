@@ -564,7 +564,7 @@
      */
     function output_license_html ()
     {
-		var output = get_comment_code() + '<a rel="license" href="' + license_array['url'] + '"><img alt="Creative Commons License" border="0" src="' + license_array['img'] + '" class="cc-button"/></a><div class="cc-info">' + license_array['text'] + '</div>';
+		var output = get_comment_code() + '<a rel="license" href="' + license_array['url'] + '"><img alt="Creative Commons License" width="88" height="31" border="0" src="' + license_array['img'] + '" class="cc-button"/></a><div class="cc-info">' + license_array['text'] + '</div>';
 
         try {
             if ( $F('using_myspace') )
