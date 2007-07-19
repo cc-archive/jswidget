@@ -22,6 +22,17 @@
  *
  */
 
+/* A wrapper to get Elements By ID
+ * Really used for grabbing translations.
+ * Unfortunately, having spaces is not valid in IDs, so
+ * in the future this should base64 encode the IDs.
+ *
+ * Also, I should really join all the text children rather than just getting
+ * the first.
+ */
+function t(s) {
+    return document.getElementById('text_' + s).firstChild.data;
+}
 
     // NOTE we have the object freedoms for dealing with freedom style choosing
     var share, remix, nc, sa;
