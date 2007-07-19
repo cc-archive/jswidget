@@ -1,5 +1,5 @@
 This code is an example of how to integrate with the Creative Commons 
-JsWidget.
+JsWidget.  If you just want to see how to use it, read index.html.
 
 == WARNING ==
 
@@ -18,6 +18,8 @@ could just call ours.
 
 We think it's so nice that we're going to make our web app things use it 
 eventually.
+
+For an example of how to use it, STOP READING and look at index.html.
 
 == Jurisdictions ==
 
