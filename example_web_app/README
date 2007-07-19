@@ -31,10 +31,13 @@ updated.
 
 In this preview edition, there is only support for US English.  In the 
 future, you can select a language with the ?locale= option to 
-complete.js.
+complete.js.  If you leave the ?locale= off, then (in the future) the 
+server will attempt to negotiate a language with the client with the 
+Accept-Language header as per 
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4 .
 
-Our language codes are fairly standard; when I find a reference for 
-where en_US and fr come from, I'll make a note of it here.
+Our language codes for ?locale= are fairly standard; when I find a 
+reference for where en_US and fr come from, I'll make a note of it here.
 
 == Style ==
 
