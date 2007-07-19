@@ -7,7 +7,7 @@ This is just a preview!  YOU SHOULD NOT RELY ON IT!
 
 It's not even a betta, nor in beta.  It's a glimpse into the 
 ever-changing future.  No warranty is provided; this software may eat 
-your cat, spill your milk, and prepare your breakfast.  Or it may not!
+your cat, spill your milk, and prepare your breakfast.  Or it may not.
 
 == What is JsWidget? ==
 
@@ -33,6 +33,9 @@ In this preview edition, there is only support for US English.  In the
 future, you can select a language with the ?locale= option to 
 complete.js.
 
+Our language codes are fairly standard; when I find a reference for 
+where en_US and fr come from, I'll make a note of it here.
+
 == Style ==
 
 We give you two style files that make it look bearable.  You probably 
@@ -43,6 +46,9 @@ expect.
 
 See COPYING for information on copying/reusing this work.  Basically, do 
 whatever you want.
+
+If you want to see how things work behind the scenes, look through 
+https://cctools.svn.sourceforge.net/svnroot/cctools/jswidget/.
 
 == Questions ==
 
