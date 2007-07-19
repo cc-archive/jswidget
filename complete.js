@@ -8,6 +8,15 @@
 header("content-type: application/x-javascript");
 ?>
 
+<?php
+/* Figure out our base path. */
+$me = $_SERVER['REQUEST_URI'];
+$parsed = parse_url($me);
+$dirname = dirname($parsed['path']);
+$base = http_build_url($me, array('path' => $dirname));
+
+echo "lol, base is " . $base ." <p>";
+
 /* Load the prerequisite JS files */
 document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/prototype.js" />\n');
 document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-tooltip.js" />\n');
