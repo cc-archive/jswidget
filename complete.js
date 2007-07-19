@@ -10,20 +10,20 @@ header("content-type: application/x-javascript");
 
 <?php
 /* Figure out our base path. */
-$me = $_SERVER['REQUEST_URI'];
+$me = $_SERVER['SCRIPT_NAME']; // 
 $parsed = parse_url($me);
 $dirname = dirname($parsed['path']);
-$base = http_build_url($me, array('path' => $dirname));
+$base = 'http://' . $_SERVER['HTTP_HOST'] . $dirname;
 
-echo "lol, base is " . $base ." <p>";
+?>
 
 /* Load the prerequisite JS files */
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/prototype.js" />\n');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-tooltip.js" />\n');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-jurisdictions.js" />\n');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-license.js" />\n');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-lib-freedoms.js" />\n');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/init.js" />\n');
+document.write('<script src="<?php echo $base . '/js/prototype.js'; ?>">');
+document.write('<script src="<?php echo $base . '/js/cc-tooltip.js'; ?>">');
+document.write('<script src="<?php echo $base . '/js/cc-jurisdictions.js'; ?>">');
+document.write('<script src="<?php echo $base . '/js/cc-license.js'; ?>">');
+document.write('<script src="<?php echo $base . '/js/cc-lib-freedomsjs'; ?>">');
+document.write('<script src="<?php echo $base . '/js/init.js'; ?>">');
 
 /* NOTE: I do not include the CSS stylesheet
    and instead I let others style our boxes the way they want. */
@@ -33,7 +33,7 @@ document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/i
 <?php
 /* First check if we were called with ?locale=XX and dispatch accordingly */
     if (array_key_exists('locale', $_GET)) {
-	$template_url = 'http://labs.creativecommons.org/jswidget/trunk/template.' . $_GET['locale'] . '.js';
+	$template_url = $base . '/template.' . $_GET['locale'] . '.js';
     }
 
 /* Else, do the generic one and hope they either like English or will
