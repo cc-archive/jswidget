@@ -9,12 +9,12 @@ header("content-type: application/x-javascript");
 ?>
 
 /* Load the prerequisite JS files */
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/prototype.js" />');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-tooltip.js" />');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-jurisdictions.js" />');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-license.js" />');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-lib-freedoms.js" />');
-document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/init.js" />');
+document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/prototype.js" />\n');
+document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-tooltip.js" />\n');
+document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-jurisdictions.js" />\n');
+document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-license.js" />\n');
+document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/cc-lib-freedoms.js" />\n');
+document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/init.js" />\n');
 
 /* NOTE: I do not include the CSS stylesheet
    and instead I let others style our boxes the way they want. */
@@ -33,5 +33,5 @@ document.write('<script src="http://labs.creativecommons.org/jswidget/trunk/js/i
 	$template_url = 'http://labs.creativecommons.org/jswidget/trunk/template.js';
     }
 ?>
-    document.write('<?php echo $template_url; ?>');
 
+document.write('<script src="<?php echo $template_url ?>" />\n');
