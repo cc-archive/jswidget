@@ -21,12 +21,12 @@ def grab_license_ids():
 	juris = [juri for juri in juris if juri != '-']
 	return juris
 
-def get_PoFile():
-	return translate.PoFile("license_xsl/i18n/i18n_po/icommons-%s.po" % LANGUAGE)
+def get_PoFile(language):
+	return translate.PoFile("license_xsl/i18n/i18n_po/icommons-%s.po" % language)
 
 def country_id2name(country_id):
 	# Now gotta look it up with gettext...
-	po = get_PoFile()
+	po = get_PoFile(LANGUAGE)
 	try:
 		return po['country.%s' % country_id]
 	except KeyError:
