@@ -4,6 +4,7 @@
 
 from simpletal import simpleTAL, simpleTALES
 import cStringIO as StringIO
+import os
 import BeautifulSoup
 
 LANGUAGE="en_US"
@@ -48,11 +49,13 @@ def main():
 	
 	output_buffer = StringIO.StringIO()
 	template.expand(context, output_buffer)
-	out = open('template.js', 'w')
+	out = open('template.js.tmp', 'w')
 
 	for line in output_buffer.getvalue().split('\n'):
 		escaped_line = escape_single_quote(line.strip())
 		print >> out, "document.write('%s');" % escaped_line
+	out.close()
+	os.rename('template.js.tmp', 'template.js')
 
 
 if __name__ == '__main__':
