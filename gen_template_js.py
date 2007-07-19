@@ -35,13 +35,10 @@ def country_id2name(country_id):
 def escape_single_quote(s):
 	return s.replace("'", "\\'")
 
-def main():
+def expand_template_with_jurisdictions(templatefilename, juridict):
 	# Create the context that is used by the template
 	context = simpleTALES.Context()
-	
-	jurisdiction_names = grab_license_ids()
-	jurisdictions = [ dict(id=juri, name=country_id2name(juri)) for juri in jurisdiction_names]
-	context.addGlobal("jurisdictions", jurisdictions)
+	context.addGlobal("jurisdictions", juridict)
 
 	templateFile = open('template.html')
 	template = simpleTAL.compileHTMLTemplate(templateFile)
@@ -49,9 +46,19 @@ def main():
 	
 	output_buffer = StringIO.StringIO()
 	template.expand(context, output_buffer)
+	return output_buffer.getvalue()
+
+def main():
+	jurisdiction_names = grab_license_ids()
+	jurisdictions = [ dict(id=juri, name=country_id2name(juri)) for juri in jurisdiction_names]
+	expanded = expand_template_with_jurisdictions('template.html', jurisdictions)
+	
+	# go parse the template, and try to translate the contents of each span
+	# Like, WRITEME!
+
 	out = open('template.js.tmp', 'w')
 
-	for line in output_buffer.getvalue().split('\n'):
+	for line in expanded.split('\n'):
 		escaped_line = escape_single_quote(line.strip())
 		print >> out, "document.write('%s');" % escaped_line
 	out.close()
