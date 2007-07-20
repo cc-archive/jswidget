@@ -47,15 +47,17 @@ def xml_asciify(u):
 	
 
 def extremely_slow_translation_function(s, out_lang):
+	u = unicode(s, 'utf-8')
 	# First, look through the en_US po for such a string
 	en_po = get_PoFile('en_US')
 	found_key = None
 	for entry in en_po.strings:
-		if en_po.get(entry, -1) == s:
+		if en_po.get(entry, '') == u:
 			found_key = entry
+			print 'yahoo, found', found_key
 
 	real_po = get_PoFile(out_lang)
-	return real_po.get(found_key, s)
+	return real_po.get(found_key, u)
 	# Return the version in out_lang's PO.
 
 def expand_template_with_jurisdictions(templatefilename, juridict):
@@ -71,6 +73,13 @@ def expand_template_with_jurisdictions(templatefilename, juridict):
 	template.expand(context, output_buffer, 'utf-8')
 	return output_buffer.getvalue()
 
+def un_entities(s):
+	even_odd_mixup = re.split(r"&#([0-9]*);", s)
+	for k in range(len(even_odd_mixup)):
+		if k % 2: # if it is odd
+			even_odd_mixup[k] = unichr(even_odd_mixup[k])
+	return u''.join(even_odd_mixup)
+
 def translate_spans_with_only_text_children(spans, lang):
 	for span in spans:
 		if len(span.childNodes) == 1:
@@ -78,7 +87,11 @@ def translate_spans_with_only_text_children(spans, lang):
 			if child.nodeType == 3: # FIXME: Magic number
 						# maybe means Text
 						# node?
-				child.data = extremely_slow_translation_function(child.data, lang)
+				# First, decode any &#; thing
+				xml_data = child.data
+				unicode_data = un_entities(xml_data)
+				utf8_data = unicode_data.encode('utf-8')
+				child.data = extremely_slow_translation_function(utf8_data, lang)
 
 
 def gen_templated_js(language):
@@ -91,7 +104,6 @@ def gen_templated_js(language):
 
 	# translate the spans, then pull out the changed text
 	translate_spans_with_only_text_children(expanded_dom.getElementsByTagName('span'), language)
-	out_tmp = StringIO.StringIO()
 	translated_expanded = expanded_dom.toxml(encoding='utf-8')
 	
 	out = open('template.%s.js.tmp' % language, 'w')

@@ -1,15 +1,14 @@
 <span id="cc_generated_box" xmlns:tal="http://xml.zope.org/namespaces/tal">
 <div style="display:none" id="translation_storage">
-  <span id="text_Share">Share</span>
-  <span id="text_The licensor permits others to copy, distribute, display, and perform the work.">The licensor permits others to copy, distribute, display, and perform the work.</span>
-  <span id="text_Licensor permits others to make derivative works.">Licensor permits others to make derivative works.</span>
-  <span id="text_Choose the options below for your personalized Creative Commons license.">Choose the options below for your personalized Creative Commons license.</span>
-  <span id="text_Remix">Remix</span>
-  <span id="text_The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes &#8212; unless they get the permission of the licensor.">The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes &#8212; unless they get the permission of the licensor.</span>
-  <span id="text_The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes &#8212; unless they get the permission of the licensor.">The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes &#8212; unless they get the permission of the licensor.</span>
-  <span id="text_Share Alike">Share Alike</span>
-  <span id="text_The licensor permits others to distribute derivative works only under a license identical to the one that governs the work of the licensor.">The licensor permits others to distribute derivative works only under a license identical to the one that governs the work of the licensor.</span>
-  <span id="text_Noncommercial">Noncommercial</span>
+  <span id="text_Share">Share</span> <!-- not translated, why? -->
+  <span id="text_The licensor permits others to copy, distribute, display, and perform the work.">The licensor permits others to copy, distribute, display, and perform the work.</span> <!-- partial match to char.nc_description -->
+  <span id="text_Licensor permits others to make derivative works.">Licensor permits others to make derivative works.</span>  <!-- Backwards match to char.nc_description -->
+  <span id="text_Choose the options below for your personalized Creative Commons license.">Choose the options below for your personalized Creative Commons license.</span> <!-- Not translated, I guess. -->
+  <span id="text_Remix">Remix</span> <!-- not translated, why? -->
+  <span id="text_The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes &#8212; unless they get the permission of the licensor.">The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes &#8212; unless they get the licensor's permission.</span> <!-- translated! -->
+  <span id="text_Share Alike">Share Alike</span> <!-- translated! -->
+  <span id="text_The licensor permits others to distribute derivative works only under a license identical to the one that governs the work of the licensor.">The licensor permits others to distribute derivative works only under a license identical to the one that governs the licensor's work.</span> <!-- translated! -->
+  <span id="text_Noncommercial">Noncommercial</span> <!-- translated! -->
 
 </div>
 
@@ -72,7 +71,7 @@
   <div id="jurisdiction_box">
     <span class="infobox" onmouseover="on_tooltip_html(event,'&lt;p>&lt;strong>Jurisdiction&lt;/strong> If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.&lt;/p>');" onmouseout="hide_tip()"><img src="http://labs.creativecommons.org/jswidget/trunk/images/information.png" alt="info" class="info" /></span>
     
-    <p><strong class="question" onmouseover="on_tooltip_html(event,'&lt;p>&lt;strong>Jurisdiction&lt;/strong> If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.&lt;/p>');" onmouseout="hide_tip()">Jurisdiction of your license</strong>  </p>
+    <p><strong class="question" onmouseover="on_tooltip_html(event,'&lt;p>&lt;strong>Jurisdiction&lt;/strong> If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.&lt;/p>');" onmouseout="hide_tip()">Jurisdiction of your license:</strong>  </p>
     <select name="jurisdiction" id="jurisdiction" onchange="modify(this);">
       
       <option id="generic" value="generic">Unported</option>
