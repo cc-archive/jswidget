@@ -1,7 +1,7 @@
 all: template.js template.en_US.js
 
-template.js: gen_template_js.py template.html
-	python gen_template_js.py
+template.js: template.en_US.js
+	ln -sf template.en_US.js template.js
 
-template.en_US.js:
-	ln -s template.js template.en_US.js
+template.en_US.js: template.html gen_template_js.py
+	python gen_template_js.py template.html

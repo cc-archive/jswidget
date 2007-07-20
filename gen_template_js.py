@@ -2,6 +2,7 @@
 # This takes template.html and makes a document.write() for it.
 # Later, it could take template.html and make DOM objects instead.
 
+import re
 from simpletal import simpleTAL, simpleTALES
 import cStringIO as StringIO
 import os
@@ -24,11 +25,11 @@ def grab_license_ids():
 def get_PoFile(language):
 	return translate.PoFile("license_xsl/i18n/i18n_po/icommons-%s.po" % language)
 
-def country_id2name(country_id):
+def country_id2name(country_id, language):
 	# Now gotta look it up with gettext...
-	po = get_PoFile(LANGUAGE)
+	po = get_PoFile(language)
 	try:
-		return po['country.%s' % country_id]
+		return unicode(po['country.%s' % country_id], 'utf-8')
 	except KeyError:
 		return country_id
 
@@ -45,25 +46,34 @@ def expand_template_with_jurisdictions(templatefilename, juridict):
 	templateFile.close()
 	
 	output_buffer = StringIO.StringIO()
-	template.expand(context, output_buffer)
+	template.expand(context, output_buffer, 'utf-8')
 	return output_buffer.getvalue()
 
-def main():
+def gen_templated_js(language):
 	jurisdiction_names = grab_license_ids()
-	jurisdictions = [ dict(id=juri, name=country_id2name(juri)) for juri in jurisdiction_names]
+	jurisdictions = [ dict(id=juri, name=country_id2name(juri, language)) for juri in jurisdiction_names]
 	expanded = expand_template_with_jurisdictions('template.html', jurisdictions)
 	
 	# go parse the template, and try to translate the contents of each span
 	# Like, WRITEME!
 
-	out = open('template.js.tmp', 'w')
+	out = open('template.%s.js.tmp' % language, 'w')
 
 	for line in expanded.split('\n'):
 		escaped_line = escape_single_quote(line.strip())
 		print >> out, "document.write('%s');" % escaped_line
 	out.close()
-	os.rename('template.js.tmp', 'template.js')
+	os.rename('template.%s.js.tmp' % language, 'template.%s.js' % language)
 
+
+
+def main():
+	# For each language, generate templated JS for it
+	languages = [k for k in os.listdir('license_xsl/i18n/i18n_po/') if '.po' in k]
+	
+	languages = [re.split(r'[-.]', k)[1] for k in languages]
+	for lang in languages:
+		gen_templated_js(lang)
 
 if __name__ == '__main__':
 	main()
