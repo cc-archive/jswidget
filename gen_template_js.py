@@ -36,6 +36,16 @@ def country_id2name(country_id, language):
 def escape_single_quote(s):
 	return s.replace("'", "\\'")
 
+def xml_asciify(u):
+	out = ''
+	for char in u:
+		if ord(char) < 128:
+			out += char
+		else:
+			out += '&#%d;' % ord(char)
+	return out
+	
+
 def extremely_slow_translation_function(s, out_lang):
 	# First, look through the en_US po for such a string
 	en_po = get_PoFile('en_US')
@@ -43,7 +53,6 @@ def extremely_slow_translation_function(s, out_lang):
 	for entry in en_po.strings:
 		if en_po.get(entry, -1) == s:
 			found_key = entry
-			print 'zomg, foudn key', found_key
 
 	real_po = get_PoFile(out_lang)
 	return real_po.get(found_key, s)
@@ -55,24 +64,39 @@ def expand_template_with_jurisdictions(templatefilename, juridict):
 	context.addGlobal("jurisdictions", juridict)
 
 	templateFile = open('template.html')
-	template = simpleTAL.compileHTMLTemplate(templateFile)
+	template = simpleTAL.compileXMLTemplate(templateFile)
 	templateFile.close()
 	
 	output_buffer = StringIO.StringIO()
 	template.expand(context, output_buffer, 'utf-8')
 	return output_buffer.getvalue()
 
+def translate_spans_with_only_text_children(spans, lang):
+	for span in spans:
+		if len(span.childNodes) == 1:
+			child = span.childNodes[0]
+			if child.nodeType == 3: # FIXME: Magic number
+						# maybe means Text
+						# node?
+				child.data = extremely_slow_translation_function(child.data, lang)
+
+
 def gen_templated_js(language):
 	jurisdiction_names = grab_license_ids()
 	jurisdictions = [ dict(id=juri, name=country_id2name(juri, language)) for juri in jurisdiction_names]
-	expanded = expand_template_with_jurisdictions('template.html', jurisdictions)
-	
-	# go parse the template, and try to translate the contents of each span
-	# Like, WRITEME!
 
+	from xml.dom.minidom import parse, parseString
+	expanded = expand_template_with_jurisdictions('template.html', jurisdictions)
+	expanded_dom = parseString(expanded)
+
+	# translate the spans, then pull out the changed text
+	translate_spans_with_only_text_children(expanded_dom.getElementsByTagName('span'), language)
+	out_tmp = StringIO.StringIO()
+	translated_expanded = expanded_dom.toxml(encoding='utf-8')
+	
 	out = open('template.%s.js.tmp' % language, 'w')
 
-	for line in expanded.split('\n'):
+	for line in translated_expanded.split('\n'):
 		escaped_line = escape_single_quote(line.strip())
 		print >> out, "document.write('%s');" % escaped_line
 	out.close()
