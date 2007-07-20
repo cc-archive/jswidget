@@ -36,6 +36,19 @@ def country_id2name(country_id, language):
 def escape_single_quote(s):
 	return s.replace("'", "\\'")
 
+def extremely_slow_translation_function(s, out_lang):
+	# First, look through the en_US po for such a string
+	en_po = get_PoFile('en_US')
+	found_key = None
+	for entry in en_po.strings:
+		if en_po.get(entry, -1) == s:
+			found_key = entry
+			print 'zomg, foudn key', found_key
+
+	real_po = get_PoFile(out_lang)
+	return real_po.get(found_key, s)
+	# Return the version in out_lang's PO.
+
 def expand_template_with_jurisdictions(templatefilename, juridict):
 	# Create the context that is used by the template
 	context = simpleTALES.Context()
