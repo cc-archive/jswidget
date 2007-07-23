@@ -55,6 +55,8 @@ def extremely_slow_translation_function(s, out_lang):
 		if en_po.get(entry, '') == u:
 			found_key = entry
 			print 'yahoo, found', found_key
+	if found_key is None:
+		print 'sad, did not find match for', u
 
 	real_po = get_PoFile(out_lang)
 	return real_po.get(found_key, u)
