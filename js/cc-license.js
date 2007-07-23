@@ -130,15 +130,11 @@ function t(s) {
             reset_jurisdiction_array = false;
         }
 
-        try {
-            share = $('share').checked;
-            remix = $('remix').checked;
-            nc = $('nc').checked;
-            nc_ad = $('nc-ad-allow').checked ? true : false;
-            sa = $('sa').checked;
-			
-        } catch (err) {}
-
+	share = $('share').checked;
+	remix = $('remix').checked;
+	nc = $('nc').checked;
+	sa = $('sa').checked;
+	
         if ( share && remix )
         {
             option_on('share');
