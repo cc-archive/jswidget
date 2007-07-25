@@ -131,7 +131,7 @@ def main():
 	for lang in languages:
 		htaccess_lines.append('AddLanguage %s .%s' % (lang, lang))
 	htaccess_fd = open('.htaccess.tmp', 'w')
-	htaccess_fd.write('\n'.join(htaccess_lines))
+	htaccess_fd.write('\n'.join(htaccess_lines) + '\n')
 	htaccess_fd.close()
 	os.rename('.htaccess.tmp', '.htaccess')
 
