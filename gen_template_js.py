@@ -124,16 +124,22 @@ def main():
 	for lang in languages:
 		gen_templated_js(lang)
 
-	# And for our final trick, we will generate the .htaccess file with
+	# And for our final trick, we will generate the .var file with
 	# languages that controls dispatch of requests to the untranslated
-	# file.
-	htaccess_lines = ['Options MultiViews']
+	# JavaScript file.
+	var_lines = ['URI: template.js']
 	for lang in languages:
-		htaccess_lines.append('AddLanguage %s .%s' % (lang, lang))
-	htaccess_fd = open('.htaccess.tmp', 'w')
-	htaccess_fd.write('\n'.join(htaccess_lines) + '\n')
+		var_lines.append(gen_var_lang_line(uri_base='template.js', lang=lang))
+	htaccess_fd = open('template.js.var.tmp', 'w')
+	htaccess_fd.write('\n\n'.join(var_lines) + '\n')
 	htaccess_fd.close()
-	os.rename('.htaccess.tmp', '.htaccess')
+	os.rename('template.js.var.tmp', 'template.js.var')
+
+def gen_var_lang_line(uri_base, lang, content_type='application/x-javascript'):
+	out = '''URI: %s.%s
+Content-Language: %s
+Content-Type: %s''' % (uri_base, lang, lang, content_type)
+	return out
 
 if __name__ == '__main__':
 	main()
