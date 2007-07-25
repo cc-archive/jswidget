@@ -32,9 +32,12 @@ document.write('<script src="<?php echo $base . '/js/init.js'; ?>">');
 
 <?php
 /* First check if we were called with ?locale=XX and dispatch accordingly */
-    if (array_key_exists('locale', $_GET)) {
-	$template_url = $base . '/template.' . $_GET['locale'] . '.js';
-    }
+    if (array_key_exists('locale', $_GET) &&
+	// valid locales are lower or upper case alphas plus _ or -
+	preg_match('/^([a-zA-Z-_]*)$/', $_GET['locale']))
+	{
+	    $template_url = $base . '/template.js' . $_GET['locale'];
+	}
 
 /* Else, do the generic one and hope they either like English or will
  * do their own language negotiation */

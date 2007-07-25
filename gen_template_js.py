@@ -114,7 +114,7 @@ def gen_templated_js(language):
 		escaped_line = escape_single_quote(line.strip())
 		print >> out, "document.write('%s');" % escaped_line
 	out.close()
-	os.rename('template.%s.js.tmp' % language, 'template.%s.js' % language)
+	os.rename('template.%s.js.tmp' % language, 'template.js.%s' % language)
 
 def main():
 	# For each language, generate templated JS for it
