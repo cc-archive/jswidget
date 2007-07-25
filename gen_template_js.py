@@ -116,8 +116,6 @@ def gen_templated_js(language):
 	out.close()
 	os.rename('template.%s.js.tmp' % language, 'template.%s.js' % language)
 
-
-
 def main():
 	# For each language, generate templated JS for it
 	languages = [k for k in os.listdir('license_xsl/i18n/i18n_po/') if '.po' in k]
@@ -125,6 +123,17 @@ def main():
 	languages = [re.split(r'[-.]', k)[1] for k in languages]
 	for lang in languages:
 		gen_templated_js(lang)
+
+	# And for our final trick, we will generate the .htaccess file with
+	# languages that controls dispatch of requests to the untranslated
+	# file.
+	htaccess_lines = ['Options MultiViews']
+	for lang in languages:
+		htaccess_lines.append('AddLanguage %s .%s' % (lang, lang))
+	htaccess_fd = open('.htaccess.tmp', 'w')
+	htaccess_fd.write('\n'.join(htaccess_lines))
+	htaccess_fd.close()
+	os.rename('.htaccess.tmp', '.htaccess')
 
 if __name__ == '__main__':
 	main()
