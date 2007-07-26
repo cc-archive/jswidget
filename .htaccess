@@ -1,5 +1,5 @@
 <Files complete.js>
 	SetHandler php5-script
 </Files>
-Options MultiViews
+Options MultiViews FollowSymlinks
 AddHandler type-map var

@@ -36,7 +36,7 @@ document.write('<script src="<?php echo $base . '/js/init.js'; ?>">');
 	// valid locales are lower or upper case alphas plus _ or -
 	preg_match('/^([a-zA-Z-_]*)$/', $_GET['locale']))
 	{
-	    $template_url = $base . '/template.js' . $_GET['locale'];
+	    $template_url = $base . '/template.js.' . $_GET['locale'];
 	}
 
 /* Else, do the generic one and hope they either like English or will
