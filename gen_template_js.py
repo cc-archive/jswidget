@@ -127,18 +127,24 @@ def main():
 	# And for our final trick, we will generate the .var file with
 	# languages that controls dispatch of requests to the untranslated
 	# JavaScript file.
+	default_lang = 'en_US'
 	var_lines = ['URI: template.js']
 	for lang in languages:
-		var_lines.append(gen_var_lang_line(uri_base='template.js', lang=lang))
+		var_lines.append(gen_var_lang_line(uri_base='template.js', lang=lang, default_lang = default_lang))
 	htaccess_fd = open('template.js.var.tmp', 'w')
 	htaccess_fd.write('\n\n'.join(var_lines) + '\n')
 	htaccess_fd.close()
 	os.rename('template.js.var.tmp', 'template.js.var')
 
-def gen_var_lang_line(uri_base, lang, content_type='application/x-javascript'):
+def gen_var_lang_line(uri_base, lang, default_lang, content_type='application/x-javascript'):
+	if lang == default_lang:
+		quality = '1.0'
+	else:
+		quality = '0.8'
+		
 	out = '''URI: %s.%s
 Content-Language: %s
-Content-Type: %s''' % (uri_base, lang, lang, content_type)
+Content-Type: %s; qs = %s''' % (uri_base, lang, lang, content_type, quality)
 	return out
 
 if __name__ == '__main__':
