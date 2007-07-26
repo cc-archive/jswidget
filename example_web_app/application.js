@@ -6,9 +6,9 @@
  */
 
 function showChosenLicenseURI() {
-    alert(document.getElementById("cc_license_chosen").href);
+    alert(document.getElementById("cc_js_result_url").value);
 }
 
 function showChosenLicenseName() {
-    alert(document.getElementById("cc_license_chosen").firstChild.nodeValue);
+    alert(document.getElementById("cc_js_result_name").firstChild.nodeValue);
 }

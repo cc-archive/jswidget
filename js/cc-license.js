@@ -199,6 +199,10 @@ function modify(obj) {
 
         // in this hacked version, it just calls update_hack direct
         build_license_details();
+
+	// Plus, update the hidden form fields with the name and uri
+	$('cc_js_result_url').value = license_array['url'];
+	$('cc_js_result_name').value = license_array['full_name'];
 }
 
     /**
