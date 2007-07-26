@@ -117,11 +117,11 @@ function t(s) {
         } catch (err) {}
     }
 	
-	/**
-	 * Main logic
-	 * Checks what the user pressed, sets licensing options based on it.
-	 */
-	function modify(obj) {
+/**
+ * Main logic
+ * Checks what the user pressed, sets licensing options based on it.
+ */
+function modify(obj) {
         warning_text = '';
 
 
