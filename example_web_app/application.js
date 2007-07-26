@@ -10,5 +10,5 @@ function showChosenLicenseURI() {
 }
 
 function showChosenLicenseName() {
-    alert(document.getElementById("cc_js_result_name").firstChild.nodeValue);
+    alert(document.getElementById("cc_js_result_name").value);
 }
