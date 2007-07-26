@@ -199,7 +199,7 @@ function modify(obj) {
 
         // in this hacked version, it just calls update_hack direct
         build_license_details();
-	}
+}
 
     /**
      * This resets the jurisdiction selection menu options' styles
