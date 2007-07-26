@@ -178,14 +178,6 @@ function t(s) {
             option_off('sa');
         } 
 	
-	// display advertising usage options
-	/* Commented-out by Asheesh; do we want to do this?
-	   if (!nc) {
-	    $('nc-ad').style.display = "none";
-	} else {
-	    $('nc-ad').style.display = "block";
-	    } */
-	
         try
         {
 
