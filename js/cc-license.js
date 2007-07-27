@@ -68,6 +68,13 @@ function init() {
 	$("share").checked = true;
 	$("remix").checked = true;
     }
+
+    // But if there's a hidden form field telling us what to do,
+    // then by Jove let's do that!
+    if ($('cc_js_seed')) {
+	license_url_to_attributes($('cc_js_seed').value);
+    }
+
 }
 
 	/**
