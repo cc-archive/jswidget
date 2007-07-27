@@ -340,7 +340,8 @@ function set_version(ver) {
 function set_jurisdiction(juri) {
     var juri_select = $('jurisdiction');
     if (juri_select) {
-	for (kid in juri_select.childNodes) {
+	for (var i = 0 ; i < juri_select.childNodes.length; i++) {
+	    kid = juri_select.childNodes[i];
 	    if (kid.value == juri) {
 		kid.selected = 'selected';
 	    }
