@@ -74,8 +74,8 @@ function init() {
     // But if there's a hidden form field telling us what to do,
     // then by Jove let's do that!
     license_array = new Array();
-    if ($('cc_js_seed')) {
-	license_url_to_attributes($('cc_js_seed').value);
+    if ($('cc_js_seed_uri')) {
+	license_url_to_attributes($('cc_js_seed_uri').value);
     }
 
 
