@@ -306,20 +306,19 @@ function license_url_to_attributes(url) {
 
 function set_attribs(attrs) {
     var attrs_ra = attrs.split("-");
-    for (attr in attrs_ra) {
-	// everyone is "by" these days
-	if (attr == 'sa') {
-	    share = true;
-	    sa = true;
-	}
-	else if (attr == 'nc') {
-	    nc = true;
-	}
-	else if (attr == 'nd') {
-	    share = false;
-	    sa = false;
-	}
-    }
+    attrs_ra.each( function(attr) {
+	    if (attr == 'sa') {
+		share = true;
+		sa = true;
+	    }
+	    else if (attr == 'nc') {
+		nc = true;
+	    }
+	    else if (attr == 'nd') {
+		share = false;
+		sa = false;
+	    }
+	});
     update_checkboxes_based_on_variables();
 }
 
