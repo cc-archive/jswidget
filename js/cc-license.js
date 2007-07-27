@@ -52,24 +52,24 @@ function t(s) {
     var share_label_orig_class  = '';
     var share_label_orig_color  = '';
 
-	/**
-	 * Initialise our license codes, and reset the UI
-	 */
-	function init() {
-		/* default: by */
-	
-        
-        share = true;
-        remix = true;
-        nc    = false;
-        sa    = false;
-        nc_ad = true;
-        if ( $("share") && $("remix") ) {
-		    $("share").checked = true;
-		    $("remix").checked = true;
-        }
-	}
-	
+/**
+ * Initialise our license codes, and reset the UI
+ */
+function init() {
+    /* default: by */
+    
+    
+    share = true;
+    remix = true;
+    nc    = false;
+    sa    = false;
+    nc_ad = true;
+    if ( $("share") && $("remix") ) {
+	$("share").checked = true;
+	$("remix").checked = true;
+    }
+}
+
 	/**
 	 * Disable everything related to ShareAlike
 	 */
@@ -323,7 +323,7 @@ function set_attribs(attrs) {
 }
 
 function set_version(ver) {
-    alert("lol version is " + ver);
+    license_array['version'] = ver;
 }
 
 function set_jurisdiction(juri) {
