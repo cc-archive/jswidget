@@ -69,11 +69,15 @@ function init() {
 	$("remix").checked = true;
     }
 
+    
+
     // But if there's a hidden form field telling us what to do,
     // then by Jove let's do that!
+    license_array = new Array();
     if ($('cc_js_seed')) {
 	license_url_to_attributes($('cc_js_seed').value);
     }
+
 
 }
 
@@ -334,7 +338,17 @@ function set_version(ver) {
 }
 
 function set_jurisdiction(juri) {
-    alert("lol juri is "  + juri);
+    var juri_select = $('jurisdiction');
+    if (juri_select) {
+	for (kid in juri_select.childNodes) {
+	    if (kid.value == juri) {
+		kid.selected = 'selected';
+	    }
+	    else {
+		kid.selected = '';
+	    }
+	}
+    }
 }
 
 
