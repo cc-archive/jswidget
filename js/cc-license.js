@@ -305,8 +305,8 @@ function license_url_to_attributes(url) {
 }
 
 function set_attribs(attrs) {
-    attrs.split("-");
-    for (attr in attrs) {
+    var attrs_ra = attrs.split("-");
+    for (attr in attrs_ra) {
 	// everyone is "by" these days
 	if (attr == 'sa') {
 	    share = true;
