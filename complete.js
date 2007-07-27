@@ -5,7 +5,7 @@
  *
  * See .htaccess for how to configure it for php5.
  */
-header("content-type: application/x-javascript");
+header("content-type: text/javascript");
 ?>
 
 <?php
