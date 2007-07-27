@@ -301,6 +301,7 @@ function license_url_to_attributes(url) {
     if (parts.length > 2) {
 	set_jurisdiction(parts[2]);
     }
+    rest_of_modify();
 }
 
 function set_attribs(attrs) {
