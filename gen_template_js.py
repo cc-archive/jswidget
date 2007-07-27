@@ -136,7 +136,7 @@ def main():
 	htaccess_fd.close()
 	os.rename('template.js.var.tmp', 'template.js.var')
 
-def gen_var_lang_line(uri_base, lang, default_lang, content_type='application/x-javascript'):
+def gen_var_lang_line(uri_base, lang, default_lang, content_type='text/javascript'):
 	if lang == default_lang:
 		quality = '1.0'
 	else:
