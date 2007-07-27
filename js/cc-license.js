@@ -334,6 +334,8 @@ function set_attribs(attrs) {
 }
 
 function set_version(ver) {
+    // FIXME? Right now, it just picks the newest version available
+    // in the jurisdiction.
     license_array['version'] = ver;
 }
 
