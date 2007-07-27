@@ -116,7 +116,21 @@ function t(s) {
 
         } catch (err) {}
     }
-	
+
+function update_checkboxes_based_on_variables() {
+    $('share').checked = share;
+    $('remix').checked = remix;
+    $('nc').checked = nc;
+    $('sa').checked = sa;
+}
+
+function update_variables_based_on_checkboxes() {	
+    share = $('share').checked;
+    remix = $('remix').checked;
+    nc = $('nc').checked;
+    sa = $('sa').checked;
+}
+
 /**
  * Main logic
  * Checks what the user pressed, sets licensing options based on it.
@@ -130,11 +144,12 @@ function modify(obj) {
             reset_jurisdiction_array = false;
         }
 
-	share = $('share').checked;
-	remix = $('remix').checked;
-	nc = $('nc').checked;
-	sa = $('sa').checked;
-	
+	update_variables_based_on_checkboxes();
+	rest_of_modify();
+}
+
+function rest_of_modify() {
+
         if ( share && remix )
         {
             option_on('share');
@@ -265,6 +280,56 @@ function modify(obj) {
 		}
 		return "margin-top:20px;";
 	}
+
+function license_url_to_attributes(url) {
+    // this is not specified to work with sampling licenses
+    // First assert that the root URL is at the start
+
+    // This could be cleaned up a little.
+    if (url.substr(0, license_root_url.length) != license_root_url)
+	return;
+    var remainder = url.substr(license_root_url.length);
+    
+    if (remainder.substr(0, 1) != "/")
+	return;
+    remainder = remainder.substr(1);
+    var parts = remainder.split("/");
+    set_attribs(parts[0]);
+    if (parts.length > 1) {
+	set_version(parts[1]);
+    }
+    if (parts.length > 2) {
+	set_jurisdiction(parts[2]);
+    }
+}
+
+function set_attribs(attrs) {
+    attrs.split("-");
+    for (attr in attrs) {
+	// everyone is "by" these days
+	if (attr == 'sa') {
+	    share = true;
+	    sa = true;
+	}
+	else if (attr == 'nc') {
+	    nc = true;
+	}
+	else if (attr == 'nd') {
+	    share = false;
+	    sa = false;
+	}
+    }
+    update_checkboxes_based_on_variables();
+}
+
+function set_version(ver) {
+    alert("lol version is " + ver);
+}
+
+function set_jurisdiction(juri) {
+    alert("lol juri is "  + juri);
+}
+
 
     function build_license_url ()
     {
