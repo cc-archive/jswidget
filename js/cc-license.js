@@ -160,6 +160,7 @@ function modify(obj) {
 }
 
 function rest_of_modify() {
+	alert('hey');
 
         if ( share && remix )
         {
@@ -227,7 +228,7 @@ function rest_of_modify() {
         build_license_details();
 
 	// Plus, update the hidden form fields with the name and uri
-	$('cc_js_result_url').value = license_array['url'];
+	$('cc_js_result_uri').value = license_array['url'];
 	$('cc_js_result_name').value = 'Creative Commons ' + license_array['full_name'] + ' ' + license_array['version'] + ' ' + license_array['jurisdiction'];
 }
 
@@ -314,7 +315,10 @@ function license_url_to_attributes(url) {
     }
     rest_of_modify();
     if (parts[1] != license_array['version']) {
-	alert('lol up');
+	// if the versions are different, tell the user we upgraded his
+	// license to the most recent license available for that jurisdiction
+	$('license_example').appendChild(document.createTextNode('zomg wow'));
+	alert('zomg wow');
 	}
 }
 
