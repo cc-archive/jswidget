@@ -18,12 +18,12 @@ $base = 'http://' . $_SERVER['HTTP_HOST'] . $dirname;
 ?>
 
 /* Load the prerequisite JS files */
-document.write('<script type="text/javascript" src="<?php echo $base . '/js/prototype.js'; ?>">');
-document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-tooltip.js'; ?>">');
-document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-jurisdictions.js'; ?>">');
-document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-license.js'; ?>">');
-document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-lib-freedomsjs'; ?>">');
-document.write('<script type="text/javascript" src="<?php echo $base . '/js/init.js'; ?>">');
+document.write('<script type="text/javascript" src="<?php echo $base . '/js/prototype.js'; ?>"></script>');
+document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-tooltip.js'; ?>"></script>');
+document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-jurisdictions.js'; ?>"></script>');
+document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-license.js'; ?>"></script>');
+document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-lib-freedomsjs'; ?>"></script>');
+document.write('<script type="text/javascript" src="<?php echo $base . '/js/init.js'; ?>"></script>');
 
 /* NOTE: I do not include the CSS stylesheet
    and instead I let others style our boxes the way they want. */
@@ -46,4 +46,4 @@ document.write('<script type="text/javascript" src="<?php echo $base . '/js/init
     }
 ?>
 
-document.write('<script type="text/javascript" src="<?php echo $template_url ?>" />\n');
+document.write('<script type="text/javascript" src="<?php echo $template_url ?>" /></script>\n');
