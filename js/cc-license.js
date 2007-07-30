@@ -228,7 +228,7 @@ function rest_of_modify() {
 
 	// Plus, update the hidden form fields with the name and uri
 	$('cc_js_result_url').value = license_array['url'];
-	$('cc_js_result_name').value = license_array['full_name'];
+	$('cc_js_result_name').value = 'Creative Commons ' + license_array['full_name'] + ' ' + license_array['version'] + ' ' + license_array['jurisdiction'];
 }
 
     /**
@@ -313,6 +313,9 @@ function license_url_to_attributes(url) {
 	set_jurisdiction(parts[2]);
     }
     rest_of_modify();
+    if (parts[1] != license_array['version']) {
+	alert('lol up');
+	}
 }
 
 function set_attribs(attrs) {
