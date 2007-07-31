@@ -22,7 +22,7 @@ document.write('<script type="text/javascript" src="<?php echo $base . '/js/prot
 document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-tooltip.js'; ?>"></script>');
 document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-jurisdictions.js'; ?>"></script>');
 document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-license.js'; ?>"></script>');
-document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-lib-freedomsjs'; ?>"></script>');
+document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-lib-freedoms.js'; ?>"></script>');
 document.write('<script type="text/javascript" src="<?php echo $base . '/js/init.js'; ?>"></script>');
 
 /* NOTE: I do not include the CSS stylesheet
