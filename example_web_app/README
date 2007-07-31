@@ -1,5 +1,9 @@
+JsWidget 0.3 by Creative Commons
+
 This code is an example of how to integrate with the Creative Commons 
 JsWidget.  If you just want to see how to use it, read index.html.
+
+For more info see http://wiki.creativecommons.org/JsWidget.
 
 == WARNING ==
 
@@ -33,10 +37,10 @@ updated.
 
 == Languages ==
 
-In this preview edition, there is only support for US English.  In the 
-future, you can select a language with the ?locale= option to 
-complete.js.  If you leave the ?locale= off, then (in the future) the 
-server will attempt to negotiate a language with the client with the 
+In this preview edition, there is only full support for US English, but 
+there is partial translation support.  You can select a language with 
+the ?locale= option to complete.js.  If you leave the ?locale= off, then 
+the server will attempt to negotiate a language with the client with the 
 Accept-Language header as per 
 http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4 .
 
@@ -45,9 +49,12 @@ reference for where en_US and fr come from, I'll make a note of it here.
 
 == Style ==
 
-We give you two style files that make it look bearable.  You probably 
-want to customize these so the form has the colors and styles your users 
-expect.
+We provide a sample style file that makes it look bearable.  You 
+probably want to customize these so the form has the colors and styles 
+your users expect.
+
+By the time 1.0 hits, we will update this style file so it looks even 
+nicer.
 
 == Re-use ==
 
@@ -62,4 +69,4 @@ https://cctools.svn.sourceforge.net/svnroot/cctools/jswidget/.
 Ask us questions about this!  Email our development mailing list 
 cc-devel@lists.ibiblio.org .
 
--- Asheesh Laroia <asheesh@creativecommons.org> 2007-07-19.
+-- Asheesh Laroia <asheesh@creativecommons.org> 2007-07-31.
