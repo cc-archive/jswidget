@@ -13,7 +13,8 @@ It's not even a betta, nor in beta.  It's a glimpse into the
 ever-changing future.  No warranty is provided; this software may eat 
 your cat, spill your milk, and prepare your breakfast.  Or it may not.
 
-Having said that, we plan to keep 
+Having said that, please try it and let us know how you like it.  If no 
+one says anything, then this might become the future!
 
 == What is JsWidget? ==
 
@@ -52,6 +53,10 @@ reference for where en_US and fr come from, I'll make a note of it here.
 We provide a sample style file that makes it look bearable.  You 
 probably want to customize these so the form has the colors and styles 
 your users expect.
+
+We expect you to store this style file on your server, although if you 
+need to refer to one on our servers, there is an example on the wiki 
+page.
 
 By the time 1.0 hits, we will update this style file so it looks even 
 nicer.
