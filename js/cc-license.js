@@ -78,6 +78,11 @@ function init() {
 	license_url_to_attributes($('cc_js_seed_uri').value);
     }
 
+    else {
+	    // Otherwise, init this from scratch
+	    modify(this);
+    }
+
 
 }
 
@@ -160,8 +165,6 @@ function modify(obj) {
 }
 
 function rest_of_modify() {
-	alert('hey');
-
         if ( share && remix )
         {
             option_on('share');
@@ -317,9 +320,18 @@ function license_url_to_attributes(url) {
     if (parts[1] != license_array['version']) {
 	// if the versions are different, tell the user we upgraded his
 	// license to the most recent license available for that jurisdiction
-	$('license_example').appendChild(document.createTextNode('zomg wow'));
-	alert('zomg wow');
+	var strong_warning = document.createElement('strong');
+
+	if (license_array['jurisdiction'] != "") {
+		// if they selected a jurisdiction:
+		strong_warning.appendChild(document.createTextNode(t('We have updated the version of your license to the most recent one available in your jurisdiction.')));
+	} else {
+		// if they selected no jurisdiction:
+		strong_warning.appendChild(document.createTextNode(t('We have updated the version of your license to the most recent one available.')));
 	}
+
+	$('license_example').appendChild(strong_warning);
+     }
 }
 
 function set_attribs(attrs) {
