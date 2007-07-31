@@ -232,6 +232,7 @@ function rest_of_modify() {
 
 	// Plus, update the hidden form fields with the name and uri
 	$('cc_js_result_uri').value = license_array['url'];
+        $('cc_js_result_img').value = license_array['img'];
 	$('cc_js_result_name').value = 'Creative Commons ' + license_array['full_name'] + ' ' + license_array['version'] + ' ' + license_array['jurisdiction'];
 }
 
