@@ -6,7 +6,7 @@
  */
 
 function showChosenLicenseURI() {
-    alert(document.getElementById("cc_js_result_url").value);
+    alert(document.getElementById("cc_js_result_uri").value);
 }
 
 function showChosenLicenseName() {
