@@ -42,7 +42,7 @@ document.write('<script type="text/javascript" src="<?php echo $base . '/js/init
 /* Else, do the generic one and hope they either like English or will
  * do their own language negotiation */
     else {
-	$template_url = 'http://labs.creativecommons.org/jswidget/trunk/template.js.var';
+	$template_url = $base . 'template.js.var';
     }
 ?>
 
