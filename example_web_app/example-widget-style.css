@@ -23,8 +23,6 @@
     font-size: 11px !important;
 }
 
-/* -- classes */
-
 /* -- elements */
 
 a, a:link {
@@ -35,103 +33,6 @@ a, a:link {
 a:hover {
   text-decoration: underline;
 }
-
-div.blurb {
-	border-bottom: 1px solid #ddd;
-    padding: 0 0 15px 0;
-    margin: 0;
-	
-}
-
-div.end {
-	border-bottom: 4px solid #ddd !important;
-}
-
-#blog .blogged img {
-  margin: 0 5px;
-}
-
-#blog .feature {
-	border-bottom:  1px solid #ddd;
-	padding-bottom:  25px;
-	margin-bottom: 35px;
-}
-
-.feature img {
-	margin-right: 5px;
-}
-
-.feature h1 {
-	margin-bottom:  5px;
-}
-
-.post .excerpt {
-	margin-left:  170px;
-}
-
-.post .comments {
-  margin: 35px 0;
-}
-
-
-/* Archives */
-ul.archives {
-  list-style: none;
-  margin: 0 15px 15px 8px;
-}
-
-ul.archives li {
-  border-bottom: 1px solid #e9e9e9;
-  padding: 5px 0 3px 5px;
-  position: relative;
-}
-
-ul.archives li .posted {
-  position: absolute; 
-  top: 6px; 
-  right: 6px;
-}
-
-
-/*
- * The following taken from /includes/worldwide.css
- *
- */
-
-
-div.ifloat {
-   text-align: center;
-  float: left;
-  width: 74px;
-  height:80px;
-  padding: 10px;
-  }
-
-div.ifloat p {
-   text-align: center;
-   }
-
- div.icontainer {
-	margin:14px;
-   text-align: center;
-  }
-
-  div.ispacer {
-  clear: both;
-  }
-
-  .licensebox {
-  	background:#eee;
-	border:1px solid #ccc;
-	padding:6px;
-  }
-
-#splash img {
-	border: 1px solid #666;
-	padding: 0 !important;
-	margin-right: 15px;
-}
-
 
 /**
  * This was written by CC as a demonstration of how to interoperate
