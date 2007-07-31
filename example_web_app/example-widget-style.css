@@ -8,8 +8,7 @@
 body {
   background-color: #fff;
   color: #343434;
-  /*font: 0.74em/145% "Lucida Grande", verdana, sans-serif;*/
-font: 71%/145% "Lucida Grande", verdana, sans-serif;
+  font: 71%/145% "Lucida Grande", verdana, sans-serif;
   padding: 0;
   margin: 0;
   text-align: center;
@@ -19,53 +18,50 @@ font: 71%/145% "Lucida Grande", verdana, sans-serif;
 #wrapper {
   text-align: left;
   margin: 0 3%;
-/*  width: 940px;*/
   width:  94%;
-	min-width: 600px;
-  /*max-width:  1100px;*/
+  min-width: 600px;
 }
 /* sub-wrapper to handle max-width in IE. ugly hack. thanks IE. */
 #wrapper-ie {
 	width: auto;
 }
-  #header-wrapper {
-	background: url('http://creativecommons.org/images/header-main-b.png') repeat-x bottom left;
+#header-wrapper {
+    background: url('http://creativecommons.org/images/header-main-b.png') repeat-x bottom left;
     background-color: #486d00;
-  }
-  #header-main {
-    /*width: 900px;*/
- 		width:  93%;
-		min-width:  700px;
-	/*	max-width:  1100px;*/
+}
+#header-main {
+    width:  93%;
+    min-width:  700px;
     margin: 0 3%;
     padding: 10px 0 2px 1%;
     text-align: left;
     font-size: 11px !important;
-  }
-    #cc-title {
-    padding: 0 0px 5px 0px;
-    }
-    #find {}
-    #publish {}
+}
 
-  #body {
+#cc-title {
+    padding: 0 0px 5px 0px;
+}
+
+#find {}
+#publish {}
+
+#body {
     margin: 0 ;
     margin-top: 10px;
     border-top: 1px solid #ddd;
+}
 
-  }
-
-    #splash {
-      font-size: 170%;
-      
-      background-color: /*#0f2700*/ #fff;
-      color: #707070;
-      margin: 7px 0 3px 0;
-			padding-bottom:  6px;
+#splash {
+    font-size: 170%;
+    background-color: #fff;
+    color: #707070;
+    margin: 7px 0 3px 0;
+    padding-bottom:  6px;
     }
-			#splash #blurb {
-				margin: 0 0 28px 0;
-				padding: 0 15px;
+
+#splash #blurb {
+   margin: 0 0 28px 0;
+   				padding: 0 15px;
 				font-size: 65%;
 				color: #505050;
 			}
