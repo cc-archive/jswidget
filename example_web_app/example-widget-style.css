@@ -17,7 +17,7 @@ body {
 /* -- main blocks */
 #wrapper {
   text-align: left;
-  margin: 0 3%;
+  margin: 0 3%	;
   width:  94%;
   min-width: 600px;
 }
@@ -675,14 +675,4 @@ img.info {
 
 #lic-menu p {
 	margin: 0 0 5px 0;
-}
-
-#nc-ad {
-	display: none;
-	margin: 5px 10px 15px 10px;
-	padding: 5px;
-	border: 1px solid #888;
-	-moz-border-radius: 3px;
-	width: 17em;
-	background-color: #eef0e6;
 }
