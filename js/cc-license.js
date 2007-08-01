@@ -193,9 +193,11 @@ function rest_of_modify() {
             // OH! You have to convert a list to an array object...
             var jurisdiction_options = $A( $('jurisdiction').options );
 	    jurisdiction_options.each( function(item) {
-		    
+		if (item.value in jurisdictions_array) {
+			if ('sampling' in jurisdictions_array[item.value]) {
                if ( ! jurisdictions_array[ item.value ]['sampling'] )
                    item.style.display = 'none';
+		}}
             });
 
            reset_jurisdiction_array = true;
