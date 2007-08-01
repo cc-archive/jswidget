@@ -12,3 +12,7 @@ function showChosenLicenseURI() {
 function showChosenLicenseName() {
     alert(document.getElementById("cc_js_result_name").value);
 }
+
+function showChosenLicenseImageURL() {
+    alert(document.getElementById("cc_js_result_img").value);
+}
