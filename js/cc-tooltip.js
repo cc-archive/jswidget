@@ -29,39 +29,39 @@
  */
 
 /* Browser specific checks */
-var g_dom   = (document.getElementById) ? true : false;
-var g_ns5   = ((navigator.userAgent.indexOf("Gecko")>-1) && g_dom) ? 
+var cc_js_g_dom   = (document.getElementById) ? true : false;
+var cc_js_g_ns5   = ((navigator.userAgent.indexOf("Gecko")>-1) && cc_js_g_dom) ? 
               true: false;
-var g_ie5   = ((navigator.userAgent.indexOf("MSIE")>-1) && g_dom) ? 
+var cc_js_g_ie5   = ((navigator.userAgent.indexOf("MSIE")>-1) && cc_js_g_dom) ? 
               true : false;
-var g_nodyn = (!g_ns5 && !g_ie5) ? true : false;
+var cc_ns_g_nodyn = (!cc_js_g_ns5 && !cc_js_g_ie5) ? true : false;
 
 // NOTE: This avoids older error event in older browsers.
-if (g_nodyn) { event = "no" }
+if (cc_ns_g_nodyn) { event = "no" }
 
 /* GLOBAL VARIABLES have a g_ prefix for var names */
 
-var g_tip_follow_mouse  = false;// if true then tip follows mouse
-var tip_width           = 175;  // the generic width of a tip
-var g_off_x             = 20;   // x-offset for tip
-var g_off_y             = 10;   // y-offset for tip
-var g_popup_timeout     = 500;  // popup timeout
-var g_tooltip, g_tipcss;        // globals for tooltip and tip css
-var g_timeout1, g_timeout2;     // for setting timeouts
-var g_tip_on            = false;// check if over tooltip over link
-var g_mouse_x, g_mouse_y;       // track the mouse coordinates
+var cc_js_g_follow_mouse  = false;// if true then tip follows mouse
+var cc_js_tip_width           = 175;  // the generic width of a tip
+var cc_js_g_off_x             = 20;   // x-offset for tip
+var cc_js_g_off_y             = 10;   // y-offset for tip
+var cc_js_g_popup_timeout     = 500;  // popup timeout
+var cc_js_g_tooltip, cc_js_g_tipcss;        // globals for tooltip and tip css
+var cc_js_g_timeout1, cc_js_g_timeout2;     // for setting timeouts
+var cc_js_g_tip_on            = false;// check if over tooltip over link
+var cc_js_g_mouse_x, cc_js_g_mouse_y;       // track the mouse coordinates
 
 function cc_js_initTip() { init_tip(); }
 /**
- * This initializes the g_tooltip code. g_tooltip is a global variable. Also
- * this sets up mouse tracking with g_tip_follow_mouse if set to true.
+ * This initializes the cc_js_g_tooltip code. cc_js_g_tooltip is a global variable. Also
+ * this sets up mouse tracking with cc_js_g_follow_mouse if set to true.
  */
 function cc_js_init_tip() {
-    if (g_nodyn) return;
-    g_tooltip   = cc_js_$('tip_cloak');
-    g_tipcss    = g_tooltip.style;
+    if (cc_ns_g_nodyn) return;
+    cc_js_g_tooltip   = cc_js_$('tip_cloak');
+    cc_js_g_tipcss    = cc_js_g_tooltip.style;
     
-    if (g_tooltip && g_tip_follow_mouse) {
+    if (cc_js_g_tooltip && cc_js_g_follow_mouse) {
         document.onmousemove = track_mouse;
     }
 }
@@ -70,86 +70,86 @@ function cc_js_init_tip() {
  * This build the tooltip and makes it visible..
  */
 function cc_js_on_tooltip(evt, img) {
-    if (!g_tooltip) return;
-    if (g_timeout1) clearTimeout(g_timeout1);   
-    if (g_timeout2) clearTimeout(g_timeout2);
-    g_tip_on = true;
+    if (!cc_js_g_tooltip) return;
+    if (cc_js_g_timeout1) clearTimeout(cc_js_g_timeout1);   
+    if (cc_js_g_timeout2) clearTimeout(cc_js_g_timeout2);
+    cc_js_g_tip_on = true;
     
     var tip = '<div class="tooltipimage"><img src="' + img + 
               '" border="0"/></div>';
-    g_tooltip.innerHTML = tip;
+    cc_js_g_tooltip.innerHTML = tip;
 
-    if (!g_tip_follow_mouse) cc_js_position_tip(evt);
-    else g_timeout1 = setTimeout("g_tipcss.visibility='visible'", 
-                                 g_popup_timeout);
+    if (!cc_js_g_follow_mouse) cc_js_position_tip(evt);
+    else cc_js_g_timeout1 = setTimeout("cc_js_g_tipcss.visibility='visible'", 
+                                 cc_js_g_popup_timeout);
 }
 
 /**
- * This is a generic g_tooltip for displaying any html inside of a box.
+ * This is a generic cc_js_g_tooltip for displaying any html inside of a box.
  */
 function cc_js_on_tooltip_html(evt, html) {
-    if (!g_tooltip) return;
-    if (g_timeout1) clearTimeout(g_timeout1);   
-    if (g_timeout2) clearTimeout(g_timeout2);
-    g_tip_on = true;
+    if (!cc_js_g_tooltip) return;
+    if (cc_js_g_timeout1) clearTimeout(cc_js_g_timeout1);   
+    if (cc_js_g_timeout2) clearTimeout(cc_js_g_timeout2);
+    cc_js_g_tip_on = true;
     
     var tip = '<div class="tooltip">' + html + '</div>';
-    g_tooltip.innerHTML = tip;
+    cc_js_g_tooltip.innerHTML = tip;
 
-    if (!g_tip_follow_mouse) 
+    if (!cc_js_g_follow_mouse) 
         cc_js_position_tip(evt);
     else 
-        g_timeout1 = setTimeout("g_tipcss.visibility='visible'", 
-                                g_popup_timeout);
+        cc_js_g_timeout1 = setTimeout("cc_js_g_tipcss.visibility='visible'", 
+                                cc_js_g_popup_timeout);
 }
 
 function cc_js_track_mouse(evt) {
-    g_mouse_x = (g_ns5) ? evt.pageX : 
+    cc_js_g_mouse_x = (cc_js_g_ns5) ? evt.pageX : 
                           window.event.clientX + document.body.scrollLeft;
-    g_mouse_y = (g_ns5) ? evt.pageY : 
+    cc_js_g_mouse_y = (cc_js_g_ns5) ? evt.pageY : 
                           window.event.clientY + document.body.scrollTop;
-    if (g_tip_on) cc_js_position_tip(evt);
+    if (cc_js_g_tip_on) cc_js_position_tip(evt);
 }
 
 /**
  * This function cc_js_positions the tooltip.
  */
 function cc_js_position_tip(evt) {
-    if (!g_tip_follow_mouse) {
-        g_mouse_x = (g_ns5)? evt.pageX : window.event.clientX + 
+    if (!cc_js_g_follow_mouse) {
+        cc_js_g_mouse_x = (cc_js_g_ns5)? evt.pageX : window.event.clientX + 
                     document.body.scrollLeft;
-        g_mouse_y = (g_ns5)? evt.pageY : window.event.clientY + 
+        cc_js_g_mouse_y = (cc_js_g_ns5)? evt.pageY : window.event.clientY + 
                     document.body.scrollTop;
     }
     // tooltip width and height
-    var tpWd = (g_ie5)? g_tooltip.clientWidth : g_tooltip.offsetWidth;
-    var tpHt = (g_ie5)? g_tooltip.clientHeight : g_tooltip.offsetHeight;
+    var tpWd = (cc_js_g_ie5)? cc_js_g_tooltip.clientWidth : cc_js_g_tooltip.offsetWidth;
+    var tpHt = (cc_js_g_ie5)? cc_js_g_tooltip.clientHeight : cc_js_g_tooltip.offsetHeight;
     // document area in view (subtract scrollbar width for ns)
-    var winWd = (g_ns5)? window.innerWidth - 20 + 
+    var winWd = (cc_js_g_ns5)? window.innerWidth - 20 + 
                 window.pageXOffset : document.body.clientWidth + 
                                      document.body.scrollLeft;
-    var winHt = (g_ns5)? window.innerHeight - 20 + window.pageYOffset : 
+    var winHt = (cc_js_g_ns5)? window.innerHeight - 20 + window.pageYOffset : 
                 document.body.clientHeight + document.body.scrollTop;
     // check mouse position against tip and window dimensions
-    // and position the g_tooltip 
-    if ((g_mouse_x + g_off_x + tpWd) > winWd) 
-        g_tipcss.left = g_mouse_x - (tpWd + g_off_x) + "px";
-    else g_tipcss.left = g_mouse_x + g_off_x + "px";
-    if ((g_mouse_y + g_off_y + tpHt) > winHt) 
-        g_tipcss.top = winHt - (tpHt + g_off_y) + "px";
-    else g_tipcss.top = g_mouse_y + g_off_y + "px";
-    if (!g_tip_follow_mouse) 
-        g_timeout1 = setTimeout("g_tipcss.visibility='visible'", 
-                                g_popup_timeout);
+    // and position the cc_js_g_tooltip 
+    if ((cc_js_g_mouse_x + cc_js_g_off_x + tpWd) > winWd) 
+        cc_js_g_tipcss.left = cc_js_g_mouse_x - (tpWd + cc_js_g_off_x) + "px";
+    else cc_js_g_tipcss.left = cc_js_g_mouse_x + cc_js_g_off_x + "px";
+    if ((cc_js_g_mouse_y + cc_js_g_off_y + tpHt) > winHt) 
+        cc_js_g_tipcss.top = winHt - (tpHt + cc_js_g_off_y) + "px";
+    else cc_js_g_tipcss.top = cc_js_g_mouse_y + cc_js_g_off_y + "px";
+    if (!cc_js_g_follow_mouse) 
+        cc_js_g_timeout1 = setTimeout("cc_js_g_tipcss.visibility='visible'", 
+                                cc_js_g_popup_timeout);
 }
 
 /**
  * Hides the tooltip.
  */
 function cc_js_hide_tip() {
-    if (!g_tooltip) return;
-    g_timeout2 = setTimeout("g_tipcss.visibility='hidden'", g_popup_timeout);
-    g_tip_on = false;
+    if (!cc_js_g_tooltip) return;
+    cc_js_g_timeout2 = setTimeout("cc_js_g_tipcss.visibility='hidden'", cc_js_g_popup_timeout);
+    cc_js_g_tip_on = false;
 }
 
 //-->
