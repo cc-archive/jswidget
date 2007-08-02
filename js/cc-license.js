@@ -46,7 +46,6 @@ var cc_js_reset_jurisdiction_array = false;
 var cc_js_license_array;
 
 var cc_js_license_root_url        = 'http://creativecommons.org/licenses';
-var cc_js_license_version         = '2.5';
 
 var cc_js_warning_text            = '';
 
@@ -454,7 +453,7 @@ function cc_js_build_jurisdictions ()
     
     
     if ( ! cc_js_license_array['version'] )
-	cc_js_license_array['version'] = cc_js_license_version;
+	cc_js_license_array['version'] = cc_js_default_version_number;
 }
 
 function cc_js_no_license_selection () {
