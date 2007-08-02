@@ -53,9 +53,6 @@ var cc_js_warning_text            = '';
 var label_orig_class        = Array;
 var label_orig_color        = Array;
 
-var share_label_orig_class  = '';
-var share_label_orig_color  = '';
-
 /**
  * Initialise our license codes, and reset the UI
  */
@@ -108,14 +105,8 @@ function cc_js_option_on (option) {
     
     cc_js_$(option).disabled = false;
     
-    if ( share_label_orig_class[label_name] )
-	cc_js_$(short_label_name).className = share_label_orig_class[label_name];
-    
-    if ( share_label_orig_color[label_name] )
-	cc_js_$(short_label_name).style.color = share_label_orig_color[label_name];
-    else
-	if (option != 'share') 
-	    cc_js_$(short_label_name).style.color = 'black';
+    if (option != 'share') 
+	cc_js_$(short_label_name).style.color = 'black';
     
 }
 
