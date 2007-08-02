@@ -39,16 +39,16 @@ function cc_js_t(s) {
 }
 
 // NOTE we have the object freedoms for dealing with freedom style choosing
-var share, remix, nc, sa;
+var cc_js_share, cc_js_remix, cc_js_nc, cc_js_sa;
 
-var reset_jurisdiction_array = false;
+var cc_js_reset_jurisdiction_array = false;
 
-var license_array;
+var cc_js_license_array;
 
-var license_root_url        = 'http://creativecommons.org/licenses';
-var license_version         = '2.5';
+var cc_js_license_root_url        = 'http://creativecommons.org/licenses';
+var cc_js_license_version         = '2.5';
 
-var warning_text            = '';
+var cc_js_warning_text            = '';
 
 var label_orig_class        = Array;
 var label_orig_color        = Array;
@@ -63,11 +63,10 @@ function cc_js_init() {
     /* default: by */
     
     
-    share = true;
-    remix = true;
-    nc    = false;
-    sa    = false;
-    nc_ad = true;
+    cc_js_share = true;
+    cc_js_remix = true;
+    cc_js_nc    = false;
+    cc_js_sa    = false;
     if ( cc_js_$("share") && cc_js_$("remix") ) {
 	cc_js_$("share").checked = true;
 	cc_js_$("remix").checked = true;
@@ -77,7 +76,7 @@ function cc_js_init() {
     
     // But if there's a hidden form field telling us what to do,
     // then by Jove let's do that!
-    license_array = new Array();
+    cc_js_license_array = new Array();
     if (cc_js_$('seed_uri')) {
 	cc_js_license_url_to_attributes(cc_js_$('seed_uri').value);
     }
@@ -94,7 +93,7 @@ function cc_js_init() {
  * Disable everything related to ShareAlike
  */
 function cc_js_no_share() {
-    sa = false;
+    cc_js_sa = false;
     cc_js_$("share").disabled = true;
     cc_js_$("share").checked = false;
 }
@@ -129,26 +128,26 @@ function cc_js_option_off (option) {
 	//    share_label_orig_class[label_name] = cc_js_$(label_name).className;
 	
 	//share_label_orig_color[label_name] = cc_js_$(label_name).style.color;
-	
+    */
+    
 	cc_js_$(option).disabled = true;
 	cc_js_$(option).checked = false;
 	cc_js_$(short_label_name).style.color = 'gray';
 	
-    */
 }
 
 function cc_js_update_checkboxes_based_on_variables() {
-    cc_js_$('share').checked = share;
-    cc_js_$('remix').checked = remix;
-    cc_js_$('nc').checked = nc;
-    cc_js_$('sa').checked = sa;
+    cc_js_$('share').checked = cc_js_share;
+    cc_js_$('remix').checked = cc_js_remix;
+    cc_js_$('nc').checked = cc_js_nc;
+    cc_js_$('sa').checked = cc_js_sa;
 }
 
 function cc_js_update_variables_based_on_checkboxes() {	
-    share = cc_js_$('share').checked;
-    remix = cc_js_$('remix').checked;
-    nc = cc_js_$('nc').checked;
-    sa = cc_js_$('sa').checked;
+    cc_js_share = cc_js_$('share').checked;
+    cc_js_remix = cc_js_$('remix').checked;
+    cc_js_nc = cc_js_$('nc').checked;
+    cc_js_sa = cc_js_$('sa').checked;
 }
 
 /**
@@ -156,12 +155,12 @@ function cc_js_update_variables_based_on_checkboxes() {
  * Checks what the user pressed, sets licensing options based on it.
  */
 function cc_js_modify(obj) {
-    warning_text = '';
+    cc_js_warning_text = '';
     
     
-    if ( reset_jurisdiction_array ) {
+    if ( cc_js_reset_jurisdiction_array ) {
 	cc_js_reset_jurisdiction_list();
-	reset_jurisdiction_array = false;
+	cc_js_reset_jurisdiction_array = false;
     }
     
     cc_js_update_variables_based_on_checkboxes();
@@ -169,18 +168,18 @@ function cc_js_modify(obj) {
 }
 
 function cc_js_rest_of_modify() {
-    if ( share && remix ) {
+    if ( cc_js_share && cc_js_remix ) {
 	cc_js_option_on('share');
 	cc_js_option_on('remix');
 	cc_js_option_on('nc');
 	cc_js_option_on('sa');
 	
-    } else if ( share && !remix ) {
+    } else if ( cc_js_share && !cc_js_remix ) {
 	cc_js_option_on('share');
 	cc_js_option_on('remix');
 	cc_js_option_on('nc');
 	cc_js_option_off('sa');
-    } else if ( !share && remix ) {
+    } else if ( !cc_js_share && cc_js_remix ) {
 	cc_js_option_on('share');
 	cc_js_option_on('remix');
 	cc_js_option_off('nc');
@@ -199,7 +198,7 @@ function cc_js_rest_of_modify() {
 		    }}
 	    });
 	
-	reset_jurisdiction_array = true;
+	cc_js_reset_jurisdiction_array = true;
 	
     } else {
 	// This is when nothing is selected
@@ -213,9 +212,9 @@ function cc_js_rest_of_modify() {
     cc_js_build_license_details();
     
     // Plus, update the hidden form fields with the name and uri
-    cc_js_$('result_uri').value = license_array['url'];
-    cc_js_$('result_img').value = license_array['img'];
-    cc_js_$('result_name').value = 'Creative Commons ' + license_array['full_name'] + ' ' + license_array['version'] + ' ' + license_array['jurisdiction'];
+    cc_js_$('result_uri').value = cc_js_license_array['url'];
+    cc_js_$('result_img').value = cc_js_license_array['img'];
+    cc_js_$('result_name').value = 'Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' ' + cc_js_license_array['jurisdiction'];
 }
 
 /**
@@ -235,7 +234,7 @@ function cc_js_reset_jurisdiction_list ()
  */
 function cc_js_set_share (value)
 {
-    share = value;
+    cc_js_share = value;
     cc_js_modify();
 }
 
@@ -245,7 +244,7 @@ function cc_js_set_share (value)
  */
 function cc_js_set_remix (value)
 {
-    remix = value;
+    cc_js_remix = value;
     cc_js_modify();
 }
 
@@ -284,9 +283,9 @@ function cc_js_license_url_to_attributes(url) {
     // First assert that the root URL is at the start
     
     // This could be cleaned up a little.
-    if (url.substr(0, license_root_url.length) != license_root_url)
+    if (url.substr(0, cc_js_license_root_url.length) != cc_js_license_root_url)
 	return;
-    var remainder = url.substr(license_root_url.length);
+    var remainder = url.substr(cc_js_license_root_url.length);
     
     if (remainder.substr(0, 1) != "/")
 	return;
@@ -300,12 +299,12 @@ function cc_js_license_url_to_attributes(url) {
 	cc_js_set_jurisdiction(parts[2]);
     }
     cc_js_rest_of_modify();
-    if (parts[1] != license_array['version']) {
+    if (parts[1] != cc_js_license_array['version']) {
 	// if the versions are different, tell the user we upgraded his
 	// license to the most recent license available for that jurisdiction
 	var strong_warning = document.createElement('strong');
 	
-	if (license_array['jurisdiction'] != "") {
+	if (cc_js_license_array['jurisdiction'] != "") {
 	    // if they selected a jurisdiction:
 	    strong_warning.appendChild(document.createTextNode(cc_js_t('We have updated the version of your license to the most recent one available in your jurisdiction.')));
 	} else {
@@ -321,15 +320,15 @@ function cc_js_set_attribs(attrs) {
     var attrs_ra = attrs.split("-");
     attrs_ra.each( function(attr) {
 	    if (attr == 'sa') {
-		share = true;
-		sa = true;
+		cc_js_share = true;
+		cc_js_sa = true;
 	    }
 	    else if (attr == 'nc') {
-		nc = true;
+		cc_js_nc = true;
 	    }
 	    else if (attr == 'nd') {
-		share = false;
-		sa = false;
+		cc_js_share = false;
+		cc_js_sa = false;
 	    }
 	});
     cc_js_update_checkboxes_based_on_variables();
@@ -339,7 +338,7 @@ function cc_js_set_version(ver) {
     // I do set the 'version', but during sanity-checking it is
     // overwritten by the latest version for the jurisdiction.  If
     // these disagree, we do alert the user.
-    license_array['version'] = ver;
+    cc_js_license_array['version'] = ver;
 }
 
 function cc_js_set_jurisdiction(juri) {
@@ -360,12 +359,12 @@ function cc_js_set_jurisdiction(juri) {
 
 function cc_js_build_license_url ()
 {
-    var license_url = license_root_url + "/" + license_array['code'] + 
-	"/" + license_array['version'] + "/" ;
-    if ( $F('cc_js_jurisdiction') && ! license_array['generic'] )
+    var license_url = cc_js_license_root_url + "/" + cc_js_license_array['code'] + 
+	"/" + cc_js_license_array['version'] + "/" ;
+    if ( $F('cc_js_jurisdiction') && ! cc_js_license_array['generic'] )
 	license_url += $F('cc_js_jurisdiction') + "/" ;
     
-    license_array['url'] = license_url;
+    cc_js_license_array['url'] = license_url;
 }
 
 /**
@@ -387,10 +386,10 @@ function cc_js_build_license_text ()
     // prototype.js attempts to access nonexistent form fields...
     
     // The main bit of text including or not, jurisdiction love
-    if ( license_array['jurisdiction'] && ! license_array['generic'] )
-	license_text = 'You have chosen a <a id="cc_license_chosen" rel="license" href="' + license_array['url'] + '">Creative Commons ' + license_array['full_name'] + ' ' + license_array['version'] + ' ' + ( license_array['jurisdiction'] ? license_array['jurisdiction'] : license_array['jurisdiction'].toUpperCase() ) + ' License</a>.' + ' ' + license_text;
+    if ( cc_js_license_array['jurisdiction'] && ! cc_js_license_array['generic'] )
+	license_text = 'You have chosen a <a id="cc_license_chosen" rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' ' + ( cc_js_license_array['jurisdiction'] ? cc_js_license_array['jurisdiction'] : cc_js_license_array['jurisdiction'].toUpperCase() ) + ' License</a>.' + ' ' + license_text;
     else 
-	license_text = 'You have chosen a <a id="cc_license_chosen" rel="license" href="' + license_array['url'] + '">Creative Commons ' + license_array['full_name'] + ' ' + license_array['version'] + ' License</a>.' + ' ' + license_text;
+	license_text = 'You have chosen a <a id="cc_license_chosen" rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' License</a>.' + ' ' + license_text;
     
     // Lets set some namespaces if they are needed
     var namespace_text = '';
@@ -412,15 +411,15 @@ function cc_js_build_license_text ()
     
     
     // set the array container here
-    license_array['text'] = license_text;
+    cc_js_license_array['text'] = license_text;
 }
 
 function cc_js_build_license_image ()
 {
-    license_array['img'] = 
-	'http://i.creativecommons.org/l/' + license_array['code'] + 
-	"/" + license_array['version'] + "/" + 
-	( license_array['generic']  ? '' : $F('cc_js_jurisdiction') + 
+    cc_js_license_array['img'] = 
+	'http://i.creativecommons.org/l/' + cc_js_license_array['code'] + 
+	"/" + cc_js_license_array['version'] + "/" + 
+	( cc_js_license_array['generic']  ? '' : $F('cc_js_jurisdiction') + 
 	  "/" ) + '88x31.png';
 }
 
@@ -441,34 +440,34 @@ function cc_js_build_jurisdictions ()
     else
 	current_jurisdiction = 'generic';
     
-    license_array['jurisdiction'] = 
+    cc_js_license_array['jurisdiction'] = 
 	jurisdictions_array[current_jurisdiction]['name'];
-    license_array['generic'] = 
+    cc_js_license_array['generic'] = 
 	jurisdictions_array[current_jurisdiction]['generic'];
     
-    license_array['sampling'] = 
+    cc_js_license_array['sampling'] = 
 	jurisdictions_array[current_jurisdiction]['sampling'];
     
     // NOTE: This is all a bit hacky to get around that there are
     // only 2 customized jurisdictions with sampling licenses
     // If current jurisdiction doesn't have, then we just set
     // to generic sampling...cool?
-    if ( license_array['code'] == 'sampling' ) {
+    if ( cc_js_license_array['code'] == 'sampling' ) {
 	if ( jurisdictions_array[current_jurisdiction]['sampling'] ) {  
-	    license_array['version'] = 
+	    cc_js_license_array['version'] = 
 		jurisdictions_array[current_jurisdiction]['sampling'];
 	} else {
-	    license_array['version'] =
+	    cc_js_license_array['version'] =
 		jurisdictions_array['generic']['sampling'];
-	    license_array['generic'] = true;
+	    cc_js_license_array['generic'] = true;
 	}
     } else
-	license_array['version'] = 
+	cc_js_license_array['version'] = 
 	    jurisdictions_array[current_jurisdiction]['version'];
     
     
-    if ( ! license_array['version'] )
-	license_array['version'] = license_version;
+    if ( ! cc_js_license_array['version'] )
+	cc_js_license_array['version'] = cc_js_license_version;
 }
 
 function cc_js_no_license_selection () {
@@ -483,16 +482,16 @@ function cc_js_build_license_details ()
 {
     cc_js_some_license_selection(); // This is purely cosmetic.
     
-    if (!share) {
-	if (!remix) {
+    if (!cc_js_share) {
+	if (!cc_js_remix) {
 	    cc_js_no_license_selection();
 	    return;
 	} else {
 	    cc_js_update_hack('sampling', '1.0', 'Sampling', 'Remix');
 	}
     } else {
-	if (!remix) {
-	    if (nc) {
+	if (!cc_js_remix) {
+	    if (cc_js_nc) {
 		cc_js_update_hack('by-nc-nd', '2.5', 
 				  'Attribution-NonCommercial-NoDerivs', 
 				  'Share:NC:ND');
@@ -501,8 +500,8 @@ function cc_js_build_license_details ()
 				  'Share:ND');
 	    }
 	} else {
-	    if (nc) {
-		if (sa) {
+	    if (cc_js_nc) {
+		if (cc_js_sa) {
 		    cc_js_update_hack('by-nc-sa', '2.5', 
 				      'Attribution-NonCommercial-ShareAlike', 
 				      'Remix&Share:NC:SA');
@@ -511,7 +510,7 @@ function cc_js_build_license_details ()
 				      'Attribution-NonCommercial', 
 				      'Remix&Share:NC');
 		}
-	    } else if (sa) {
+	    } else if (cc_js_sa) {
 		cc_js_update_hack('by-sa', '2.5', 'Attribution-ShareAlike', 
 				  'Remix&Share:SA');
 	    } else {
@@ -524,18 +523,18 @@ function cc_js_build_license_details ()
 /**
  * Builds an array of our license options from global variables...scary!
  * Here is what we are putting in this (its basically an object):
- license_array['code']     = '';
- license_array['version']  = '';
- license_array['full_name']     = ''; // 'name' is reserved
- license_array['text']     = '';
- license_array['img'] = '';
- license_array['jurisdiction'] = '';
- license_array['generic'] = '';
+ cc_js_license_array['code']     = '';
+ cc_js_license_array['version']  = '';
+ cc_js_license_array['full_name']     = ''; // 'name' is reserved
+ cc_js_license_array['text']     = '';
+ cc_js_license_array['img'] = '';
+ cc_js_license_array['jurisdiction'] = '';
+ cc_js_license_array['generic'] = '';
 */
 function cc_js_build_license_array () 
 {
     // the following is global and we want to reset it definitely...
-    license_array = new Array();
+    cc_js_license_array = new Array();
     
     cc_js_build_jurisdictions();
     cc_js_build_license_details();
@@ -568,9 +567,9 @@ function cc_js_get_comment_code (msg)
  */
 function cc_js_output_license_html ()
 {
-    var output = cc_js_get_comment_code() + '<a rel="license" href="' + license_array['url'] + '"><img alt="Creative Commons License" width="88" height="31" border="0" src="' + license_array['img'] + '" class="cc-button"/></a><div class="cc-info">' + license_array['text'] + '</div>';
+    var output = cc_js_get_comment_code() + '<a rel="license" href="' + cc_js_license_array['url'] + '"><img alt="Creative Commons License" width="88" height="31" border="0" src="' + cc_js_license_array['img'] + '" class="cc-button"/></a><div class="cc-info">' + cc_js_license_array['text'] + '</div>';
     
-    cc_js_insert_html( warning_text + output, 'license_example');
+    cc_js_insert_html( cc_js_warning_text + output, 'license_example');
     return output;
 }
 
@@ -581,8 +580,8 @@ function cc_js_output_license_html ()
  */
 function cc_js_update ()
 {
-    // warning_text is a global variable as well as license_array.
-    cc_js_build_license_array(); // This does a lot of magic for us...
+    // cc_js_warning_text is a global variable as well as cc_js_license_array.
+    cc_js_build_cc_js_license_array(); // This does a lot of magic for us...
     
     // our insert_html function also does some modifications on 
     var output = cc_js_output_license_html();
@@ -592,11 +591,11 @@ function cc_js_update ()
 
 function cc_js_update_hack(code, version, full_name)
 {
-    license_array = Array;
+    cc_js_license_array = Array;
     
-    license_array['code']       = code;
-    license_array['version']    = version;
-    license_array['full_name']  = full_name;
+    cc_js_license_array['code']       = code;
+    cc_js_license_array['version']    = version;
+    cc_js_license_array['full_name']  = full_name;
     cc_js_build_jurisdictions();
     
     // build_license_details();
