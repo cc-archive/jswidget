@@ -22,6 +22,10 @@
  *
  */
 
+function cc_js_$(id) {
+    return document.getElementById("cc_js_" + id);
+}
+
 /* A wrapper to get Elements By ID
  * Really used for grabbing translations.
  * Unfortunately, having spaces is not valid in IDs, so
@@ -64,9 +68,9 @@ function init() {
     nc    = false;
     sa    = false;
     nc_ad = true;
-    if ( $("share") && $("remix") ) {
-	$("share").checked = true;
-	$("remix").checked = true;
+    if ( cc_js_$("share") && cc_js_$("remix") ) {
+	cc_js_$("share").checked = true;
+	cc_js_$("remix").checked = true;
     }
 
     
@@ -74,8 +78,8 @@ function init() {
     // But if there's a hidden form field telling us what to do,
     // then by Jove let's do that!
     license_array = new Array();
-    if ($('cc_js_seed_uri')) {
-	license_url_to_attributes($('cc_js_seed_uri').value);
+    if (cc_js_$('cc_js_seed_uri')) {
+	license_url_to_attributes(cc_js_$('cc_js_seed_uri').value);
     }
 
     else {
@@ -91,8 +95,8 @@ function init() {
 	 */
 	function no_share() {
 		sa = false;
-		$("share").disabled = true;
-		$("share").checked = false;
+		cc_js_$("share").disabled = true;
+		cc_js_$("share").checked = false;
 	}
 
     /**
@@ -104,15 +108,15 @@ function init() {
 
         try {
         
-            $(option).disabled = false;
+            cc_js_$(option).disabled = false;
 
             if ( share_label_orig_class[label_name] )
-                $(label_name).className = share_label_orig_class[label_name];
+                cc_js_$(label_name).className = share_label_orig_class[label_name];
 
             if ( share_label_orig_color[label_name] )
-                $(label_name).style.color = share_label_orig_color[label_name];
+                cc_js_$(label_name).style.color = share_label_orig_color[label_name];
             else
-                $(label_name).style.color = 'black';
+                cc_js_$(label_name).style.color = 'black';
         } catch (err) {}
 
     }
@@ -121,30 +125,30 @@ function init() {
         var label_name = option + '-label';
 
         try {
-            if ( $(label_name).className )
-                share_label_orig_class[label_name] = $(label_name).className;
+            if ( cc_js_$(label_name).className )
+                share_label_orig_class[label_name] = cc_js_$(label_name).className;
 
-            share_label_orig_color[label_name] = $(label_name).style.color;
+            share_label_orig_color[label_name] = cc_js_$(label_name).style.color;
 
-            $(option).disabled = true;
-            $(option).checked = false;
-            $(label_name).style.color = 'gray';
+            cc_js_$(option).disabled = true;
+            cc_js_$(option).checked = false;
+            cc_js_$(label_name).style.color = 'gray';
 
         } catch (err) {}
     }
 
 function update_checkboxes_based_on_variables() {
-    $('share').checked = share;
-    $('remix').checked = remix;
-    $('nc').checked = nc;
-    $('sa').checked = sa;
+    cc_js_$('share').checked = share;
+    cc_js_$('remix').checked = remix;
+    cc_js_$('nc').checked = nc;
+    cc_js_$('sa').checked = sa;
 }
 
 function update_variables_based_on_checkboxes() {	
-    share = $('share').checked;
-    remix = $('remix').checked;
-    nc = $('nc').checked;
-    sa = $('sa').checked;
+    share = cc_js_$('share').checked;
+    remix = cc_js_$('remix').checked;
+    nc = cc_js_$('nc').checked;
+    sa = cc_js_$('sa').checked;
 }
 
 /**
@@ -191,7 +195,7 @@ function rest_of_modify() {
             // jurisdictions support sampling and hides the ones
             // that don't
             // OH! You have to convert a list to an array object...
-            var jurisdiction_options = $A( $('jurisdiction').options );
+            var jurisdiction_options = $A( cc_js_$('jurisdiction').options );
 	    jurisdiction_options.each( function(item) {
 		if (item.value in jurisdictions_array) {
 			if ('sampling' in jurisdictions_array[item.value]) {
@@ -215,12 +219,12 @@ function rest_of_modify() {
 
         if (obj.id == "using_myspace")
         {
-            $('myspace_style').style.display = 'block';
-            $('myspace_position').style.display = 'block';
+            cc_js_$('myspace_style').style.display = 'block';
+            cc_js_$('myspace_position').style.display = 'block';
         } else if ( obj.id == 'using_webpage' || obj.id == 'using_youtube' ) 
         {
-            $('myspace_style').style.display = 'none';
-            $('myspace_position').style.display = 'none';
+            cc_js_$('myspace_style').style.display = 'none';
+            cc_js_$('myspace_position').style.display = 'none';
         } 
 
         if ( $F('pos_float') && $F('using_myspace') && 
@@ -233,9 +237,9 @@ function rest_of_modify() {
         build_license_details();
 
 	// Plus, update the hidden form fields with the name and uri
-	$('cc_js_result_uri').value = license_array['url'];
-        $('cc_js_result_img').value = license_array['img'];
-	$('cc_js_result_name').value = 'Creative Commons ' + license_array['full_name'] + ' ' + license_array['version'] + ' ' + license_array['jurisdiction'];
+	cc_js_$('cc_js_result_uri').value = license_array['url'];
+        cc_js_$('cc_js_result_img').value = license_array['img'];
+	cc_js_$('cc_js_result_name').value = 'Creative Commons ' + license_array['full_name'] + ' ' + license_array['version'] + ' ' + license_array['jurisdiction'];
 }
 
     /**
@@ -243,7 +247,7 @@ function rest_of_modify() {
      */
     function reset_jurisdiction_list ()
     {
-        var jurisdiction_options = $A( $('jurisdiction').options );
+        var jurisdiction_options = $A( cc_js_$('jurisdiction').options );
         jurisdiction_options.each( function(item) {
             item.style.display = 'block';
         });
@@ -333,7 +337,7 @@ function license_url_to_attributes(url) {
 		strong_warning.appendChild(document.createTextNode(t('We have updated the version of your license to the most recent one available.')));
 	}
 
-	$('license_example').appendChild(strong_warning);
+	cc_js_$('license_example').appendChild(strong_warning);
      }
 }
 
@@ -362,7 +366,7 @@ function set_version(ver) {
 }
 
 function set_jurisdiction(juri) {
-    var juri_select = $('jurisdiction');
+    var juri_select = cc_js_$('jurisdiction');
     if (juri_select) {
 	for (var i = 0 ; i < juri_select.childNodes.length; i++) {
 	    kid = juri_select.childNodes[i];
@@ -576,11 +580,11 @@ function set_jurisdiction(juri) {
     }
 
     function no_license_selection () {
-        $('license_selected').style.display = 'none';
+        cc_js_$('license_selected').style.display = 'none';
     }
 
     function some_license_selection () {
-        $('license_selected').style.display = 'block';
+        cc_js_$('license_selected').style.display = 'block';
     }
     
     function build_license_details ()
@@ -659,7 +663,7 @@ function set_jurisdiction(juri) {
     function insert_html (output, insertion_id)
     {
         try {
-            $(insertion_id).innerHTML = output;
+            cc_js_$(insertion_id).innerHTML = output;
         } catch (err) {};
         return true;
     }
@@ -706,8 +710,8 @@ function set_jurisdiction(juri) {
 
         // our insert_html function also does some modifications on 
         var output = output_license_html();
-        if ( $('result') )
-		    $('result').value = output;
+        if ( cc_js_$('result') )
+		    cc_js_$('result').value = output;
     }
 
     function update_hack(code, version, full_name)
@@ -726,8 +730,8 @@ function set_jurisdiction(juri) {
 
         // our insert_html function also does some modifications on 
         var output = output_license_html();
-        if ( $('result') )
-		    $('result').value = output;
+        if ( cc_js_$('result') )
+		    cc_js_$('result').value = output;
 
     }
 
