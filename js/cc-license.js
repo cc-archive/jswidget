@@ -130,10 +130,9 @@ function cc_js_option_off (option) {
 	//share_label_orig_color[label_name] = cc_js_$(label_name).style.color;
     */
     
-	cc_js_$(option).disabled = true;
-	cc_js_$(option).checked = false;
-	cc_js_$(short_label_name).style.color = 'gray';
-	
+    cc_js_$(option).disabled = true;
+    cc_js_$(option).checked = false;
+    cc_js_$(short_label_name).style.color = 'gray';
 }
 
 function cc_js_update_checkboxes_based_on_variables() {
