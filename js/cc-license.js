@@ -177,9 +177,9 @@ function cc_js_rest_of_modify() {
 	// OH! You have to convert a list to an array object...
 	var jurisdiction_options = $A( cc_js_$('jurisdiction').options );
 	jurisdiction_options.each( function(item) {
-		if (item.value in jurisdictions_array) {
-		    if ('sampling' in jurisdictions_array[item.value]) {
-			if ( ! jurisdictions_array[ item.value ]['sampling'] )
+		if (item.value in cc_js_jurisdictions_array) {
+		    if ('sampling' in cc_js_jurisdictions_array[item.value]) {
+			if ( ! cc_js_jurisdictions_array[ item.value ]['sampling'] )
 			    item.style.display = 'none';
 		    }}
 	    });
@@ -427,29 +427,29 @@ function cc_js_build_jurisdictions ()
 	current_jurisdiction = 'generic';
     
     cc_js_license_array['jurisdiction'] = 
-	jurisdictions_array[current_jurisdiction]['name'];
+	cc_js_jurisdictions_array[current_jurisdiction]['name'];
     cc_js_license_array['generic'] = 
-	jurisdictions_array[current_jurisdiction]['generic'];
+	cc_js_jurisdictions_array[current_jurisdiction]['generic'];
     
     cc_js_license_array['sampling'] = 
-	jurisdictions_array[current_jurisdiction]['sampling'];
+	cc_js_jurisdictions_array[current_jurisdiction]['sampling'];
     
     // NOTE: This is all a bit hacky to get around that there are
     // only 2 customized jurisdictions with sampling licenses
     // If current jurisdiction doesn't have, then we just set
     // to generic sampling...cool?
     if ( cc_js_license_array['code'] == 'sampling' ) {
-	if ( jurisdictions_array[current_jurisdiction]['sampling'] ) {  
+	if ( cc_js_jurisdictions_array[current_jurisdiction]['sampling'] ) {  
 	    cc_js_license_array['version'] = 
-		jurisdictions_array[current_jurisdiction]['sampling'];
+		cc_js_jurisdictions_array[current_jurisdiction]['sampling'];
 	} else {
 	    cc_js_license_array['version'] =
-		jurisdictions_array['generic']['sampling'];
+		cc_js_jurisdictions_array['generic']['sampling'];
 	    cc_js_license_array['generic'] = true;
 	}
     } else
 	cc_js_license_array['version'] = 
-	    jurisdictions_array[current_jurisdiction]['version'];
+	    cc_js_jurisdictions_array[current_jurisdiction]['version'];
     
     
     if ( ! cc_js_license_array['version'] )

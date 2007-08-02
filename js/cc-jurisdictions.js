@@ -22,7 +22,7 @@
  */
 
 var cc_js_default_version_number = '2.5';
-var jurisdictions_array = {
+var cc_js_jurisdictions_array = {
     'generic' : { 
 	'name' : 'Unported',
 	'url'  : 'http://creativecommons.org',
