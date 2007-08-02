@@ -50,9 +50,6 @@ var cc_js_license_version         = '2.5';
 
 var cc_js_warning_text            = '';
 
-var label_orig_class        = Array;
-var label_orig_color        = Array;
-
 /**
  * Initialise our license codes, and reset the UI
  */
