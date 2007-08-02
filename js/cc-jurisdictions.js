@@ -21,7 +21,7 @@
  * This is code to deal with jurisdictions.
  */
 
-var default_version_number = '2.5';
+var cc_js_default_version_number = '2.5';
 var jurisdictions_array = {
     'generic' : { 
 	'name' : 'Unported',
@@ -142,33 +142,4 @@ var jurisdictions_array = {
 	     'version' : '3.0'}
 };
 
-    function print_jurisdictions ()
-    {
-        for (var j in jurisdictions_array)
-            document.write(j);
-    } 
-
-    function print_jurisdictions_option (jurisdiction_code, lic_curr, js_on_change)
-    {
-        var output = '';
-
-        if ( ! js_on_change )
-            js_on_change = 'modify(this);';
-
-        output = '<select name="jurisdiction" id="jurisdiction" onchange="' + 
-                 js_on_change + '">';
-
-        for (var j in jurisdictions_array) 
-        {
-            var selected = '';
-            if ( j == jurisdiction_code )
-                selected = ' selected="selected"';
-
-           output += "<option id=\"" + j + " \" value=\"" + j + "\"" + selected + ">" + 
-                          jurisdictions_array[j]['name'] + "</option>\n";
-        }
-        output += '</select>';
-
-        document.write( output );
-    }
 // ]]>
