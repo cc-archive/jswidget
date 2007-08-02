@@ -1,4 +1,4 @@
-/**
+#/**
  * This was written by CC as a demonstration of how to interoperate
  * with the Creative Commons JsWidget.  No rights reserved.
  * 
@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-#header-main {
+#cc_js_header-main {
     width:  93%;
     min-width:  700px;
     margin: 0 3%;
@@ -41,7 +41,7 @@ a:hover {
  * See README for a little more detail.
  */
 
-#license_selected
+#cc_js_license_selected
 {
     border:         1px solid #c2e0cf;
     text-align:     center;
@@ -50,14 +50,14 @@ a:hover {
 		width: 85%;
 }
 
-#jurisdiction_box
+#cc_js_jurisdiction_box
 {
     /* border: 1px solid black; */
     padding: 0.5% 2% 1% 2%;
     margin-bottom: 1%;
 }
 
-#lic-menu h2
+#cc_js_lic-menu h2
 {
     /* text-decoration: underline; */
     /* border-bottom: 1px solid black; */
@@ -65,18 +65,18 @@ a:hover {
     border: none;
 }
 
-#lic-result
+#cc_js_lic-result
 {
     padding: 0;
     margin: 0;
 }
     
-select#jurisdiction
+select#cc_js_jurisdiction
 {
     margin-bottom: 2%;
 }
 
-textarea#result
+textarea#cc_js_result
 {
     width: 91%;
     border: 1px solid #ccc;
@@ -90,7 +90,7 @@ a img
     text-decoration: none;
 }
 
-#more_info
+#cc_js_more_info
 {
     border: 1px solid #eee;
     padding: 0.5% 2% 1% 2%;
@@ -98,23 +98,23 @@ a img
     margin-top: 1%;
 		width: 87%;
 }
-#more_info table
+#cc_js_more_info table
 {
     width: 65%;
 }
 
-#more_info .header
+#cc_js_more_info .header
 {
     width: 35%;
 }
 
-#more_info input
+#cc_js_more_info input
 {
     width: 100%;
     border: 1px solid #ccc;
 }
 
-#required
+#cc_js_required
 {
     border: 1px solid #ccc;
     padding: 0.5% 2% 1% 2%;
@@ -125,13 +125,13 @@ a img
 		width: 87%;
 }
 
-#work_title
+#cc_js_work_title
 {
     font-style: italic;
 }
 
 
-#optional
+#cc_js_optional
 {
     border: 1px solid #eee;
     padding: 0.5% 2% 1% 2%;
@@ -164,7 +164,7 @@ img.info {
 	float: right;
 }
 
-#lic-menu p, #jurisdiction_box {
+#cc_js_lic-menu p, #cc_js_jurisdiction_box {
 	width: 18em;
 	padding: 3px 0 5px 0;
 }
@@ -220,6 +220,6 @@ img.info {
     color:          #00b;
 }
 
-#lic-menu p {
+#cc_js_lic-menu p {
 	margin: 0 0 5px 0;
 }
