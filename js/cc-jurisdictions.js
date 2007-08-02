@@ -137,7 +137,7 @@ var cc_js_jurisdictions_array = {
     'uk' : { 'name' : 'UK: England &amp; Wales',
 	     'url'  : 'http://www.creativecommons.org.uk',
 	     'version' : '2.0'},
-    'us' : { 'name' : y'United States',
+    'us' : { 'name' : 'United States',
 	     'url'  : 'http://creativecommons.org/worldwide/us/',
 	     'version' : '3.0'}
 };
