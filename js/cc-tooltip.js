@@ -51,14 +51,14 @@ var g_timeout1, g_timeout2;     // for setting timeouts
 var g_tip_on            = false;// check if over tooltip over link
 var g_mouse_x, g_mouse_y;       // track the mouse coordinates
 
-function initTip() { init_tip(); }
+function cc_js_initTip() { init_tip(); }
 /**
  * This initializes the g_tooltip code. g_tooltip is a global variable. Also
  * this sets up mouse tracking with g_tip_follow_mouse if set to true.
  */
-function init_tip() {
+function cc_js_init_tip() {
     if (g_nodyn) return;
-    g_tooltip   = $('tip_cloak');
+    g_tooltip   = cc_js_$('tip_cloak');
     g_tipcss    = g_tooltip.style;
     
     if (g_tooltip && g_tip_follow_mouse) {
@@ -69,7 +69,7 @@ function init_tip() {
 /**
  * This build the tooltip and makes it visible..
  */
-function on_tooltip(evt, img) {
+function cc_js_on_tooltip(evt, img) {
     if (!g_tooltip) return;
     if (g_timeout1) clearTimeout(g_timeout1);   
     if (g_timeout2) clearTimeout(g_timeout2);
@@ -79,7 +79,7 @@ function on_tooltip(evt, img) {
               '" border="0"/></div>';
     g_tooltip.innerHTML = tip;
 
-    if (!g_tip_follow_mouse) position_tip(evt);
+    if (!g_tip_follow_mouse) cc_js_position_tip(evt);
     else g_timeout1 = setTimeout("g_tipcss.visibility='visible'", 
                                  g_popup_timeout);
 }
@@ -87,7 +87,7 @@ function on_tooltip(evt, img) {
 /**
  * This is a generic g_tooltip for displaying any html inside of a box.
  */
-function on_tooltip_html(evt, html) {
+function cc_js_on_tooltip_html(evt, html) {
     if (!g_tooltip) return;
     if (g_timeout1) clearTimeout(g_timeout1);   
     if (g_timeout2) clearTimeout(g_timeout2);
@@ -97,24 +97,24 @@ function on_tooltip_html(evt, html) {
     g_tooltip.innerHTML = tip;
 
     if (!g_tip_follow_mouse) 
-        position_tip(evt);
+        cc_js_position_tip(evt);
     else 
         g_timeout1 = setTimeout("g_tipcss.visibility='visible'", 
                                 g_popup_timeout);
 }
 
-function track_mouse(evt) {
+function cc_js_track_mouse(evt) {
     g_mouse_x = (g_ns5) ? evt.pageX : 
                           window.event.clientX + document.body.scrollLeft;
     g_mouse_y = (g_ns5) ? evt.pageY : 
                           window.event.clientY + document.body.scrollTop;
-    if (g_tip_on) position_tip(evt);
+    if (g_tip_on) cc_js_position_tip(evt);
 }
 
 /**
- * This function positions the tooltip.
+ * This function cc_js_positions the tooltip.
  */
-function position_tip(evt) {
+function cc_js_position_tip(evt) {
     if (!g_tip_follow_mouse) {
         g_mouse_x = (g_ns5)? evt.pageX : window.event.clientX + 
                     document.body.scrollLeft;
@@ -146,7 +146,7 @@ function position_tip(evt) {
 /**
  * Hides the tooltip.
  */
-function hide_tip() {
+function cc_js_hide_tip() {
     if (!g_tooltip) return;
     g_timeout2 = setTimeout("g_tipcss.visibility='hidden'", g_popup_timeout);
     g_tip_on = false;
