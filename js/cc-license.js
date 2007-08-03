@@ -373,9 +373,9 @@ function cc_js_build_license_text ()
     
     // The main bit of text including or not, jurisdiction love
     if ( cc_js_license_array['jurisdiction'] && ! cc_js_license_array['generic'] )
-	license_text = 'You have chosen a <a rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' ' + ( cc_js_license_array['jurisdiction'] ? cc_js_license_array['jurisdiction'] : cc_js_license_array['jurisdiction'].toUpperCase() ) + ' License</a>.' + ' ' + license_text;
+	license_text = 'You have chosen a <a class="cs_js_a" rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' ' + ( cc_js_license_array['jurisdiction'] ? cc_js_license_array['jurisdiction'] : cc_js_license_array['jurisdiction'].toUpperCase() ) + ' License</a>.' + ' ' + license_text;
     else 
-	license_text = 'You have chosen a <a rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' License</a>.' + ' ' + license_text;
+	license_text = 'You have chosen a <a class="cs_js_a" rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' License</a>.' + ' ' + license_text;
     
     // Lets set some namespaces if they are needed
     var namespace_text = '';
@@ -553,7 +553,7 @@ function cc_js_get_comment_code (msg)
  */
 function cc_js_output_license_html ()
 {
-    var output = cc_js_get_comment_code() + '<a rel="license" href="' + cc_js_license_array['url'] + '"><img alt="Creative Commons License" width="88" height="31" border="0" src="' + cc_js_license_array['img'] + '" class="cc_js_cc-button"/></a><div class="cc_js_cc-info">' + cc_js_license_array['text'] + '</div>';
+    var output = cc_js_get_comment_code() + '<a class="cc_js_a" rel="license" href="' + cc_js_license_array['url'] + '"><img alt="Creative Commons License" width="88" height="31" border="0" src="' + cc_js_license_array['img'] + '" class="cc_js_cc-button"/></a><div class="cc_js_cc-info">' + cc_js_license_array['text'] + '</div>';
     
     cc_js_insert_html( cc_js_warning_text + output, 'license_example');
     return output;
