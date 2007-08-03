@@ -30,11 +30,25 @@
 
 /* Browser specific checks */
 var cc_js_g_dom   = (document.getElementById) ? true : false;
-var cc_js_g_ns5   = ((navigator.userAgent.indexOf("Gecko")>-1) && cc_js_g_dom) ? 
-              true: false;
+
+/* If it's IE, handle it specially. */
+
 var cc_js_g_ie5   = ((navigator.userAgent.indexOf("MSIE")>-1) && cc_js_g_dom) ? 
               true : false;
-var cc_ns_g_nodyn = (!cc_js_g_ns5 && !cc_js_g_ie5) ? true : false;
+
+/* Otherwise, just pretend everyone's greater than or equal to
+ * Netscape 5.
+ *
+ * Probably a reasonable guess.
+ */
+
+var cc_js_g_ns5   = ! cc_js_g_ie5;
+
+/*
+ * And everyone gets the dyn stuff, 'cause like, why not?
+ */
+
+var cc_ns_g_nodyn = false;
 
 // NOTE: This avoids older error event in older browsers.
 if (cc_ns_g_nodyn) { event = "no" }
