@@ -177,7 +177,7 @@ img.cc_js_info {
     margin:         0;
 }
 
-.tooltip
+.cc_js_tooltip
 {
     background:     white;
     border:         2px solid gray;
@@ -186,14 +186,14 @@ img.cc_js_info {
     text-align:     left;
 }
 
-.tooltip .icon
+.cc_js_tooltip .cc_js_icon
 {
     float:          left; 
     padding-right:  4%;
     padding-bottom: 20%;
 }
 
-.tooltipimage
+.cc_js_tooltipimage
 {
     border:         2px solid gray;
 }
