@@ -19,6 +19,7 @@ $base = 'http://' . $_SERVER['HTTP_HOST'] . $dirname;
 
 /* Load the prerequisite JS files */
 document.write('<script type="text/javascript" src="<?php echo $base . '/js/prototype.js'; ?>"></script>');
+document.write('<script type="text/javascript" src="<?php echo $base . '/js/safari-label-fix.js'; ?>"></script>');
 document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-tooltip.js'; ?>"></script>');
 document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-jurisdictions.js'; ?>"></script>');
 document.write('<script type="text/javascript" src="<?php echo $base . '/js/cc-license.js'; ?>"></script>');

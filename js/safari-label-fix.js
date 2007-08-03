@@ -27,24 +27,26 @@ function cc_js_call_me_on_label_selection(element) {
     // If we are not Safari, get out of here.
     // Note that even Konqueror doesn't need this fix.
     if (navigator.userAgent.indexOf('Safari') < 0)
-	return;
+    	return;
 
     // Otherwise, I guess someone clicked on the label called element
     // and I should click an associated checkbox.
-    find_this_id = element.for;
+    find_this_id = element.htmlFor;
     check_me = document.getElementById(find_this_id);
-    if (check_me == null)
+    if (check_me == null) {
 	return; // if there's nothing to check, that's odd but we're
 		// not gonna do anything about it
+    }
     
     check_me.focus();
-    if (item.getAttribute('type') == 'checkbox') {
-	if (!item.checked)
-	    item.checked = true;
+    if (check_me.getAttribute('type') == 'checkbox') {
+	if (!check_me.checked)
+	    check_me.checked = true;
 	else
-	    item.checked = false;
-	alert('snakes on a checkbox');
+	    check_me.checked = false;
     }
+
+    cc_js_modify();
 }
 
 // ]]>
