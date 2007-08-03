@@ -89,7 +89,7 @@ function cc_js_on_tooltip(evt, img) {
     if (cc_js_g_timeout2) clearTimeout(cc_js_g_timeout2);
     cc_js_g_tip_on = true;
     
-    var tip = '<div class="tooltipimage"><img src="' + img + 
+    var tip = '<div class="cc_js_tooltipimage"><img src="' + img + 
               '" border="0"/></div>';
     cc_js_g_tooltip.innerHTML = tip;
 
@@ -107,7 +107,7 @@ function cc_js_on_tooltip_html(evt, html) {
     if (cc_js_g_timeout2) clearTimeout(cc_js_g_timeout2);
     cc_js_g_tip_on = true;
     
-    var tip = '<div class="tooltip">' + html + '</div>';
+    var tip = '<div class="cc_js_tooltip">' + html + '</div>';
     cc_js_g_tooltip.innerHTML = tip;
 
     if (!cc_js_g_follow_mouse) 
