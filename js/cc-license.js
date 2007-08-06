@@ -179,14 +179,16 @@ function cc_js_rest_of_modify() {
 	// jurisdictions support sampling and hides the ones
 	// that don't
 	// OH! You have to convert a list to an array object...
-	var jurisdiction_options = $A( cc_js_$('jurisdiction').options );
-	jurisdiction_options.each( function(item) {
+	var jurisdiction_options = cc_js_$('jurisdiction').options;
+	for (int i = 0 ; i < jurisdiction_options.length; i++) {
+		item = jurisdiction_options[i];
 		if (item.value in cc_js_jurisdictions_array) {
 		    if ('sampling' in cc_js_jurisdictions_array[item.value]) {
 			if ( ! cc_js_jurisdictions_array[ item.value ]['sampling'] )
 			    item.style.display = 'none';
-		    }}
-	    });
+		    }
+		}
+	    }
 	
 	cc_js_reset_jurisdiction_array = true;
 	
@@ -212,10 +214,11 @@ function cc_js_rest_of_modify() {
  */
 function cc_js_reset_jurisdiction_list ()
 {
-    var jurisdiction_options = $A( cc_js_$('jurisdiction').options );
-    jurisdiction_options.each( function(item) {
+    var jurisdiction_options = cc_js_$('jurisdiction').options;
+    for (int i = 0 ; i < jurisdiction_options.length; i++) {
+	item = jurisdiction_options[i];
             item.style.display = 'block';
-        });
+    }
     
 }
 /**
@@ -308,7 +311,8 @@ function cc_js_license_url_to_attributes(url) {
 
 function cc_js_set_attribs(attrs) {
     var attrs_ra = attrs.split("-");
-    attrs_ra.each( function(attr) {
+    for (var i = 0 ; i < attrs_ra.length; i++) {
+	attr = attrs_ra[i];
 	    if (attr == 'sa') {
 		cc_js_share = true;
 		cc_js_sa = true;
@@ -320,7 +324,7 @@ function cc_js_set_attribs(attrs) {
 		cc_js_share = false;
 		cc_js_sa = false;
 	    }
-	});
+	}
     cc_js_update_checkboxes_based_on_variables();
 }
 
@@ -390,8 +394,10 @@ function cc_js_build_license_text ()
 	namespaces_array.push('xmlns:dc="http://purl.org/dc/elements/1.1/"');
     if ( namespaces_array.length > 0 ) {
 	namespace_text = '<span';
-	namespaces_array.each( function(ns) { 
-                namespace_text += ' ' + ns; });
+        for (int i = 0 ; i < namespaces_array.length; i++) {
+		ns = namespaces_array[i];
+                namespace_text += ' ' + ns;
+	}
 	namespace_text += '>';
 	
 	license_text = namespace_text + license_text + '</span>';
