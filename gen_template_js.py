@@ -121,7 +121,6 @@ def main():
 	languages = [k for k in os.listdir('license_xsl/i18n/i18n_po/') if '.po' in k]
 	
 	languages = [re.split(r'[-.]', k)[1] for k in languages]
-	languages = ['en_US']
 	for lang in languages:
 		gen_templated_js(lang)
 
