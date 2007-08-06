@@ -22,6 +22,10 @@
  *
  */
 
+function cc_js_$F(id) {
+	return cc_js_$(id).value;
+}
+
 function cc_js_$(id) {
     return document.getElementById("cc_js_" + id);
 }
@@ -347,8 +351,8 @@ function cc_js_build_license_url ()
 {
     var license_url = cc_js_license_root_url + "/" + cc_js_license_array['code'] + 
 	"/" + cc_js_license_array['version'] + "/" ;
-    if ( $F('cc_js_jurisdiction') && ! cc_js_license_array['generic'] )
-	license_url += $F('cc_js_jurisdiction') + "/" ;
+    if ( cc_js_$F('jurisdiction') && ! cc_js_license_array['generic'] )
+	license_url += cc_js_$F('jurisdiction') + "/" ;
     
     cc_js_license_array['url'] = license_url;
 }
@@ -405,7 +409,7 @@ function cc_js_build_license_image ()
     cc_js_license_array['img'] = 
 	'http://i.creativecommons.org/l/' + cc_js_license_array['code'] + 
 	"/" + cc_js_license_array['version'] + "/" + 
-	( cc_js_license_array['generic']  ? '' : $F('cc_js_jurisdiction') + 
+	( cc_js_license_array['generic']  ? '' : cc_js_$F('jurisdiction') + 
 	  "/" ) + '88x31.png';
 }
 
@@ -421,8 +425,8 @@ function cc_js_build_jurisdictions ()
     // THIS fixes the generic being the default selection...
     var current_jurisdiction = '';
     
-    if ( $F('cc_js_jurisdiction') )
-	current_jurisdiction = $F('cc_js_jurisdiction');
+    if ( cc_js_$F('jurisdiction') )
+	current_jurisdiction = cc_js_$F('jurisdiction');
     else
 	current_jurisdiction = 'generic';
     
