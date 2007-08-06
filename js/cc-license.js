@@ -47,6 +47,19 @@ var cc_js_share, cc_js_remix, cc_js_nc, cc_js_sa;
 
 var cc_js_reset_jurisdiction_array = false;
 
+/**
+ * cc_js_license_array is an array of our license options from global
+ * variables...scary!
+ * 
+ * Here is what we are putting in this (its basically an object):
+ *
+ * cc_js_license_array['code'] = '';
+ * cc_js_license_array['version'] = '';
+ * cc_js_license_array['full_name'] = ''; // 'name' is reserved
+ * cc_js_license_array['text'] = ''; cc_js_license_array['img'] = '';
+ * cc_js_license_array['jurisdiction'] = '';
+ * cc_js_license_array['generic'] = '';
+*/
 var cc_js_license_array;
 
 var cc_js_license_root_url        = 'http://creativecommons.org/licenses';
@@ -158,8 +171,6 @@ function cc_js_modify(obj) {
 }
 
 function cc_js_rest_of_modify() {
-    var url_at_start = cc_js_license_array['url'];
-
     if ( cc_js_share && cc_js_remix ) {
 	cc_js_option_on('share');
 	cc_js_option_on('remix');
@@ -202,10 +213,6 @@ function cc_js_rest_of_modify() {
 	cc_js_option_off('sa');
     }
     
-    // what's the current url?
-    alert(cc_js_license_array['url']);
-
-    // i
     // in this hacked version, it just calls update_hack direct
     cc_js_build_license_details();
     
@@ -523,30 +530,6 @@ function cc_js_build_license_details ()
 }
 
 /**
- * Builds an array of our license options from global variables...scary!
- * Here is what we are putting in this (its basically an object):
- cc_js_license_array['code']     = '';
- cc_js_license_array['version']  = '';
- cc_js_license_array['full_name']     = ''; // 'name' is reserved
- cc_js_license_array['text']     = '';
- cc_js_license_array['img'] = '';
- cc_js_license_array['jurisdiction'] = '';
- cc_js_license_array['generic'] = '';
-*/
-function cc_js_build_license_array () 
-{
-    // the following is global and we want to reset it definitely...
-    cc_js_license_array = new Array();
-    
-    cc_js_build_jurisdictions();
-    cc_js_build_license_details();
-    cc_js_build_license_url();
-    cc_js_build_license_text();
-    cc_js_build_license_image();
-}
-
-
-/**
  * This inserts html into an html element with the given insertion_id. 
  */
 function cc_js_insert_html (output, insertion_id)
@@ -600,16 +583,20 @@ function cc_js_update_hack(code, version, full_name)
     cc_js_license_array['full_name']  = full_name;
     cc_js_build_jurisdictions();
     
+    old_url = cc_js_license_array['url'];
+
     // build_license_details();
     cc_js_build_license_url();
-    cc_js_build_license_text();
-    cc_js_build_license_image();
-    
-    // our insert_html function also does some modifications on 
-    var output = cc_js_output_license_html();
-    if ( cc_js_$('result') )
-	cc_js_$('result').value = output;
-    
+    new_url = cc_js_license_array['url'];
+    if (old_url != new_url) {
+	cc_js_build_license_text();
+	cc_js_build_license_image();
+	
+	// our insert_html function also does some modifications on 
+	var output = cc_js_output_license_html();
+	if ( cc_js_$('result') )
+	    cc_js_$('result').value = output;
+    }
 }
 
 // ]]>
