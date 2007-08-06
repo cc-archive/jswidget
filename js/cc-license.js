@@ -158,6 +158,8 @@ function cc_js_modify(obj) {
 }
 
 function cc_js_rest_of_modify() {
+    var url_at_start = cc_js_license_array['url'];
+
     if ( cc_js_share && cc_js_remix ) {
 	cc_js_option_on('share');
 	cc_js_option_on('remix');
@@ -200,6 +202,10 @@ function cc_js_rest_of_modify() {
 	cc_js_option_off('sa');
     }
     
+    // what's the current url?
+    alert(cc_js_license_array['url']);
+
+    // i
     // in this hacked version, it just calls update_hack direct
     cc_js_build_license_details();
     
