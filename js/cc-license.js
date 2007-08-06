@@ -180,7 +180,7 @@ function cc_js_rest_of_modify() {
 	// that don't
 	// OH! You have to convert a list to an array object...
 	var jurisdiction_options = cc_js_$('jurisdiction').options;
-	for (int i = 0 ; i < jurisdiction_options.length; i++) {
+	for (var i = 0 ; i < jurisdiction_options.length; i++) {
 		item = jurisdiction_options[i];
 		if (item.value in cc_js_jurisdictions_array) {
 		    if ('sampling' in cc_js_jurisdictions_array[item.value]) {
@@ -215,7 +215,7 @@ function cc_js_rest_of_modify() {
 function cc_js_reset_jurisdiction_list ()
 {
     var jurisdiction_options = cc_js_$('jurisdiction').options;
-    for (int i = 0 ; i < jurisdiction_options.length; i++) {
+    for (var i = 0 ; i < jurisdiction_options.length; i++) {
 	item = jurisdiction_options[i];
             item.style.display = 'block';
     }
@@ -394,7 +394,7 @@ function cc_js_build_license_text ()
 	namespaces_array.push('xmlns:dc="http://purl.org/dc/elements/1.1/"');
     if ( namespaces_array.length > 0 ) {
 	namespace_text = '<span';
-        for (int i = 0 ; i < namespaces_array.length; i++) {
+        for (var i = 0 ; i < namespaces_array.length; i++) {
 		ns = namespaces_array[i];
                 namespace_text += ' ' + ns;
 	}
