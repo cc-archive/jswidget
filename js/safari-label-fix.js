@@ -32,7 +32,8 @@ function cc_js_call_me_on_label_selection(element) {
     // Otherwise, I guess someone clicked on the label called element
     // and I should click an associated checkbox.
     var find_this_id = element.htmlFor;
-    var check_me = document.getElementById(find_this_id);
+    find_this_id = find_this_id.substring('cc_js_'.length()); // remove leading cc_js_ 
+    var check_me = cc_js_$(find_this_id);
     if (check_me === null) {
 	return; // if there's nothing to check, that's odd but we're
 		// not gonna do anything about it
