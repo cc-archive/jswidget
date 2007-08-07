@@ -32,8 +32,6 @@ def gen_jurisdiction_info():
     false = thing_called_itself('false')
     soup = BeautifulSoup.BeautifulStoneSoup(open('license_xsl/licenses.xml'))
 
-    ## FIXME: Add 'sampling' attribute  back in
-
     ret = {}
 
     for j_i in soup('jurisdiction-info'):
@@ -42,9 +40,11 @@ def gen_jurisdiction_info():
         if this_ones_id:
             this_one['url'] = get_contents(j_i, 'uri')
             available_versions = license_versions_for_jurisdiction(license_type='standard', soup=soup, in_juri=this_ones_id)
+            sampling_versions = license_versions_for_jurisdiction(license_type='sampling', soup=soup, in_juri=this_ones_id)
             if available_versions:
                 this_one['version'] = str(max(available_versions.values()))
-
+                if sampling_versions:
+                    this_one['sampling'] = str(max(sampling_versions.values()))
                 if this_ones_id == '-':
                     this_ones_id = 'generic'
                     this_one['generic'] = true # using the name 'true'
