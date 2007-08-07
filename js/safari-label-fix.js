@@ -26,9 +26,9 @@
 function cc_js_call_me_on_label_selection(element) {
     // If we are not Safari, get out of here.
     // Note that even Konqueror doesn't need this fix.
-    if (navigator.userAgent.indexOf('Safari') < 0)
+    if (navigator.userAgent.indexOf('Safari') < 0) {
     	return;
-
+    }
     // Otherwise, I guess someone clicked on the label called element
     // and I should click an associated checkbox.
     find_this_id = element.htmlFor;
@@ -40,10 +40,11 @@ function cc_js_call_me_on_label_selection(element) {
     
     check_me.focus();
     if (check_me.getAttribute('type') == 'checkbox') {
-	if (!check_me.checked)
+	if (!check_me.checked) {
 	    check_me.checked = true;
-	else
+	} else {
 	    check_me.checked = false;
+	}
     }
 
     cc_js_modify();
