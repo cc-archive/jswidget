@@ -51,7 +51,7 @@ var cc_js_g_ns5   = ! cc_js_g_ie5;
 var cc_ns_g_nodyn = false;
 
 // NOTE: This avoids older error event in older browsers.
-if (cc_ns_g_nodyn) { event = "no" }
+if (cc_ns_g_nodyn) { event = "no"; }
 
 /* GLOBAL VARIABLES have a g_ prefix for var names */
 
@@ -71,7 +71,7 @@ function cc_js_initTip() { init_tip(); }
  * this sets up mouse tracking with cc_js_g_follow_mouse if set to true.
  */
 function cc_js_init_tip() {
-    if (cc_ns_g_nodyn) return;
+    if (cc_ns_g_nodyn) { return; }
     cc_js_g_tooltip   = cc_js_$('tip_cloak');
     cc_js_g_tipcss    = cc_js_g_tooltip.style;
     
@@ -84,9 +84,9 @@ function cc_js_init_tip() {
  * This build the tooltip and makes it visible..
  */
 function cc_js_on_tooltip(evt, img) {
-    if (!cc_js_g_tooltip) return;
-    if (cc_js_g_timeout1) clearTimeout(cc_js_g_timeout1);   
-    if (cc_js_g_timeout2) clearTimeout(cc_js_g_timeout2);
+    if (!cc_js_g_tooltip) { return; }
+    if (cc_js_g_timeout1) { clearTimeout(cc_js_g_timeout1); }   
+    if (cc_js_g_timeout2) { clearTimeout(cc_js_g_timeout2); }
     cc_js_g_tip_on = true;
     
     var tip = '<div class="cc_js_tooltipimage"><img src="' + img + 
@@ -94,27 +94,28 @@ function cc_js_on_tooltip(evt, img) {
     cc_js_g_tooltip.innerHTML = tip;
 
     if (!cc_js_g_follow_mouse) cc_js_position_tip(evt);
-    else cc_js_g_timeout1 = setTimeout("cc_js_g_tipcss.visibility='visible'", 
-                                 cc_js_g_popup_timeout);
+    else { cc_js_g_timeout1 = setTimeout("cc_js_g_tipcss.visibility='visible'", 
+                                 cc_js_g_popup_timeout); }
 }
 
 /**
  * This is a generic cc_js_g_tooltip for displaying any html inside of a box.
  */
 function cc_js_on_tooltip_html(evt, html) {
-    if (!cc_js_g_tooltip) return;
-    if (cc_js_g_timeout1) clearTimeout(cc_js_g_timeout1);   
-    if (cc_js_g_timeout2) clearTimeout(cc_js_g_timeout2);
+    if (!cc_js_g_tooltip) { return; }
+    if (cc_js_g_timeout1) { clearTimeout(cc_js_g_timeout1); }   
+    if (cc_js_g_timeout2) { clearTimeout(cc_js_g_timeout2); }
     cc_js_g_tip_on = true;
     
     var tip = '<div class="cc_js_tooltip">' + html + '</div>';
     cc_js_g_tooltip.innerHTML = tip;
 
-    if (!cc_js_g_follow_mouse) 
+    if (!cc_js_g_follow_mouse)  {
         cc_js_position_tip(evt);
-    else 
+    } else  {
         cc_js_g_timeout1 = setTimeout("cc_js_g_tipcss.visibility='visible'", 
                                 cc_js_g_popup_timeout);
+    }
 }
 
 function cc_js_track_mouse(evt) {
@@ -122,7 +123,7 @@ function cc_js_track_mouse(evt) {
                           window.event.clientX + document.body.scrollLeft;
     cc_js_g_mouse_y = (cc_js_g_ns5) ? evt.pageY : 
                           window.event.clientY + document.body.scrollTop;
-    if (cc_js_g_tip_on) cc_js_position_tip(evt);
+    if (cc_js_g_tip_on) { cc_js_position_tip(evt); }
 }
 
 /**
@@ -146,22 +147,23 @@ function cc_js_position_tip(evt) {
                 document.body.clientHeight + document.body.scrollTop;
     // check mouse position against tip and window dimensions
     // and position the cc_js_g_tooltip 
-    if ((cc_js_g_mouse_x + cc_js_g_off_x + tpWd) > winWd) 
+    if ((cc_js_g_mouse_x + cc_js_g_off_x + tpWd) > winWd) {
         cc_js_g_tipcss.left = cc_js_g_mouse_x - (tpWd + cc_js_g_off_x) + "px";
-    else cc_js_g_tipcss.left = cc_js_g_mouse_x + cc_js_g_off_x + "px";
-    if ((cc_js_g_mouse_y + cc_js_g_off_y + tpHt) > winHt) 
+    } else { cc_js_g_tipcss.left = cc_js_g_mouse_x + cc_js_g_off_x + "px"; }
+    if ((cc_js_g_mouse_y + cc_js_g_off_y + tpHt) > winHt)  {
         cc_js_g_tipcss.top = winHt - (tpHt + cc_js_g_off_y) + "px";
-    else cc_js_g_tipcss.top = cc_js_g_mouse_y + cc_js_g_off_y + "px";
-    if (!cc_js_g_follow_mouse) 
+    } else { cc_js_g_tipcss.top = cc_js_g_mouse_y + cc_js_g_off_y + "px"; }
+    if (!cc_js_g_follow_mouse)  {
         cc_js_g_timeout1 = setTimeout("cc_js_g_tipcss.visibility='visible'", 
                                 cc_js_g_popup_timeout);
+    }
 }
 
 /**
  * Hides the tooltip.
  */
 function cc_js_hide_tip() {
-    if (!cc_js_g_tooltip) return;
+    if (!cc_js_g_tooltip) { return; }
     cc_js_g_timeout2 = setTimeout("cc_js_g_tipcss.visibility='hidden'", cc_js_g_popup_timeout);
     cc_js_g_tip_on = false;
 }

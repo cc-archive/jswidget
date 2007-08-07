@@ -118,9 +118,9 @@ function cc_js_option_on (option) {
     
     cc_js_$(option).disabled = false;
     
-    if (option != 'share') 
+    if (option != 'share')  {
 	cc_js_$(short_label_name).style.color = 'black';
-    
+    }
 }
 
 function cc_js_option_off (option) {
@@ -289,12 +289,14 @@ function cc_js_license_url_to_attributes(url) {
     // First assert that the root URL is at the start
     
     // This could be cleaned up a little.
-    if (url.substr(0, cc_js_license_root_url.length) != cc_js_license_root_url)
+    if (url.substr(0, cc_js_license_root_url.length) != cc_js_license_root_url) {
 	return;
+    }
     var remainder = url.substr(cc_js_license_root_url.length);
     
-    if (remainder.substr(0, 1) != "/")
+    if (remainder.substr(0, 1) != "/") {
 	return;
+    }
     remainder = remainder.substr(1);
     var parts = remainder.split("/");
     cc_js_set_attribs(parts[0]);
@@ -352,7 +354,7 @@ function cc_js_set_jurisdiction(juri) {
     var juri_select = cc_js_$('jurisdiction');
     if (juri_select) {
 	for (var i = 0 ; i < juri_select.childNodes.length; i++) {
-	    kid = juri_select.childNodes[i];
+	    var kid = juri_select.childNodes[i];
 	    if (kid.value == juri) {
 		kid.selected = 'selected';
 	    }
@@ -393,18 +395,18 @@ function cc_js_build_license_text ()
     // prototype.js attempts to access nonexistent form fields...
     
     // The main bit of text including or not, jurisdiction love
-    if ( cc_js_license_array['jurisdiction'] && ! cc_js_license_array['generic'] )
+    if ( cc_js_license_array['jurisdiction'] && ! cc_js_license_array['generic'] ) {
 	license_text = 'You have chosen a <a class="cs_js_a" rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' ' + ( cc_js_license_array['jurisdiction'] ? cc_js_license_array['jurisdiction'] : cc_js_license_array['jurisdiction'].toUpperCase() ) + ' License</a>.' + ' ' + license_text;
-    else 
+    } else  {
 	license_text = 'You have chosen a <a class="cs_js_a" rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' License</a>.' + ' ' + license_text;
-    
+    }
     // Lets set some namespaces if they are needed
     var namespace_text = '';
     if ( use_namespace_cc )
-	namespaces_array.push('xmlns:cc="http://creativecommons.org/ns#"');
+	{ namespaces_array.push('xmlns:cc="http://creativecommons.org/ns#"'); }
     
     if ( use_namespace_dc )
-	namespaces_array.push('xmlns:dc="http://purl.org/dc/elements/1.1/"');
+	{ namespaces_array.push('xmlns:dc="http://purl.org/dc/elements/1.1/"'); }
     if ( namespaces_array.length > 0 ) {
 	namespace_text = '<span';
         for (var i = 0 ; i < namespaces_array.length; i++) {
