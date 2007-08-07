@@ -1,5 +1,7 @@
 import BeautifulSoup
 import gen_template_js
+import re
+import os
 
 class thing_called_itself:
     def __init__(self, called):
@@ -58,14 +60,14 @@ def gen_jurisdiction_info():
                 this_one['name'] = name
                 ret[this_ones_id] = this_one
 
-    return ret
+    return repr(ret)
 
 def main():
     modify_filename = 'js/cc-jurisdictions.js'
     modify_me = open(modify_filename).read()
     poss1 = '/* 8---< CUT HERE >----8 */'
     poss2 = '/* --------------- FOLD HERE ---------------- */'
-    combined = '(' + re.quote(poss1) + '|' + re.quote(poss2) + ')'
+    combined = '(' + re.escape(poss1) + '|' + re.escape(poss2) + ')'
     parts = re.split(combined, modify_me)
     assert(len(parts) == 5)
     parts[2] = gen_jurisdiction_info()
