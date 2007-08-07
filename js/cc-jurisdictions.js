@@ -24,9 +24,7 @@
 var cc_js_default_version_number = '2.5';
 var cc_js_jurisdictions_array = 
 
-/**
- * 8---< CUT HERE >----8
- */
+/* 8---< CUT HERE >----8 */
 
 {
     'generic' : { 
@@ -148,9 +146,7 @@ var cc_js_jurisdictions_array =
 	     'version' : '3.0'}
 }
 
-/**
- * --------------- FOLD HERE ----------------
- */
+/* --------------- FOLD HERE ---------------- */
 
 ;
 
