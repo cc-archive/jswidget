@@ -100,15 +100,6 @@ function cc_js_init() {
 }
 
 /**
- * Disable everything related to ShareAlike
- */
-function cc_js_no_share() {
-    cc_js_sa = false;
-    cc_js_$("share").disabled = true;
-    cc_js_$("share").checked = false;
-}
-
-/**
  * TODO: Something here is broken! Please fix so we are really
  * getting the classnames!
  */
@@ -233,46 +224,6 @@ function cc_js_reset_jurisdiction_list ()
             item.style.display = 'block';
     }
     
-}
-/**
- * This is a hack to set the share value outside the modify for]
- * use by freedoms license.
- */
-function cc_js_set_share (value)
-{
-    cc_js_share = value;
-    cc_js_modify();
-}
-
-/**
- * This is a hack to set the remix value outside the modify for]
- * use by freedoms license.
- */
-function cc_js_set_remix (value)
-{
-    cc_js_remix = value;
-    cc_js_modify();
-}
-
-function cc_js_comment_out (str)
-{
-    return ("<!-- " + str + "-->");
-}
-
-/**
- * Retreive the selected style option
- */
-function cc_js_style() {
-    var styles = document.getElementsByName('style');
-    
-    for (i = 0; i < styles.length; i++) {
-	if (styles[i].checked) {
-	    return styles[i].value + ".png";
-	}
-    }
-    
-    /* we shouldn't reach here... */
-    return "error";
 }
 
 function cc_js_position() {
@@ -558,22 +509,6 @@ function cc_js_output_license_html ()
     
     cc_js_insert_html( cc_js_warning_text + output, 'license_example');
     return output;
-}
-
-/**
- * Checks what options the user has set and spits out license code based on the values
- * There are several global variables which need to be set to get this
- * update to work right.
- */
-function cc_js_update ()
-{
-    // cc_js_warning_text is a global variable as well as cc_js_license_array.
-    cc_js_build_cc_js_license_array(); // This does a lot of magic for us...
-    
-    // our insert_html function also does some modifications on 
-    var output = cc_js_output_license_html();
-    if ( cc_js_$('result') )
-	cc_js_$('result').value = output;
 }
 
 function cc_js_update_hack(code, version, full_name)
