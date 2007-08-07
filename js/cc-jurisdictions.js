@@ -22,7 +22,13 @@
  */
 
 var cc_js_default_version_number = '2.5';
-var cc_js_jurisdictions_array = {
+var cc_js_jurisdictions_array = 
+
+/**
+ * 8---< CUT HERE >----8
+ */
+
+{
     'generic' : { 
 	'name' : 'Unported',
 	'url'  : 'http://creativecommons.org',
@@ -140,6 +146,16 @@ var cc_js_jurisdictions_array = {
     'us' : { 'name' : 'United States',
 	     'url'  : 'http://creativecommons.org/worldwide/us/',
 	     'version' : '3.0'}
-};
+}
+
+/**
+ * --------------- FOLD HERE ----------------
+ */
+
+;
+
+/**
+ * Insert tab A into slot B.
+ */
 
 // ]]>
