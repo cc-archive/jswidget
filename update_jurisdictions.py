@@ -2,12 +2,7 @@ import BeautifulSoup
 import gen_template_js
 import re
 import os
-
-class thing_called_itself:
-    def __init__(self, called):
-        self.called = called
-    def __repr__(self):
-        return self.called
+import json
 
 def get_contents(soup, attr):
     return str(soup(attr)[0].contents[0])
@@ -28,11 +23,9 @@ def license_versions_for_jurisdiction(license_type, soup, in_juri):
     return license2maxvers
 
 def gen_jurisdiction_info():
-    true = thing_called_itself('true')
-    false = thing_called_itself('false')
     soup = BeautifulSoup.BeautifulStoneSoup(open('license_xsl/licenses.xml'))
 
-    ret = {}
+    result = {}
 
     for j_i in soup('jurisdiction-info'):
         this_one = {}
@@ -47,20 +40,21 @@ def gen_jurisdiction_info():
                     this_one['sampling'] = str(max(sampling_versions.values()))
                 if this_ones_id == '-':
                     this_ones_id = 'generic'
-                    this_one['generic'] = true # using the name 'true'
-                                               # rather than python
-                                               # 'True' to have
-                                               # minimal burden on the
-                                               # generated JS
+                    this_one['generic'] = True
                 if this_ones_id == 'generic':
                     name = 'Unported'
                 else:
                     name = gen_template_js.country_id2name(country_id=this_ones_id, language='en_US').encode("ascii")
 
                 this_one['name'] = name
-                ret[this_ones_id] = this_one
+                result[this_ones_id] = this_one
 
-    return repr(ret)
+    ret = json.write(result)
+    
+    # Validate JSON generation
+    assert (json.read(ret) == result) # this includes a type check
+
+    return ret
 
 def main():
     modify_filename = 'js/cc-jurisdictions.js'
