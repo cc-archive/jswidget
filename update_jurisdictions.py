@@ -1,8 +1,10 @@
 import BeautifulSoup
-import gen_template_js
 import re
 import os
 import json
+import sys
+sys.path.insert(0, './license_xsl/licensexsl_tools')
+import convert
 
 def get_contents(soup, attr):
     return str(soup(attr)[0].contents[0])
@@ -44,7 +46,7 @@ def gen_jurisdiction_info():
                 if this_ones_id == 'generic':
                     name = 'Unported'
                 else:
-                    name = gen_template_js.country_id2name(country_id=this_ones_id, language='en_US').encode("ascii")
+                    name = convert.country_id2name(country_id=this_ones_id, language='en_US').encode("ascii")
 
                 this_one['name'] = name
                 result[this_ones_id] = this_one

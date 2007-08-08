@@ -1,6 +1,7 @@
 import sys
 try:
 	import gen_template_js
+	import update_jurisdictions
 except ImportError, e:
 	print '------STOP!------'
 	print 'Install something so that you have this module:'
