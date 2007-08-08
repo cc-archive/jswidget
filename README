@@ -12,3 +12,5 @@ The code is structured as follows:
 
 All of our JS and HTML and CSS is prefixed with cc_js_ to avoid 
 namespace collisions with others' applications.
+
+Every night, if you run 'make -s' here, it'll update the translations and jurisdiction info.
