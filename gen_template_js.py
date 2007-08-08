@@ -10,8 +10,14 @@ import BeautifulSoup
 
 LANGUAGE="en_US"
 
+DEBUG=0
+
 import sys
 sys.path.insert(0, './license_xsl/licensexsl_tools')
+
+if not DEBUG:
+	sys.stdout = open('/dev/null', 'w')
+
 import translate
 
 def grab_license_ids():
