@@ -82,15 +82,18 @@ function cc_js_init() {
 	cc_js_$("remix").checked = true;
     }
     
+    // If the user specified a jurisdiction, make the jurisdiction selection
+    // not show up.
+    if (cc_js_$('hide_jurisdiction_selector')) {
+	cc_js_$('jurisdiction_box').style.display = 'none';
+    }
     
-    
-    // But if there's a hidden form field telling us what to do,
+    // If there's a hidden form field telling us what to do,
     // then by Jove let's do that!
     cc_js_license_array = new Array();
     if (cc_js_$('seed_uri')) {
 	cc_js_license_url_to_attributes(cc_js_$('seed_uri').value);
     }
-    
     else {
 	// Otherwise, init this from scratch
 	cc_js_modify(this);
