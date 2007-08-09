@@ -87,7 +87,7 @@ def gen_templated_js(language):
 	for juri in jurisdiction_names:
 		value = juri
 		element_id = 'cc_js_jurisdiction_choice_' + value
-		name = convert.country_id2name(value, langauge)
+		name = convert.country_id2name(value, language)
 		jurisdictions.append(dict(id=element_id, value=value, name=name))
 	from xml.dom.minidom import parse, parseString
 	expanded = expand_template_with_jurisdictions('template.html', jurisdictions)
