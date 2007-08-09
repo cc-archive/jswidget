@@ -60,7 +60,7 @@
     <p><strong class="cc_js_question" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>Jurisdiction&lt;/strong> ' + cc_js_t('If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()"><span>Jurisdiction of your license:</span></strong>  </p>
     <select name="cc_js_jurisdiction" id="cc_js_jurisdiction"  onchange="cc_js_modify(this);" onclick="cc_js_modify(this);">
       
-      <option tal:repeat="jurisdiction jurisdictions" tal:attributes="id jurisdiction/id; value jurisdiction/id" tal:content="jurisdiction/name">Sample jurisdiction</option>
+      <option tal:repeat="jurisdiction jurisdictions" tal:attributes="id jurisdiction/id; value jurisdiction/value" tal:content="jurisdiction/name">Sample jurisdiction</option>
     </select>
   </div>
   
