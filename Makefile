@@ -11,4 +11,4 @@ template.en_US.js: template.html gen_template_js.py license_xsl/licenses.xml
 	python update_jurisdictions.py
 
 clean:
-	rm -f template.js template.*.js template.js.*
+	rm -f $(ls -1 template.js template.*.js template.js.* | grep -v template.js.var)
