@@ -60,7 +60,7 @@ def gen_jurisdiction_info():
 
 def main():
     modify_filename = 'js/cc-jurisdictions.js'
-    modify_me = open(modify_filename).read()
+    modify_me = open(modify_filename + '.in').read()
     poss1 = '/* 8---< CUT HERE >----8 */'
     poss2 = '/* --------------- FOLD HERE ---------------- */'
     combined = '(' + re.escape(poss1) + '|' + re.escape(poss2) + ')'
