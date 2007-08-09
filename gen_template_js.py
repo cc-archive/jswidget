@@ -77,8 +77,8 @@ def translate_spans_with_only_text_children(spans, lang):
 
 def gen_templated_js(language):
 	jurisdiction_names = grab_license_ids()
-	jurisdictions = [ dict(id=juri, name=convert.country_id2name(juri, language)) for juri in jurisdiction_names]
-	jurisdictions.insert(0, {'id': 'cc_js_generic', 'name': convert.extremely_slow_translation_function('Unported', language)})
+	jurisdictions = [ dict(id='cc_js_jurisdiction_choice_' + juri, value=juri, name=convert.country_id2name(juri, language)) for juri in jurisdiction_names]
+	jurisdictions.insert(0, {'id': 'cc_js_jurisdiction_choice_', 'value': 'generic', 'name': convert.extremely_slow_translation_function('Unported', language)})
 
 	from xml.dom.minidom import parse, parseString
 	expanded = expand_template_with_jurisdictions('template.html', jurisdictions)
