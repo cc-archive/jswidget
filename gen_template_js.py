@@ -10,7 +10,7 @@ import BeautifulSoup
 
 LANGUAGE="en_US"
 
-DEBUG=False
+DEBUG=True
 
 import sys
 sys.path.insert(0, './license_xsl/licensexsl_tools')
