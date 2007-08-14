@@ -6,7 +6,7 @@ ob_start("ob_gzhandler");
  *
  * See .htaccess for how to configure it for php5.
  */
-header("content-type: text/javascript");
+header("Content-type: text/javascript");
 ?>
 
 <?php
@@ -17,7 +17,7 @@ $dirname = dirname($parsed['path']);
 $base = 'http://' . $_SERVER['HTTP_HOST'] . $dirname;
 
 /* Load the prerequisite JS files */
-$pre_reqs = array('js/safari-label-fix.js', 'js/cc-tooltip.js', 'js/cc-jurisdictions.js', 'js/cc-license.js', 'js/init.js');
+$pre_reqs = array('js/safari-label-fix.js', 'js/cc-tooltip.js', 'js/cc-jurisdictions.js', 'js/cc-license.js');
 foreach ($pre_reqs as $pre_req) {
 	echo file_get_contents($pre_req);
 }
@@ -42,4 +42,5 @@ foreach ($pre_reqs as $pre_req) {
     }
 ?>
 
-document.write('<script type="text/javascript" src="<?php echo $template_url ?>" /></script>\n');
+document.write('<script type="text/javascript" src="<?php echo $template_url ?>"></script>\n');
+document.write('<script type="text/javascript" src="<?php echo $base ?>/js/init.js"></script>\n')
