@@ -7,8 +7,8 @@ up_to_date:
 	svn up > /dev/null
 
 template.en_US.js: template.html gen_template_js.py license_xsl/licenses.xml
-	ipython gen_template_js.py template.html
-	ipython update_jurisdictions.py
+	python gen_template_js.py template.html
+	python update_jurisdictions.py
 
 clean:
 	rm -f $(shell ls -1 template.*js* | grep -v template.js.var)
