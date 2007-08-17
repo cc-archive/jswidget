@@ -23,7 +23,10 @@
  */
 
 function cc_js_$F(id) {
-	return cc_js_$(id).value;
+	if (cc_js_$(id)) {
+		return cc_js_$(id).value;
+	}
+	return null; // if we can't find the form element, pretend it has no contents
 }
 
 function cc_js_$(id) {
@@ -46,6 +49,7 @@ function cc_js_t(s) {
 var cc_js_share, cc_js_remix, cc_js_nc, cc_js_sa;
 
 var cc_js_reset_jurisdiction_array = false;
+var cc_js_default_jurisdiction = 'generic'; // the seed may change this
 
 /**
  * cc_js_license_array is an array of our license options from global
@@ -210,7 +214,8 @@ function cc_js_rest_of_modify() {
     // Plus, update the hidden form fields with the name and uri
     cc_js_$('result_uri').value = cc_js_license_array['url'];
     cc_js_$('result_img').value = cc_js_license_array['img'];
-    cc_js_$('result_name').value = 'Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' ' + cc_js_license_array['jurisdiction'];
+    // FIXME: Is this the right way to localize?
+    cc_js_$('result_name').value = 'Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' ' + cc_js_t(cc_js_license_array['jurisdiction']);
 }
 
 /**
@@ -314,6 +319,10 @@ function cc_js_set_jurisdiction(juri) {
 	    }
 	}
     }
+    // even if there is no jurisdiction selector,
+    // we update the state
+    cc_js_default_jurisdiction = juri;
+
 }
 
 
@@ -321,9 +330,9 @@ function cc_js_build_license_url ()
 {
     var license_url = cc_js_license_root_url + "/" + cc_js_license_array['code'] + 
 	"/" + cc_js_license_array['version'] + "/" ;
-    if ( cc_js_$F('jurisdiction') && ! cc_js_license_array['generic'] )
-	license_url += cc_js_$F('jurisdiction') + "/" ;
-    
+    if ( cc_js_current_short_license_code(false)) {
+        license_url += cc_js_current_short_license_code(true);
+    }    
     cc_js_license_array['url'] = license_url;
 }
 
@@ -376,13 +385,30 @@ function cc_js_build_license_text ()
     cc_js_license_array['text'] = license_text;
 }
 
+function cc_js_current_short_license_code(slash) {
+	ret = ''
+	if (cc_js_$('jurisdiction')) {
+		ret = cc_js_$F('jurisdiction');
+	}
+	else if (cc_js_default_jurisdiction == 'generic') {
+		return ''; // even if slashed
+	}
+	else {
+		ret = cc_js_default_jurisdiction;
+	}
+	if (slash) {
+		ret = ret + '/';
+	}
+	return ret;
+}
+
 function cc_js_build_license_image ()
 {
     cc_js_license_array['img'] = 
 	'http://i.creativecommons.org/l/' + cc_js_license_array['code'] + 
 	"/" + cc_js_license_array['version'] + "/" + 
-	( cc_js_license_array['generic']  ? '' : cc_js_$F('jurisdiction') + 
-	  "/" ) + '88x31.png';
+	cc_js_current_short_license_code(true) + 
+	'88x31.png';
 }
 
 /**
@@ -400,7 +426,7 @@ function cc_js_build_jurisdictions ()
     if ( cc_js_$F('jurisdiction') )
 	current_jurisdiction = cc_js_$F('jurisdiction');
     else
-	current_jurisdiction = 'generic';
+	current_jurisdiction = cc_js_default_jurisdiction;
     
     cc_js_license_array['jurisdiction'] = 
 	cc_js_jurisdictions_array[current_jurisdiction]['name'];

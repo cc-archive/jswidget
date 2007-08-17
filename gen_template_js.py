@@ -87,8 +87,10 @@ def gen_templated_js(language):
 	for juri in jurisdiction_names:
 		value = juri
 		element_id = 'cc_js_jurisdiction_choice_' + value
+		english_name = convert.country_id2name(value, 'en')
+		cc_js_text = 'cc_js_text_' + english_name
 		name = convert.country_id2name(value, language)
-		jurisdictions.append(dict(id=element_id, value=value, name=name))
+		jurisdictions.append(dict(cc_js_text=cc_js_text, id=element_id, value=value, name=name))
 	from xml.dom.minidom import parse, parseString
 	expanded = expand_template_with_jurisdictions('template.html', jurisdictions)
 	expanded_dom = parseString(expanded)
@@ -110,7 +112,7 @@ def main():
 	languages = [k for k in os.listdir('license_xsl/i18n/i18n_po/') if '.po' in k]
 	
 	languages = [re.split(r'[-.]', k)[1] for k in languages]
-	languages = ['en_US']
+	languages = ['en_US', 'fr']
 	for lang in languages:
 		gen_templated_js(lang)
 
