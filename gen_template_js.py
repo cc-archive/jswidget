@@ -7,6 +7,7 @@ from simpletal import simpleTAL, simpleTALES
 import cStringIO as StringIO
 import os
 import BeautifulSoup
+from xml.dom.minidom import parseString
 
 LANGUAGE="en_US"
 
@@ -91,21 +92,33 @@ def gen_templated_js(language):
 		cc_js_text = 'cc_js_text_' + english_name
 		name = convert.country_id2name(value, language)
 		jurisdictions.append(dict(cc_js_text=cc_js_text, id=element_id, value=value, name=name))
-	from xml.dom.minidom import parse, parseString
 	expanded = expand_template_with_jurisdictions('template.html', jurisdictions)
 	expanded_dom = parseString(expanded)
 
 	# translate the spans, then pull out the changed text
 	translate_spans_with_only_text_children(expanded_dom.getElementsByTagName('span'), language)
 	translated_expanded = expanded_dom.toxml(encoding='utf-8')
-	
-	out = open('template.%s.js.tmp' % language, 'w')
 
-	for line in translated_expanded.split('\n'):
-		escaped_line = escape_single_quote(line.strip())
-		print >> out, "document.write('%s');" % escaped_line
-	out.close()
-	os.rename('template.%s.js.tmp' % language, 'template.js.%s' % language)
+	# now provide a jurisdiction-less alternative
+	jurisdiction_div = None
+	for div in expanded_dom.getElementsByTagName('div'):
+		if div.getAttribute('id') == 'cc_js_jurisdiction_box':
+			jurisdiction_div = div
+	# now, eat yourself
+	jurisdiction_div.parentNode.removeChild(jurisdiction_div)
+	translated_expanded_without_jurisdiction = expanded_dom.toxml(encoding='utf-8')
+
+	# Whew, we have everything ready.  Time to save.
+
+	for (filename_base, string) in ( ('template.js.%s', translated_expanded),
+					 ('template.nojuri.js.%s', translated_expanded_without_jurisdiction) ):
+		out = open((filename_base + '.tmp') % language, 'w')
+
+		for line in string.split('\n'):
+			escaped_line = escape_single_quote(line.strip())
+			print >> out, "document.write('%s');" % escaped_line
+		out.close()
+		os.rename( (filename_base + '.tmp') % language, filename_base % language)
 
 def main():
 	# For each language, generate templated JS for it
@@ -116,17 +129,18 @@ def main():
 	for lang in languages:
 		gen_templated_js(lang)
 
-	# And for our final trick, we will generate the .var file with
-	# languages that controls dispatch of requests to the untranslated
-	# JavaScript file.
-	default_lang = 'en_US'
-	var_lines = ['URI: template.js']
-	for lang in languages:
-		var_lines.append(gen_var_lang_line(uri_base='template.js', lang=lang, default_lang = default_lang))
-	htaccess_fd = open('template.js.var.tmp', 'w')
-	htaccess_fd.write('\n\n'.join(var_lines) + '\n')
-	htaccess_fd.close()
-	os.rename('template.js.var.tmp', 'template.js.var')
+	for template in ('template.js', 'template.nojuri.js'):
+		# And for our final trick, we will generate the .var file with
+		# languages that controls dispatch of requests to the untranslated
+		# JavaScript file.
+		default_lang = 'en_US'
+		var_lines = ['URI: ' + template]
+		for lang in languages:
+			var_lines.append(gen_var_lang_line(uri_base=template, lang=lang, default_lang = default_lang))
+		htaccess_fd = open(template + '.var.tmp', 'w')
+		htaccess_fd.write('\n\n'.join(var_lines) + '\n')
+		htaccess_fd.close()
+		os.rename(template + '.var.tmp', template + '.var')
 
 def gen_var_lang_line(uri_base, lang, default_lang, content_type='text/javascript'):
 	if lang == default_lang:
