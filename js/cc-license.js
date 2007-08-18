@@ -52,6 +52,7 @@ function cc_js_disable_widget() {
 	/* Clear the form fields out */
 	/* save the license URL, the rest will be calculated from that */
 	cc_js_secret_license_url = cc_js_license_array['url'];
+	cc_js_license_array['url'] = '';
 	cc_js_secret_disabled = [];
 	cc_js_$('result_uri').value = '';
 	cc_js_$('result_img').value = '';
@@ -67,6 +68,9 @@ function cc_js_disable_widget() {
 			cc_js_secret_disabled.push(box);
 		}
 	}
+	if (cc_js_$('jurisdiction')) {
+		cc_js_$('jurisdiction').disabled = true;
+	}
 	alert('minus lol');
 }
 
@@ -75,6 +79,9 @@ function cc_js_enable_widget() {
 	for (var box_num = 0 ; box_num < cc_js_secret_disabled.length ; box_num++) {
 		box = cc_js_secret_disabled[box_num];
 		cc_js_option_on(box);
+	}
+	if (cc_js_$('jurisdiction')) {
+		cc_js_$('jurisdiction').disabled = false;
 	}
 	cc_js_secret_disabled = [];
 	cc_js_init();
@@ -128,7 +135,7 @@ function cc_js_init() {
     // then by Jove let's do that!
     cc_js_license_array = new Array();
     if (cc_js_$('seed_uri')) {
-	cc_js_secret_license_url = cc_js_$('seed_uri');
+	cc_js_secret_license_url = cc_js_$F('seed_uri');
     }
     if (cc_js_secret_license_url) {
 	cc_js_license_url_to_attributes(cc_js_secret_license_url);
@@ -331,7 +338,7 @@ function cc_js_set_attribs(attrs) {
 		cc_js_nc = true;
 	    }
 	    else if (attr == 'nd') {
-		cc_js_share = false;
+		cc_js_remix = false;
 		cc_js_sa = false;
 	    }
 	}
@@ -578,7 +585,7 @@ function cc_js_output_license_html ()
 
 function cc_js_update_hack(code, version, full_name)
 {
-    cc_js_license_array = Array;
+    cc_js_license_array = [];
     
     cc_js_license_array['code']       = code;
     cc_js_license_array['version']    = version;
