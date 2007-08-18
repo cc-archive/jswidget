@@ -387,7 +387,7 @@ function cc_js_build_license_text ()
 
 function cc_js_current_short_license_code(slash) {
 	ret = ''
-	if (cc_js_$('jurisdiction')) {
+	if (cc_js_$('jurisdiction') && cc_js_$F('jurisdiction') != 'generic') {
 		ret = cc_js_$F('jurisdiction');
 	}
 	else if (cc_js_default_jurisdiction == 'generic') {
