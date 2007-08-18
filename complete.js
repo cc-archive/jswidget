@@ -25,11 +25,29 @@ foreach ($pre_reqs as $pre_req) {
 /* NOTE: I do not include the CSS stylesheet
    and instead I let others style our boxes the way they want. */
 
-/* Insert the template */
+/* Determine which template file the user wanted */
+
+$extras = array();
 
 if ((array_key_exists('jurisdictions', $_GET)) && ($_GET['jurisdictions'] == 'disabled')) {
-	$template_dot_js = 'template.nojuri.js';
-} else { 
+	$extras[] = 'nojuri';
+}
+if (array_key_exists('want_a_license', $_GET)) {
+	if ($_GET['want_a_license'] == 'definitely') {
+		$extras[] = 'definitely_want_license';
+	} else if ($_GET['want_a_license'] == 'not_at_start') {
+		$extras[] = 'no_license_by_default';
+	} else if ($_GET['want_a_license'] == 'at_start') {
+		// No extras
+		// the license box chooser will be in by default
+	}
+}
+
+sort($extras);
+$extras_string = implode('.', $extras);
+if ($extras_string) {
+	$template_dot_js = 'template.' . $extras . '.js';
+} else {
 	$template_dot_js = 'template.js';
 }
 
