@@ -75,8 +75,31 @@ def translate_spans_with_only_text_children(spans, lang):
 				utf8_data = unicode_data.encode('utf-8')
 				child.data = convert.extremely_slow_translation_function(utf8_data, lang)
 
+def write_string_to(s, filename):
+	fd = open(filename + '.tmp', 'w')
+	fd.write(s)
+	fd.close()
+	os.rename(filename + '.tmp', filename)
 
-def gen_templated_js(language):
+from xml import xpath
+
+def dom_elt_by_id(id, dom):
+	return xpath.Evaluate('//*[@id="%s"]' % id, dom)[0]
+
+def apply_variants(variants, dom):
+	if 'nojuri' in variants:
+		juri_box = dom_elt_by_id('cc_js_jurisdiction_box', dom)
+		juri_box.parentNode.removeChild(juri_box)
+	if 'definitely_want_license' in variants:
+		want_license_at_all_box = dom_elt_by_id('cc_js_want_cc_license_at_all', dom)
+		want_license_at_all_box.parentNode.removeChild(want_license_at_all_box)
+	if 'no_license_by_default' in variants:
+		yes_radio = dom_elt_by_id('cc_js_want_cc_license_sure', dom)
+		yes_radio.checked = ''
+		no_radio = dom_elt_by_id('cc_js_want_cc_license_nah', dom)
+		no_radio.checked = 'checked'
+	
+def gen_templated_js(language, my_variants):
 	jurisdiction_names = grab_license_ids()
 	jurisdictions = []
 	# First, handle generic
@@ -97,28 +120,16 @@ def gen_templated_js(language):
 
 	# translate the spans, then pull out the changed text
 	translate_spans_with_only_text_children(expanded_dom.getElementsByTagName('span'), language)
-	translated_expanded = expanded_dom.toxml(encoding='utf-8')
 
-	# now provide a jurisdiction-less alternative
-	jurisdiction_div = None
-	for div in expanded_dom.getElementsByTagName('div'):
-		if div.getAttribute('id') == 'cc_js_jurisdiction_box':
-			jurisdiction_div = div
-	# now, eat yourself
-	jurisdiction_div.parentNode.removeChild(jurisdiction_div)
-	translated_expanded_without_jurisdiction = expanded_dom.toxml(encoding='utf-8')
-
-	# Whew, we have everything ready.  Time to save.
-
-	for (filename_base, string) in ( ('template.js.%s', translated_expanded),
-					 ('template.nojuri.js.%s', translated_expanded_without_jurisdiction) ):
-		out = open((filename_base + '.tmp') % language, 'w')
-
-		for line in string.split('\n'):
-			escaped_line = escape_single_quote(line.strip())
-			print >> out, "document.write('%s');" % escaped_line
-		out.close()
-		os.rename( (filename_base + '.tmp') % language, filename_base % language)
+	apply_variants(my_variants, expanded_dom)
+	my_string = expanded_dom.toxml(encoding='utf-8')
+	if my_variants:
+		my_suffix = '.'.join(my_variants)
+		my_filename_base = 'template.' + my_suffix + '.js'
+	else:
+		my_filename_base = 'template.js'
+	my_filename = (my_filename_base + '.%s') % language
+	write_string_to(my_string, my_filename)
 
 def main():
 	# For each language, generate templated JS for it
@@ -126,21 +137,32 @@ def main():
 	
 	languages = [re.split(r'[-.]', k)[1] for k in languages]
 	languages = ['en_US', 'fr']
-	for lang in languages:
-		gen_templated_js(lang)
-
-	for template in ('template.js', 'template.nojuri.js'):
-		# And for our final trick, we will generate the .var file with
-		# languages that controls dispatch of requests to the untranslated
-		# JavaScript file.
-		default_lang = 'en_US'
-		var_lines = ['URI: ' + template]
+	for my_variants in ( [], ['nojuri'], ['definitely_want_license'],
+			['nojuri', 'definitely_want_license'],
+			['no_license_at_start'],
+			['no_license_at_start', 'nojuri']):
+		my_variants.sort()
 		for lang in languages:
-			var_lines.append(gen_var_lang_line(uri_base=template, lang=lang, default_lang = default_lang))
-		htaccess_fd = open(template + '.var.tmp', 'w')
-		htaccess_fd.write('\n\n'.join(var_lines) + '\n')
-		htaccess_fd.close()
-		os.rename(template + '.var.tmp', template + '.var')
+			gen_templated_js(lang, my_variants)
+		create_var_file(my_variants, languages)	
+
+def create_var_file(my_variants, languages):
+	if my_variants:
+		template = 'template.' + '.'.join(my_variants) + '.js'
+	else:
+		template = 'template.js'
+
+	# And for our final trick, we will generate the .var file with
+	# languages that controls dispatch of requests to the untranslated
+	# JavaScript file.
+	default_lang = 'en'
+	var_lines = ['URI: ' + template]
+	for lang in languages:
+		var_lines.append(gen_var_lang_line(uri_base=template, lang=lang, default_lang = default_lang))
+	htaccess_fd = open(template + '.var.tmp', 'w')
+	htaccess_fd.write('\n\n'.join(var_lines) + '\n')
+	htaccess_fd.close()
+	os.rename(template + '.var.tmp', template + '.var')
 
 def gen_var_lang_line(uri_base, lang, default_lang, content_type='text/javascript'):
 	if lang == default_lang:
