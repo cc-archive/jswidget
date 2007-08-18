@@ -98,6 +98,14 @@ def apply_variants(variants, dom):
 		yes_radio.checked = ''
 		no_radio = dom_elt_by_id('cc_js_want_cc_license_nah', dom)
 		no_radio.checked = 'checked'
+
+def jsify(in_string):
+	lines = in_string.split('\n')
+	if lines[0].startswith('<?xml version='):
+		lines = lines[1:]
+	for k in range(len(lines)):
+		lines[k] = "document.write('%s');" % escape_single_quote(lines[k]).strip()
+	return '\n'.join(lines)
 	
 def gen_templated_js(language, my_variants):
 	jurisdiction_names = grab_license_ids()
@@ -129,7 +137,7 @@ def gen_templated_js(language, my_variants):
 	else:
 		my_filename_base = 'template.js'
 	my_filename = (my_filename_base + '.%s') % language
-	write_string_to(my_string, my_filename)
+	write_string_to(jsify(my_string), my_filename)
 
 def main():
 	# For each language, generate templated JS for it
