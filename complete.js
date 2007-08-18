@@ -35,8 +35,8 @@ if ((array_key_exists('jurisdictions', $_GET)) && ($_GET['jurisdictions'] == 'di
 if (array_key_exists('want_a_license', $_GET)) {
 	if ($_GET['want_a_license'] == 'definitely') {
 		$extras[] = 'definitely_want_license';
-	} else if ($_GET['want_a_license'] == 'not_at_start') {
-		$extras[] = 'no_license_by_default';
+	} else if ($_GET['want_a_license'] == 'no_license_at_start') {
+		$extras[] = 'no_license_at_start';
 	} else if ($_GET['want_a_license'] == 'at_start') {
 		// No extras
 		// the license box chooser will be in by default
