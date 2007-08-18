@@ -147,8 +147,8 @@ def main():
 	languages = ['en_US', 'fr']
 	for my_variants in ( [], ['nojuri'], ['definitely_want_license'],
 			['nojuri', 'definitely_want_license'],
-			['no_license_at_start'],
-			['no_license_at_start', 'nojuri']):
+			['no_license_by_default'],
+			['no_license_by_default', 'nojuri']):
 		my_variants.sort()
 		for lang in languages:
 			gen_templated_js(lang, my_variants)

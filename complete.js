@@ -33,11 +33,14 @@ if ((array_key_exists('jurisdictions', $_GET)) && ($_GET['jurisdictions'] == 'di
 	$extras[] = 'nojuri';
 }
 if (array_key_exists('want_a_license', $_GET)) {
+	$extras[]='yow';
+	$extras[]=$_GET['want_a_license'];
 	if ($_GET['want_a_license'] == 'definitely') {
 		$extras[] = 'definitely_want_license';
-	} else if ($_GET['want_a_license'] == 'no_license_at_start') {
-		$extras[] = 'no_license_at_start';
-	} else if ($_GET['want_a_license'] == 'at_start') {
+	} elseif ($_GET['want_a_license'] == 'no_license_by_default') {
+		$extras[] = 'no_license_by_default';
+	} elseif ($_GET['want_a_license'] == 'at_start') {
+		$extras[] = 'wrong_argument';
 		// No extras
 		// the license box chooser will be in by default
 	}
