@@ -45,11 +45,16 @@ function cc_js_t(s) {
     return cc_js_$('text_' + s).firstChild.data;
 }
 
-function cc_js_undisable_all() {
+var cc_js_secret_license_url;
+
+function cc_js_disable_widget() {
+	/* Clear the form fields out */
+	/* save the license URL, the rest will be calculated from that */
 	alert('minus lol');
 }
 
-function cc_js_disable_all() {
+function cc_js_enable_widget() {
+	/* restore the secret license URL, or if it's blank, the seed, or if that's blank, by 3.0 */
 	alert('plus lol');
 }
 
