@@ -71,7 +71,6 @@ function cc_js_disable_widget() {
 	if (cc_js_$('jurisdiction')) {
 		cc_js_$('jurisdiction').disabled = true;
 	}
-	alert('minus lol');
 }
 
 function cc_js_enable_widget() {
@@ -85,7 +84,6 @@ function cc_js_enable_widget() {
 	}
 	cc_js_secret_disabled = [];
 	cc_js_init();
-	alert('plus lol');
 }
 
 // NOTE we have the object freedoms for dealing with freedom style choosing

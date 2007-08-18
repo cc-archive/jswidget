@@ -14,6 +14,7 @@
   <span id="cc_js_text_If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</span>
   <span id="cc_js_text_Unported">Unported</span>
   <span id="cc_js_text_No license chosen">No license chosen</span>
+  <span id="cc_js_text_No license">No license</span>
   <span tal:repeat="jurisdiction jurisdictions" tal:attributes="id jurisdiction/cc_js_text; value jurisdiction/value" tal:content="jurisdiction/name">Sample jurisdiction</span>
 </div>
 
@@ -21,7 +22,13 @@
 
   <div id="cc_js_want_cc_license_at_all">
     <input type="radio" onclick="cc_js_enable_widget();" id="cc_js_want_cc_license_sure" name="cc_js_want_cc_license" value="sure" checked="checked" /><label for="cc_js_want_cc_license_sure"><span>A Creative Commons license</span></label>
-    <input type="radio" onclick="cc_js_disable_widget();" id="cc_js_want_cc_license_nah" name="cc_js_want_cc_license" value="nah" /><label for="cc_js_want_cc_license_nah"><span>No license</span></label>
+    <span>
+	<span class="cc_js_infobox" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>' + cc_js_t('No license') + '&lt;/strong> ' + cc_js_t('No license chosen') + '&lt;/p>');" onmouseout="cc_js_hide_tip()"><img height="16" width="16" src="http://api.creativecommons.org/jswidget/trunk/images/information.png" alt="info" class="cc_js_info" /></span>
+	<input type="radio" onclick="cc_js_disable_widget();" id="cc_js_want_cc_license_nah" name="cc_js_want_cc_license" value="nah" /><label for="cc_js_want_cc_license_nah">
+		<span>No license</span>
+	</label>
+    </span>
+
   </div>
 
   <div id="cc_js_required">
@@ -32,6 +39,7 @@
       
       
     <p><span class="cc_js_infobox" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>' + cc_js_t('Remix') + '&lt;/strong> ' + cc_js_t('Licensor permits others to make derivative works.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()"><img height="16" width="16" src="http://api.creativecommons.org/jswidget/trunk/images/information.png" alt="info" class="cc_js_info" /></span><input  onclick="cc_js_modify(this);" name="cc_js_remix" value="" id="cc_js_remix" type="checkbox" />
+
       
         
       <label style="color: black;" onclick="cc_js_call_me_on_label_selection(this);" for="cc_js_remix" class="cc_js_question" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>' + cc_js_t('Remix') + '&lt;/strong> ' + cc_js_t('Licensor permits others to make derivative works.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()" id="cc_js_remix-label"><strong><span>Allow Remixing</span></strong></label> 
