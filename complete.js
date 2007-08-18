@@ -46,7 +46,7 @@ if (array_key_exists('want_a_license', $_GET)) {
 sort($extras);
 $extras_string = implode('.', $extras);
 if ($extras_string) {
-	$template_dot_js = 'template.' . $extras . '.js';
+	$template_dot_js = 'template.' . $extras_string . '.js';
 } else {
 	$template_dot_js = 'template.js';
 }
