@@ -45,6 +45,14 @@ function cc_js_t(s) {
     return cc_js_$('text_' + s).firstChild.data;
 }
 
+function cc_js_undisable_all() {
+	alert('minus lol');
+}
+
+function cc_js_disable_all() {
+	alert('plus lol');
+}
+
 // NOTE we have the object freedoms for dealing with freedom style choosing
 var cc_js_share, cc_js_remix, cc_js_nc, cc_js_sa;
 

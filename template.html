@@ -12,10 +12,17 @@
   <span id="cc_js_text_We have updated the version of your license to the most recent one available.">We have updated the version of your license to the most recent one available.</span>
   <span id="cc_js_text_We have updated the version of your license to the most recent one available in your jurisdiction.">We have updated the version of your license to the most recent one available in your jurisdiction.</span>
   <span id="cc_js_text_If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</span>
+  <span id="cc_js_text_Unported">Unported</span>
   <span tal:repeat="jurisdiction jurisdictions" tal:attributes="id jurisdiction/cc_js_text; value jurisdiction/value" tal:content="jurisdiction/name">Sample jurisdiction</span>
 </div>
 
 <div id="cc_js_lic-menu" class="block">
+
+  <div id="cc_js_want_cc_license_at_all">
+    <input type="radio" onclick="cc_js_disable_all();" id="cc_js_want_cc_license_sure" name="cc_js_want_cc_license" value="sure" checked="checked" /><label for="cc_js_want_cc_license_sure"><span>A Creative Commons license</span></label>
+    <input type="radio" onclick="cc_js_undisable_all();" id="cc_js_want_cc_license_nah" name="cc_js_want_cc_license" value="nah" /><label for="cc_js_want_cc_license_nah"><span>No license</span></label>
+  </div>
+
   <div id="cc_js_required">
     
     <p>
