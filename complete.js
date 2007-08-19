@@ -17,7 +17,7 @@ $dirname = dirname($parsed['path']);
 $base = 'http://' . $_SERVER['HTTP_HOST'] . $dirname;
 
 /* Load the prerequisite JS files */
-$pre_reqs = array('js/safari-label-fix.js', 'js/cc-tooltip.js', 'js/cc-jurisdictions.js', 'js/cc-license.js');
+$pre_reqs = array('js/cc-prereq.js', 'js/safari-label-fix.js', 'js/cc-tooltip.js', 'js/cc-jurisdictions.js', 'js/cc-license.js');
 foreach ($pre_reqs as $pre_req) {
 	echo file_get_contents($pre_req);
 }
