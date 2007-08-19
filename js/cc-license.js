@@ -22,29 +22,6 @@
  *
  */
 
-function cc_js_$F(id) {
-	if (cc_js_$(id)) {
-		return cc_js_$(id).value;
-	}
-	return null; // if we can't find the form element, pretend it has no contents
-}
-
-function cc_js_$(id) {
-    return document.getElementById("cc_js_" + id);
-}
-
-/* A wrapper to get Elements By ID
- * Really used for grabbing translations.
- * Unfortunately, having spaces is not valid in IDs, so
- * in the future this should base64 encode the IDs.
- *
- * Also, I should really join all the text children rather than just getting
- * the first.
- */
-function cc_js_t(s) {
-    return cc_js_$('text_' + s).firstChild.data;
-}
-
 var cc_js_secret_license_url;
 var cc_js_secret_disabled = [];
 
