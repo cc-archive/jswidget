@@ -95,9 +95,9 @@ def apply_variants(variants, dom):
 		want_license_at_all_box.parentNode.removeChild(want_license_at_all_box)
 	if 'no_license_by_default' in variants:
 		yes_radio = dom_elt_by_id('cc_js_want_cc_license_sure', dom)
-		yes_radio.checked = ''
+		yes_radio.setAttribute('checked', '')
 		no_radio = dom_elt_by_id('cc_js_want_cc_license_nah', dom)
-		no_radio.checked = 'checked'
+		no_radio.setAttribute('checked', 'checked')
 
 def jsify(in_string):
 	lines = in_string.split('\n')
