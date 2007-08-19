@@ -33,8 +33,6 @@ if ((array_key_exists('jurisdictions', $_GET)) && ($_GET['jurisdictions'] == 'di
 	$extras[] = 'nojuri';
 }
 if (array_key_exists('want_a_license', $_GET)) {
-	$extras[]='yow';
-	$extras[]=$_GET['want_a_license'];
 	if ($_GET['want_a_license'] == 'definitely') {
 		$extras[] = 'definitely_want_license';
 	} elseif ($_GET['want_a_license'] == 'no_license_by_default') {
