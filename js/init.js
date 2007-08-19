@@ -1,5 +1,10 @@
 function cc_js_pageInit() {
-    cc_js_init();
+    if (cc_js_$('want_cc_license_nah') && cc_js_$('want_cc_license_nah').checked) {
+        // then do not init
+        cc_js_disable_widget();
+    } else {
+        cc_js_init();
+    }
     cc_js_init_tip();
 }
 

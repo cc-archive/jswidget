@@ -26,17 +26,20 @@ var cc_js_secret_license_url;
 var cc_js_secret_disabled = [];
 
 function cc_js_disable_widget() {
+	message = cc_js_t('No license chosen');
 	/* Clear the form fields out */
 	/* save the license URL, the rest will be calculated from that */
-	cc_js_secret_license_url = cc_js_license_array['url'];
-	cc_js_license_array['url'] = '';
+	if (cc_js_license_array && 'url' in cc_js_license_array) {
+		cc_js_secret_license_url = cc_js_license_array['url'];
+		cc_js_license_array['url'] = '';
+		cc_js_license_array['text'] = message;
+	}
+	cc_js_$('result_name').value = message;
 	cc_js_secret_disabled = [];
 	cc_js_$('result_uri').value = '';
 	cc_js_$('result_img').value = '';
 	// FIXME: localize below
-	cc_js_license_array['text'] = cc_js_t('No license chosen');
-	cc_js_$('result_name').value = cc_js_license_array['text'];
-	cc_js_insert_html(cc_js_license_array['text'], 'license_example');
+	cc_js_insert_html(message, 'license_example');
 	var boxes = ['remix', 'nc', 'sa'];
 	for (var box_num = 0 ; box_num < boxes.length ; box_num++ ) { 
 		box = boxes[box_num];
