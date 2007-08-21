@@ -10,9 +10,9 @@ import gen_template_js
 # Look with a cheesy regex for cc_js_t('something') calls
 def findall(s):
 	utf8_single_quote = re.findall(r'''cc_js_t[(]'(.*?)'[)]''', s)
-	utf8_single_quote = [k.replace("""\'""", "'") for k in utf8_single_quote]
+	utf8_single_quote = [k.replace(r"""\'""", "'") for k in utf8_single_quote]
 	utf8_double_quote = re.findall(r'''cc_js_t[(]"(.*?)"[)]''', s)
-	utf8_double_quote = set([k.replace('''\"''', '"') for k in utf8_double_quote])
+	utf8_double_quote = [k.replace(r'''\"''', '"') for k in utf8_double_quote]
 	utf8 = set(utf8_single_quote + utf8_double_quote)
 	return utf8
 
@@ -37,6 +37,7 @@ def main():
 	languages = [k for k in os.listdir('license_xsl/i18n/i18n_po/') if '.po' in k]
 	languages = [re.split(r'[-.]', k)[1] for k in languages]
 	translate_all_of_me = list(findall(open('template.html').read()))
+	print translate_all_of_me
 	# Plus, translate all the jurisdiction names
 	translate_all_of_me.append('Unported')
 	translate_all_of_me.extend([convert.country_id2name(k, 'en') for k in gen_template_js.grab_license_ids()])
