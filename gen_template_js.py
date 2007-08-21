@@ -154,11 +154,14 @@ def main():
 			gen_templated_js(lang, my_variants)
 		create_var_file(my_variants, languages)	
 
-def create_var_file(my_variants, languages):
+def create_var_file(my_variants, languages, base_filename='template.js'):
 	if my_variants:
-		template = 'template.' + '.'.join(my_variants) + '.js'
+		middle = '.'.join(my_variants)
+		filename_parts = base_filename.rsplit('.', 1)
+		filename_parts.insert(1, middle)
+		template = '.'.join(filename_parts)
 	else:
-		template = 'template.js'
+		template = base_filename
 
 	# And for our final trick, we will generate the .var file with
 	# languages that controls dispatch of requests to the untranslated
