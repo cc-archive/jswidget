@@ -9,7 +9,7 @@ import gen_template_js
 
 # Look with a cheesy regex for cc_js_t('something') calls
 def findall(s):
-	utf8 = re.findall(r'''cc_js_t[(]['"](.*?)['"'[)]''', s)
+	utf8 = set(re.findall(r'''cc_js_t[(]['"](.*?)['"'[)]''', s))
 	return utf8
 
 def translation_table_to_js_function_body(table):
@@ -20,19 +20,22 @@ def translation_table_to_js_function_body(table):
 
 	ret = u''
 	template = u' if (s == %s) { return %s; } \n'
-	for key in table:
+	for orig_key in table:
 		try:
-			key = unicode(key)
+			key = unicode(orig_key)
 		except:
-			key = unicode(key, 'utf-8')
-		ret += template % (json.write(key), json.write(table[key]))
+			key = unicode(orig_key, 'utf-8')
+		ret += template % (json.write(key), json.write(table[orig_key]))
 	ret += 'return null;'
 	return ret
 
 def main():
 	languages = [k for k in os.listdir('license_xsl/i18n/i18n_po/') if '.po' in k]
 	languages = [re.split(r'[-.]', k)[1] for k in languages]
-	translate_all_of_me = findall(open('template.html').read())
+	translate_all_of_me = list(findall(open('template.html').read()))
+	# Plus, translate all the jurisdiction names
+	translate_all_of_me.append('Unported')
+	translate_all_of_me.extend([convert.country_id2name(k, 'en') for k in gen_template_js.grab_license_ids()])
 	for lang in languages:
 		translation_table = {}
 		for english in translate_all_of_me:
@@ -41,13 +44,13 @@ def main():
 		fn = '''function cc_js_t(s) {
 		%s
 		}''' % fn_body
-		fd = open('cc-translate.js.%s' % lang, 'w')
+		fd = open('cc-translations.js.%s' % lang, 'w')
 		fd.write(fn.encode('utf-8'))
 		fd.close()
 	# Whew.  Generated some JS files.  Now should also make some .var
 	# file for those who can't use these.
 	default_lang = 'en'
-	gen_template_js.create_var_file(my_variants = None, languages=languages, base_filename='cc-translate.js')
+	gen_template_js.create_var_file(my_variants = None, languages=languages, base_filename='cc-translations.js')
 	
 
 if __name__ == '__main__':
