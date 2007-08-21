@@ -3,6 +3,7 @@
 # Later, it could take template.html and make DOM objects instead.
 
 import re
+import json
 from simpletal import simpleTAL, simpleTALES
 import cStringIO as StringIO
 import os
@@ -28,9 +29,6 @@ def grab_license_ids():
 		juris.append(juri['id'])
 	juris = [juri for juri in juris if juri != '-']
 	return juris
-
-def escape_single_quote(s):
-	return s.replace("'", "\\'")
 
 def xml_asciify(u):
 	out = ''
@@ -104,7 +102,7 @@ def jsify(in_string):
 	if lines[0].startswith('<?xml version='):
 		lines = lines[1:]
 	for k in range(len(lines)):
-		lines[k] = "document.write('%s');" % escape_single_quote(lines[k]).strip()
+		lines[k] = "document.write(%s);" % json.write(lines[k].strip())
 	return '\n'.join(lines)
 	
 def gen_templated_js(language, my_variants):
