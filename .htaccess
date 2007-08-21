@@ -9,3 +9,4 @@ Options MultiViews FollowSymlinks
 AddHandler type-map var
 ExpiresActive On
 ExpiresDefault A604800
+AddCharset UTF-8 .js.var
