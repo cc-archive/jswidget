@@ -9,7 +9,11 @@ import gen_template_js
 
 # Look with a cheesy regex for cc_js_t('something') calls
 def findall(s):
-	utf8 = set(re.findall(r'''cc_js_t[(]['"](.*?)['"'[)]''', s))
+	utf8_single_quote = re.findall(r'''cc_js_t[(]'(.*?)'[)]''', s)
+	utf8_single_quote = [k.replace("""\'""", "'") for k in utf8_single_quote]
+	utf8_double_quote = re.findall(r'''cc_js_t[(]"(.*?)"[)]''', s)
+	utf8_double_quote = set([k.replace('''\"''', '"') for k in utf8_double_quote])
+	utf8 = set(utf8_single_quote + utf8_double_quote)
 	return utf8
 
 def translation_table_to_js_function_body(table):
@@ -49,7 +53,6 @@ def main():
 		fd.close()
 	# Whew.  Generated some JS files.  Now should also make some .var
 	# file for those who can't use these.
-	default_lang = 'en'
 	gen_template_js.create_var_file(my_variants = None, languages=languages, base_filename='cc-translations.js')
 	
 
