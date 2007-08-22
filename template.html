@@ -2,9 +2,11 @@
 <div id="cc_js_lic-menu">
 
   <div id="cc_js_want_cc_license_at_all">
-    <input type="radio" onclick="cc_js_enable_widget();" id="cc_js_want_cc_license_sure" name="cc_js_want_cc_license" value="sure" checked="checked" /><label for="cc_js_want_cc_license_sure"><span>A Creative Commons license</span></label>
     <span>
-	<span class="cc_js_infobox" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>' + cc_js_t('No license') + '&lt;/strong> ' + cc_js_t('No license chosen') + '&lt;/p>');" onmouseout="cc_js_hide_tip()"><img height="16" width="16" src="http://api.creativecommons.org/jswidget/trunk/images/information.png" alt="info" class="cc_js_info" /></span>
+      <span class="cc_js_infobox" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>' + cc_js_t('Creative Commons') + '&lt;/strong> ' + cc_js_t('With a Creative Commons license, you keep your copyright but allow people to copy and distribute your work provided they give you credit — and only on the conditions you specify here.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()"><img height="16" width="16" src="http://api.creativecommons.org/jswidget/trunk/images/information.png" alt="info" class="cc_js_info" /></span>
+      <input type="radio" onclick="cc_js_enable_widget();" id="cc_js_want_cc_license_sure" name="cc_js_want_cc_license" value="sure" checked="checked" /><label for="cc_js_want_cc_license_sure"><span>A Creative Commons license</span></label>
+    </span>
+    <span>
 	<input type="radio" onclick="cc_js_disable_widget();" id="cc_js_want_cc_license_nah" name="cc_js_want_cc_license" value="nah" /><label for="cc_js_want_cc_license_nah">
 		<span>No license</span>
 	</label>
