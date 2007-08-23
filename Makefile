@@ -14,5 +14,6 @@ cc-translations.js.en_US: template.html license_xsl/licenses.xml
 	python gen_translations.py
 
 clean:
-	rm -f $(shell ls -1 template.*js* | grep -v template.js.var)
+	rm -f $(shell ls -1 template.*js*)
 	rm -f $(shell ls -1 cc-transla*js*)
+	rm -rf $(shell ls -1 js/cc-jurisdictions.js)
