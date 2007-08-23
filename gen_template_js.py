@@ -140,7 +140,6 @@ def main():
 	languages = [k for k in os.listdir('license_xsl/i18n/i18n_po/') if '.po' in k]
 	
 	languages = [re.split(r'[-.]', k)[1] for k in languages]
-	languages = ['en_US', 'fr']
 	for my_variants in ( [], ['nojuri'], ['definitely_want_license'],
 			['nojuri', 'definitely_want_license'],
 			['no_license_by_default'],
