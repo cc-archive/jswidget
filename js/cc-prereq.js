@@ -33,9 +33,10 @@ function cc_js_$(id) {
     return document.getElementById("cc_js_" + id);
 }
 
-/* Lifted from Django.  Thanks, guys.
+/* Inspired by Django.  Thanks, guys.
  * http://code.djangoproject.com/browser/django/trunk/django/views/i18n.py
  * Our use of gettext is incomplete, so I'm just grabbing the one function.
+ * And I've modified it, anyway.
  * Here is their license - it applies only to the following function:
 Copyright (c) 2005, the Lawrence Journal-World
 All rights reserved.
@@ -65,10 +66,6 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-function cc_js_gettext_style_interpolate(fmt, obj, named) {
-  if (named) {
-    return fmt.replace(/%\(\w+\)s/g, function(match){return String(obj[match.slice(2,-2)])});
-  } else {
-    return fmt.replace(/%s/g, function(match){return String(obj.shift())});
-  }
+function cc_js_gettext_style_interpolate(fmt, obj) {
+  return fmt.replace(/\${\w+}/g, function(match){return String(obj[match.slice(2,-1)])});
 }

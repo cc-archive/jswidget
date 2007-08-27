@@ -4,7 +4,7 @@ check_depends:
 	python depends.py
 
 up_to_date:
-	#svn up > /dev/null
+	svn up > /dev/null
 
 template.en_US.js: template.html gen_template_js.py license_xsl/licenses.xml
 	python gen_template_js.py template.html
