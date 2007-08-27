@@ -380,7 +380,8 @@ function cc_js_build_license_text ()
     
     // The main bit of text including or not, jurisdiction love
     if ( cc_js_license_array['jurisdiction'] && ! cc_js_license_array['generic'] ) {
-	license_text = 'You have chosen a <a class="cs_js_a" rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' ' + ( cc_js_license_array['jurisdiction'] ? cc_js_license_array['jurisdiction'] : cc_js_license_array['jurisdiction'].toUpperCase() ) + ' License</a>.' + ' ' + license_text;
+	license_text_before_interpolation = cc_js_t("This ${work_type} is licensed under a <a rel=\"license\" href=\"${license_url}\">Creative Commons ${license_name} License</a>.");
+	license_text = cc_js_gettext_style_interpolate(license_text_before_interpolation, {'work_type': cc_js_t('work'), 'license_url': cc_js_license_array['url']}, true);
     } else  {
 	license_text = 'You have chosen a <a class="cs_js_a" rel="license" href="' + cc_js_license_array['url'] + '">Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'] + ' License</a>.' + ' ' + license_text;
     }
