@@ -17,3 +17,4 @@ clean:
 	rm -f $(shell ls -1 template.*js*)
 	rm -f $(shell ls -1 cc-transla*js*)
 	rm -rf $(shell ls -1 js/cc-jurisdictions.js)
+	rm -f $(shell ls -1 *.pyc)
