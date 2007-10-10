@@ -25,9 +25,7 @@ if not DEBUG:
 
 def grab_license_ids():
 	licenses_xml = BeautifulSoup.BeautifulSoup(open('license_xsl/licenses.xml'))
-	juris = []
-	for juri in licenses_xml('jurisdiction-info'):
-		juris.append(juri['id'])
+	juris = [juri['id'] for juri in licenses_xml('jurisdiction-info') if juri['launched'] == 'true']
 	juris = [juri for juri in juris if juri != '-']
 	return juris
 
