@@ -34,8 +34,8 @@ def translation_table_to_js_function_body(table):
 	return ret
 
 def main():
-	languages = [k for k in os.listdir('license_xsl/i18n/i18n_po/') if '.po' in k]
-	languages = [re.split(r'[-.]', k)[1] for k in languages]
+	languages = sorted([ s.split(os.path.sep)[-2] for s in glob.glob('license_xsl/i18n/i18n_po/*/cc_org.po')])
+
 	translate_all_of_me = findall(open('template.html').read())
 	translate_all_of_me.update(findall(open('js/cc-license.js').read()))
 	translate_all_of_me = list(translate_all_of_me)
