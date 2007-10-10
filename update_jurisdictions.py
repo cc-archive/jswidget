@@ -33,6 +33,8 @@ def gen_jurisdiction_info():
         this_one = {}
         this_ones_id = str(j_i['id'])
         if this_ones_id:
+            if j_i['launched'] != 'true':
+                continue # next jurisdiction if this one isn't ready
             this_one['url'] = get_contents(j_i, 'uri')
             available_versions = license_versions_for_jurisdiction(license_type='standard', soup=soup, in_juri=this_ones_id)
             sampling_versions = license_versions_for_jurisdiction(license_type='sampling', soup=soup, in_juri=this_ones_id)
