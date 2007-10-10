@@ -5,6 +5,15 @@
  * See README for a little more detail.
  */
 
+/** Edit me to fit your particular look **/
+#cc_js_lic-menu 
+{
+        width:500px;
+        margin: 0 auto;
+        /*border: 1px solid #ddd;*/
+}
+
+
 .cc_js_body {
   background-color: #fff;
   color: #343434;
@@ -40,13 +49,6 @@ a:hover.cs_js_a {
  * 
  * See README for a little more detail.
  */
-
-#cc_js_lic-menu 
-{
-        width:500px;
-        margin: 0 auto;
-        /*border: 1px solid #ddd;*/
-}
 
 #cc_js_license_selected
 {
