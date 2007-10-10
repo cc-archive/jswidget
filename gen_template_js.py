@@ -3,6 +3,7 @@
 # Later, it could take template.html and make DOM objects instead.
 
 import re
+import glob
 import json
 from simpletal import simpleTAL, simpleTALES
 import cStringIO as StringIO
@@ -137,10 +138,8 @@ def gen_templated_js(language, my_variants):
 
 def main():
 	# For each language, generate templated JS for it
-	languages = [k for k in os.listdir('license_xsl/i18n/i18n_po/') if '.po' in k]
+	languages = sorted([ s.split(os.path.sep)[-2] for s in glob.glob('license_xsl/i18n/i18n_po/*/cc_org.po')])
 	
-	languages = [re.split(r'[-.]', k)[1] for k in languages]
-	languages = ['en_US', 'fr']
 	for my_variants in ( [], ['nojuri'], ['definitely_want_license'],
 			['nojuri', 'definitely_want_license'],
 			['no_license_by_default'],
