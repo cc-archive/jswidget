@@ -1,4 +1,4 @@
-JsWidget 0.4 by Creative Commons
+JsWidget 0.92 by Creative Commons
 
 This code is an example of how to integrate with the Creative Commons 
 JsWidget.  If you just want to see how to use it, read index.html.
@@ -50,16 +50,12 @@ reference for where en_US and fr come from, I'll make a note of it here.
 
 == Style ==
 
-We provide a sample style file that makes it look bearable.  You 
-probably want to customize these so the form has the colors and styles 
-your users expect.
+We provide a sample style file that makes it look nice.  You may want to 
+customize these so the form has the colors and styles your users expect.
 
 We expect you to store this style file on your server, although if you 
 need to refer to one on our servers, there is an example on the wiki 
 page.
-
-By the time 1.0 hits, we will update this style file so it looks even 
-nicer.
 
 == Re-use ==
 
