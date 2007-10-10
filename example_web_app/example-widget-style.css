@@ -124,12 +124,13 @@ a.cc_js_a img
 #cc_js_required
 {
 
-    border: 1px solid #ccc;
-    padding: 2%;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 4% 2%;
     margin-bottom: 1%;
-    margin-top: 1%;
-    /* background: #efefef; */
-    background: #eef6e6;
+    margin-top: 2px;
+    /* background: #efefef; 
+    background: #eef6e6;*/
 
 }
 
@@ -215,8 +216,10 @@ img.cc_js_info {
 
 
 #cc_js_want_cc_license_at_all {
-  font-size: 16px;
-  margin-bottom: 0.75em;
+  background-color: #eef6e6;
+  font-size: 1.35em;
+  padding: 0.25em;
+  padding-left: 0;
 }
 
 #cc_js_want_cc_license_at_all span {
