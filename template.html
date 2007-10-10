@@ -7,17 +7,15 @@
       <input type="radio" onclick="cc_js_enable_widget();" id="cc_js_want_cc_license_sure" name="cc_js_want_cc_license" value="sure" checked="checked" /><label for="cc_js_want_cc_license_sure"><span>A Creative Commons license</span></label>
     </span>
     <span>
-	<input type="radio" onclick="cc_js_disable_widget();" id="cc_js_want_cc_license_nah" name="cc_js_want_cc_license" value="nah" /><label for="cc_js_want_cc_license_nah">
-		<span>No license</span>
-	</label>
+	    <input type="radio" onclick="cc_js_disable_widget();" id="cc_js_want_cc_license_nah" name="cc_js_want_cc_license" value="nah" />
+	    <label for="cc_js_want_cc_license_nah"><span>No license</span></label>
     </span>
-
   </div>
 
   <div id="cc_js_required">
     
-    <p>
-      <input name="cc_js_share" value="1" id="cc_js_share" checked="checked" type="checkbox" style="display: none;" />
+    <p class="cc_js_hidden">
+      <input name="cc_js_share" value="1" id="cc_js_share" checked="checked" type="checkbox" style="display: none;"/>
     </p>
       
       
@@ -36,18 +34,15 @@
 
     <p>
       <span class="cc_js_infobox" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;img src=&quot;http://creativecommons.org/icon/sa/standard.gif&quot; alt=&quot;sa&quot; class=&quot;cc_js_icon&quot; />&lt;strong>' + cc_js_t('Share Alike') + '&lt;/strong> ' + cc_js_t('The licensor permits others to distribute derivative works only under a license identical to the one that governs the licensor\'s work.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()">
-	<img height="16" width="16" src="http://api.creativecommons.org/jswidget/trunk/images/information.png" alt="info" class="cc_js_info" />
+	      <img height="16" width="16" src="http://api.creativecommons.org/jswidget/trunk/images/information.png" alt="info" class="cc_js_info" />
       </span>
       <input  onclick="cc_js_modify(this);" name="cc_js_sa" value="" id="cc_js_sa" type="checkbox" />
       
       <label style="color: black;" onclick="cc_js_call_me_on_label_selection(this);" for="cc_js_sa" id="cc_js_sa-label" class="cc_js_question" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;img src=&quot;http://creativecommons.org/icon/sa/standard.gif&quot; alt=&quot;sa&quot; class=&quot;cc_js_icon&quot; />&lt;strong>' + cc_js_t('Share Alike') + '&lt;/strong> ' + cc_js_t('The licensor permits others to copy, distribute and transmit the work. In return, licensees may not use the work for commercial purposes — unless they get the licensor\'s permission.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()">
-	<strong>
-	  <span>Require Share-Alike</span>
-	  </strong>
+	      <strong><span>Require Share-Alike</span></strong>
       </label>
     </p>
-    
-    
+        
     <br />
     
     
@@ -78,5 +73,4 @@
   <input type="hidden" name="cc_js_result_name" id="cc_js_result_name" value="" />
 </form>
   
-
 </span>
