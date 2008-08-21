@@ -80,21 +80,21 @@ def write_string_to(s, filename):
 
 from xml import xpath
 
-def dom_elt_by_id(id, dom):
+def dom_elt_by_id(dom, id):
 	assert '"' not in id
 	return xpath.Evaluate('//*[@id="%s"]' % id, dom)[0]
 
 def apply_variants(variants, dom):
 	if 'nojuri' in variants:
-		juri_box = dom_elt_by_id('cc_js_jurisdiction_box', dom)
+		juri_box = dom_elt_by_id(dom, 'cc_js_jurisdiction_box')
 		juri_box.parentNode.removeChild(juri_box)
 	if 'definitely_want_license' in variants:
-		want_license_at_all_box = dom_elt_by_id('cc_js_want_cc_license_at_all', dom)
+		want_license_at_all_box = dom_elt_by_id(dom, 'cc_js_want_cc_license_at_all')
 		want_license_at_all_box.parentNode.removeChild(want_license_at_all_box)
 	if 'no_license_by_default' in variants:
-		yes_radio = dom_elt_by_id('cc_js_want_cc_license_sure', dom)
+		yes_radio = dom_elt_by_id(dom, 'cc_js_want_cc_license_sure')
 		yes_radio.setAttribute('checked', '')
-		no_radio = dom_elt_by_id('cc_js_want_cc_license_nah', dom)
+		no_radio = dom_elt_by_id(dom, 'cc_js_want_cc_license_nah')
 		no_radio.setAttribute('checked', 'checked')
 
 def jsify(in_string):
