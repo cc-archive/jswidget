@@ -81,6 +81,7 @@ def write_string_to(s, filename):
 from xml import xpath
 
 def dom_elt_by_id(id, dom):
+	assert '"' not in id
 	return xpath.Evaluate('//*[@id="%s"]' % id, dom)[0]
 
 def apply_variants(variants, dom):
