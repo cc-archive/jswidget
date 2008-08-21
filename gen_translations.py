@@ -40,10 +40,12 @@ def main():
 	translate_all_of_me = findall(open('template.html').read())
 	translate_all_of_me.update(findall(open('js/cc-license.js').read()))
 	translate_all_of_me = list(translate_all_of_me)
-	print translate_all_of_me
 	# Plus, translate all the jurisdiction names
 	translate_all_of_me.append('Unported')
 	translate_all_of_me.extend([convert.country_id2name(k, 'en') for k in gen_template_js.grab_license_ids()])
+
+	print 'This is what we will translate:', translate_all_of_me
+
 	for lang in languages:
 		translation_table = {}
 		for english in translate_all_of_me:
