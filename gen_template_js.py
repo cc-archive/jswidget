@@ -98,12 +98,17 @@ def apply_variants(variants, dom):
 		no_radio.setAttribute('checked', 'checked')
 
 def jsify(in_string):
-	lines = in_string.split('\n')
-	if lines[0].startswith('<?xml version='):
-		lines = lines[1:]
-	for k in range(len(lines)):
-		lines[k] = "document.write(%s);" % json.write(lines[k].strip())
-	return '\n'.join(lines)
+	outlines = []
+	# First, jam html2dom in there
+	outlines.append(open('html2dom.js').read())
+
+	# then, jam our in_string in
+	outlines.append("var in_string = " + json.write(in_string) + ";")
+
+	# Now, use that sucker.
+	outlines.append("html2dom.getDOM(in_string, document.getElementById('cc_js_widget_replaceme'));")
+
+	return '\n'.join(outlines)
 	
 def gen_templated_js(language, my_variants):
 	jurisdiction_names = grab_license_ids()
