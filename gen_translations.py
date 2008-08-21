@@ -31,7 +31,8 @@ def translation_table_to_js_function_body(table):
 		except:
 			key = unicode(orig_key, 'utf-8')
 		ret += template % (json.write(key), json.write(table[orig_key]))
-	ret += 'return null;'
+	ret += 'alert("Falling off the end.");\n'
+	ret += 'return s;'
 	return ret
 
 def main():
