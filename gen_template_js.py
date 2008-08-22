@@ -98,6 +98,12 @@ def apply_variants(variants, dom):
 		no_radio.setAttribute('checked', 'checked')
 
 def jsify(in_string):
+	# remove leading <?xml from in_string
+	in_string_lines = in_string.split('\n')
+	assert in_string_lines[0].startswith('<?xml')
+	in_string_lines = in_string_lines[1:]
+	in_string = '\n'.join(in_string_lines)
+
 	outlines = []
 	# First, jam html2dom in there
 	outlines.append(open('html2dom.js').read())
@@ -105,8 +111,10 @@ def jsify(in_string):
 	# then, jam our in_string in
 	outlines.append("var in_string = " + json.write(in_string) + ";")
 
-	# Now, use that sucker.
-	outlines.append("html2dom.getDOM(in_string, document.getElementById('cc_js_widget_replaceme'));")
+	# Generate the html2dom machinations necessary to instantiate our joyful HTML
+	outlines.append("html2dom.getDOM(in_string, 'cc_js_widget_replaceme');")
+	# Now, ask the page to actually evaluate that HTML.
+	outlines.append("eval(html2dom.result);")
 
 	return '\n'.join(outlines)
 	
