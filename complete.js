@@ -24,7 +24,7 @@ $charset = 'UTF-8'; // default charset for this document
 if (array_key_exists('locale', $_GET) &&
     // valid locales are lower or upper case alphas plus _ or -
     preg_match('/^([a-zA-Z-_]+)$/', $_GET['locale']) &&
-    array_key_exists($_GET['locale'], $supported_gettext_languages))
+    in_array($_GET['locale'], $supported_gettext_languages))
   {
     $gettextlang = $_GET['locale'];
     $lang = str_replace('-', '_', $gettextlang);
