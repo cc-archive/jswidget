@@ -178,9 +178,9 @@ function al2gt($gettextlangs) {
   $charset=$gtparts[1];
 
   $ret = array();
-  ret['lang'] = $lang;
-  ret['charset'] = $charset;
-  ret['gettextlang'] = $curgtlang;
+  $ret['lang'] = $lang;
+  $ret['charset'] = $charset;
+  $ret['gettextlang'] = $curgtlang;
   return $ret;
 }
 
