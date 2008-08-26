@@ -65,6 +65,8 @@
    *
    * 2007-04-01
    * add '@' before use of arrays, to avoid PHP warnings.
+   * 2008-08-26
+   * Asheesh Laroia - reorganize this a little
    */
 
   /* not really important, this one; perhaps I could've put it inline with
@@ -85,16 +87,18 @@ function find_match($curlscore,$curcscore,$curgtlang,$langval,$charval,
   return array($curlscore, $curcscore, $curgtlang);
 }
 
-function al2gt($gettextlangs, $mime) {
-  /* default to "everything is acceptable", as RFC2616 specifies */
-  $acceptLang=(($_SERVER["HTTP_ACCEPT_LANGUAGE"] == '') ? '*' :
-	       $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-  $acceptChar=(($_SERVER["HTTP_ACCEPT_CHARSET"] == '') ? '*' :
-	       $_SERVER["HTTP_ACCEPT_CHARSET"]);
-  $alparts=@preg_split("/,/",$acceptLang);
-  $acparts=@preg_split("/,/",$acceptChar);
+
+/**
+ * Parse the contents of the Accept-Language header.
+ */
+function parse_al_header($acceptLang = NULL) {
+  if ($acceptLang === NULL) {
+    $acceptLang=(($_SERVER["HTTP_ACCEPT_LANGUAGE"] == '') ? '*' :
+		 $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+  }
   
-  /* Parse the contents of the Accept-Language header.*/
+  $alparts=@preg_split("/,/",$acceptLang);
+  
   foreach($alparts as $part) {
     $part=trim($part);
     if(preg_match("/;/", $part)) {
@@ -105,6 +109,16 @@ function al2gt($gettextlangs, $mime) {
       $alscores[$part]=1;
     }
   }
+  return $alscores;
+}
+
+function al2gt($gettextlangs, $mime) {
+  /* default to "everything is acceptable", as RFC2616 specifies */
+  $acceptChar=(($_SERVER["HTTP_ACCEPT_CHARSET"] == '') ? '*' :
+	       $_SERVER["HTTP_ACCEPT_CHARSET"]);
+  $acparts=@preg_split("/,/",$acceptChar);
+
+  $alscores = parse_al_header($acceptLang);
 
   /* Do the same for the Accept-Charset header. */
 
