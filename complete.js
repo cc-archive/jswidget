@@ -6,8 +6,6 @@ ob_start("ob_gzhandler");
  *
  * See .htaccess for how to configure it for php5.
  */
-header("Content-type: text/javascript");
-
 require_once('accept-to-gettext.inc.php');
 require_once("phphelpers.php");
 
