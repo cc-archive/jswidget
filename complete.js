@@ -7,6 +7,8 @@ ob_start("ob_gzhandler");
  * See .htaccess for how to configure it for php5.
  */
 header("Content-type: text/javascript");
+
+require_once("phphelpers.php");
 ?>
 
 <?php
@@ -18,17 +20,19 @@ $base = 'http://' . $_SERVER['HTTP_HOST'] . $dirname;
 
 /* Did the user request a language? */
 /* First check if we were called with ?locale=XX and dispatch accordingly */
+$LANG="en_US"; // as a default
 if (array_key_exists('locale', $_GET) &&
     // valid locales are lower or upper case alphas plus _ or -
     preg_match('/^([a-zA-Z-_]+)$/', $_GET['locale']))
-    {
-	$LANG=$_GET['locale'];
-    }
-else {
-    $translations_url = $base . '/' . 'cc-translations.js' . '.var';
-    
-    ?>
-	document.write('<script type="text/javascript" src="<?php echo $translations_url ?>"></script>\n');
+  {
+    $LANG=$_GET['locale'];
+  }
+ else {
+ else {
+   $translations_url = $base . '/' . 'cc-translations.js' . '.var';
+   
+   ?>
+     document.write('<script type="text/javascript" src="<?php echo $translations_url ?>"></script>\n');
 	<?php
 	      }
 
