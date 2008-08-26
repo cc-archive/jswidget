@@ -85,7 +85,7 @@ function find_match($curlscore,$curcscore,$curgtlang,$langval,$charval,
   return array($curlscore, $curcscore, $curgtlang);
 }
 
-function al2gt($gettextlangs, $mime) {
+function al2gt($gettextlangs) {
   /* default to "everything is acceptable", as RFC2616 specifies */
   $acceptLang=(($_SERVER["HTTP_ACCEPT_LANGUAGE"] == '') ? '*' :
 	       $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
@@ -177,6 +177,14 @@ function al2gt($gettextlangs, $mime) {
   $lang=preg_replace("/\_/", "-", $tmp);
   $charset=$gtparts[1];
 
+  $ret = array();
+  ret['lang'] = $lang;
+  ret['charset'] = $charset;
+  ret['gettextlang'] = $curgtlang;
+  return $ret;
+}
+
+function emit_language_and_type_header($lang, $charset, $mime) {
   header("Content-Language: $lang");
   header("Content-Type: $mime; charset=$charset");
 
