@@ -29,9 +29,11 @@ if (array_key_exists('locale', $_GET) &&
   }
  else {
    $values = al2gt($supported_gettext_languages);
-   $gettextlang = $values['gettextlang'];
-   $lang = $values['lang'];
-   $charset = $values['charset'];
+   if ($values['gettextlang'] != '') {
+     $gettextlang = $values['gettextlang'];
+     $lang = $values['lang'];
+     $charset = $values['charset'];
+   }
  }
 
 /*  No matter what, emit headers to the browser indicating what we will be sending. */
