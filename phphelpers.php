@@ -10,7 +10,7 @@ function list_languages() {
   $just_languages = array();
   foreach ($all as $filename) {
     $first = substr($filename, 0, strlen($base_path));
-    $rest  = substr(filename, strlen($base_path));
+    $rest  = substr($filename, strlen($base_path));
     assert ($first == $base_path);
     $just_languages[] = $rest;
   }
