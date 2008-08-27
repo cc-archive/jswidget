@@ -106,13 +106,13 @@ def jsify(in_string):
 	in_string_lines = in_string_lines[1:]
 	in_string = '\n'.join(in_string_lines)
 
-	outlines = []
+	outlines = [
 	# First, jam our in_string in
-	outlines.append("var in_string = " + json.write(in_string) + ";")
-
-	# Now, jam our HTML into our container DIV
-	outlines.append("document.getElementById('cc_js_widget_replaceme').innerHTML = in_string;")
-
+	"var in_string = " + json.write(in_string) + ";",
+	# Now, jam our HTML into a fresh, anonymous container DIV
+	# that code lives in append_ourselves.js.
+	]
+	outlines.extend( (line for line in open('append_ourselves.js')) )
 	return '\n'.join(outlines)
 	
 def gen_templated_js(language, my_variants):
