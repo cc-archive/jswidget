@@ -1,5 +1,6 @@
 <Files complete.js>
 	SetHandler php5-script
+    ExpiresDefault nownow
 </Files>
 <Files template.html>
 	Order deny,allow

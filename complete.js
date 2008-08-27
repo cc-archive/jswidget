@@ -38,28 +38,18 @@ if (array_key_exists('locale', $_GET) &&
 
 /*  No matter what, emit headers to the browser indicating what we will be sending. */
 emit_language_and_type_header($lang, $charset, $mime);
-?>
-( function() {
-  var trueName = '';
-  for (var i = 0 ; i < 16 ; i++) {
-    trueName += String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-  }
-  window[trueName] = {};
-  var $ = window[trueName];
-  $.f = function() {
-    /* Here we include the various other CC files. */
-    return {
-    init: function(target) {
 
-<?php
+/******** i18n preparation done. ************
+ * time to send out the actual JS. */
+
 /* Load the prerequisite JS files */
 $pre_reqs = array('js/cc-prereq.js', 'js/safari-label-fix.js', 'js/cc-tooltip.js', 'js/cc-jurisdictions.js', 'js/cc-license.js');
 foreach ($pre_reqs as $pre_req) {
-  echo file_get_contents($pre_req);
+    echo file_get_contents($pre_req);
 }
 
 /* Send out the translations, too. */
-// echo file_get_contents('cc-translations.js.' . $gettextlang);
+echo file_get_contents('cc-translations.js.' . $gettextlang);
 
 /* NOTE: I do not include the CSS stylesheet
    and instead I let others style our boxes the way they want. */
@@ -100,30 +90,5 @@ $template_filename = $template_dot_js . '.' . $gettextlang;
 /* Slurp them in and send them. */
 echo file_get_contents($template_filename);
 
+/* Finally, initialize the JS. */
 echo file_get_contents('js/init.js');
-
-?>
-  var innards = 'roflcon';
-	var theScripts = document.getElementsByTagName('SCRIPT');
-	for (var i = 0 ; i < theScripts.length; i++) {
-	  if (theScripts[i].src.match(target)) {
-	    $.w = document.createElement('DIV');
-	    $.w.innerHTML = innards;
-	    theScripts[i].parentNode.insertBefore($.w, theScripts[i]);
-	    theScripts[i].parentNode.removeChild(theScripts[i]);
-	    cc_js_pageInit();
-	    break;
-	  }
-	}
- }, // end of init function
-
-  };
- }();
-
-  var thisScript = /complete.js/; // FIXME: Improve this regex
-  if (typeof window.addEventListener !== 'undefined') {
-    window.addEventListener('load', function() { $.f.init(thisScript); }, false);
-  } else if (typeof window.attachEvent !== 'undefined') {
-    window.attachEvent('onload', function() { $.f.init(thisScript); });
-  }
-  })();
