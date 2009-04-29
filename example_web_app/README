@@ -1,9 +1,10 @@
-JsWidget 0.92 by Creative Commons
+LicenseChooser.js 0.97 by Creative Commons
 
 This code is an example of how to integrate with the Creative Commons 
-JsWidget.  If you just want to see how to use it, read index.html.
+LicenseChooser.js. If you just want to see how to use it, read index.html.
 
-For more info see http://wiki.creativecommons.org/JsWidget.
+For more info see http://wiki.creativecommons.org/LicenseChooser.js 
+(which is a web page, not a JavaScript file)
 
 == WARNING ==
 
@@ -16,17 +17,17 @@ your cat, spill your milk, and prepare your breakfast.  Or it may not.
 Having said that, please try it and let us know how you like it.  If no 
 one says anything, then this might become the future!
 
-== What is JsWidget? ==
+== What is LicenseChooser.js ==
 
-The JsWidget is a JavaScript file hosted on creativecommons.org that 
-displays a user interface for selecting a Creative Commons license.  We 
-wrote it so that if you didn't want to write your own interface, you 
-could just call ours.
+LicenseChooser.js is the name of a project. It includes a JavaScript 
+file hosted on creativecommons.org that displays a user interface for 
+selecting a Creative Commons license.  We wrote it so that if you didn't 
+want to write your own interface, you could just call ours.
 
-We think it's so nice that we're going to make our web app things use it 
-eventually.
+We already use it in our WordPress extension, WpLicense.
 
-For an example of how to use it, STOP READING and look at index.html.
+For an example of how to use it, STOP READING and load index.html in 
+your favorite web browser.
 
 == Jurisdictions ==
 
@@ -63,11 +64,15 @@ See COPYING for information on copying/reusing this work.  Basically, do
 whatever you want.
 
 If you want to see how things work behind the scenes, look through 
-https://cctools.svn.sourceforge.net/svnroot/cctools/jswidget/.
+http://code.creativecommons.org/svnroot/jswidget/. You are also welcome 
+to host a copy yourself, though if you do, you would want to update the 
+jurisdiction and translation information frequently.
 
-== Questions ==
+== Questions and bugs ==
 
 Ask us questions about this!  Email our development mailing list 
-cc-devel@lists.ibiblio.org .
+cc-devel@lists.ibiblio.org or find us on IRC. See 
+http://wiki.creativecommons.org/Developer to see other ways to get in 
+touch. (That page links to our bug tracker.)
 
--- Asheesh Laroia <asheesh@creativecommons.org> 2007-07-31.
+-- Asheesh Laroia <asheesh@creativecommons.org> 2009-04-28.
