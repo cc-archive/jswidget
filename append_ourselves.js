@@ -29,6 +29,6 @@ for (var i = 0 ; i < theScripts.length; i++) {
 
         theScripts[i].parentNode.insertBefore(my_div, theScripts[i]);
         theScripts[i].parentNode.removeChild(theScripts[i]);
-       break;
+	break;
     }
 }
