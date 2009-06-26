@@ -3,14 +3,30 @@
 
   <div id="cc_js_want_cc_license_at_all">
     <span>
-      <input type="radio" onclick="cc_js_enable_widget();" id="cc_js_want_cc_license_sure" name="cc_js_want_cc_license" value="sure" checked="checked" /><label class="cc_js_infobox" for="cc_js_want_cc_license_sure"><span onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>' + cc_js_t('Creative Commons') + '&lt;/strong> ' + cc_js_t('With a Creative Commons license, you keep your copyright but allow people to copy and distribute your work provided they give you credit — and only on the conditions you specify here.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()">A <span class="cc_js_question">Creative Commons</span> license</span></label>
+	    <input type="radio" onclick="cc_js_set_cc0();" id="cc_js_want_cc_license_zero" name="cc_js_want_cc_license" value="zero" />
+	    <label for="cc_js_want_cc_license_zero"><span>CC0</span></label>
     </span>
     <span>
-	    <input type="radio" onclick="cc_js_disable_widget();" id="cc_js_want_cc_license_nah" name="cc_js_want_cc_license" value="nah" />
+      <input type="radio" onclick="cc_js_enable_widget();" id="cc_js_want_cc_license_sure" name="cc_js_want_cc_license" value="sure" checked="checked" /><label class="cc_js_infobox" for="cc_js_want_cc_license_sure"><span onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>' + cc_js_t('Creative Commons') + '&lt;/strong> ' + cc_js_t('With a Creative Commons license, you keep your copyright but allow people to copy and distribute your work provided they give you credit — and only on the conditions you specify here.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()">A <span class="cc_js_question">CC</span> license</span></label>
+    </span>
+    <span>
+	    <input type="radio" onclick="cc_js_set_noLicense();" id="cc_js_want_cc_license_nah" name="cc_js_want_cc_license" value="nah" />
 	    <label for="cc_js_want_cc_license_nah"><span>No license</span></label>
     </span>
   </div>
 
+  <div id="cc_js_about_cc0" class="cc_js_hidden">
+    
+
+<p>Using CC0, you can waive all copyrights and related or neighboring rights that you have over your work, such as your moral rights (to the extent waivable), your publicity or privacy rights, rights you have protecting against unfair competition, and database rights and rights protecting the extraction, dissemination and reuse of data.</p>
+
+<p>Keep in mind that you cannot waive rights to a work that you do not own unless you have permission from the owner. To avoid infringing third party rights, you should consult with your legal advisor if you are unsure whether you have all the rights you need to distribute the work.</p>
+
+
+  </div>
+  <div id="cc_js_about_noLicense" class="cc_js_hidden">
+    I hate everyone and want to keep my work to myself.
+  </div>
   <div id="cc_js_required">
     
     <p class="cc_js_hidden">
