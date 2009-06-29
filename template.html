@@ -18,14 +18,16 @@
   <div id="cc_js_about_cc0" class="cc_js_hidden">
     
 
-<p>Using CC0, you can waive all copyrights and related or neighboring rights that you have over your work, such as your moral rights (to the extent waivable), your publicity or privacy rights, rights you have protecting against unfair competition, and database rights and rights protecting the extraction, dissemination and reuse of data.</p>
+<p class="p1">CC0 is a waiver that allows others to copy, distribute, and remix your work without the restrictions of your copyrights and related or neighboring rights, to the extent permissible by law.</p>
 
+<!--
 <p>Keep in mind that you cannot waive rights to a work that you do not own unless you have permission from the owner. To avoid infringing third party rights, you should consult with your legal advisor if you are unsure whether you have all the rights you need to distribute the work.</p>
+-->
 
 
   </div>
   <div id="cc_js_about_noLicense" class="cc_js_hidden">
-    I hate everyone and want to keep my work to myself.
+    With no alternative license or waiver, any copying, re-distribution, or remixing will be subject to copyright restrictions, where present.
   </div>
   <div id="cc_js_required">
     
@@ -49,20 +51,18 @@
       <input  onclick="cc_js_modify(this);" name="cc_js_sa" value="" id="cc_js_sa" type="checkbox" />
       <label style="color: black;" onclick="cc_js_call_me_on_label_selection(this);" for="cc_js_sa" id="cc_js_sa-label" class="cc_js_question" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;img src=&quot;http://creativecommons.org/icon/sa/standard.gif&quot; alt=&quot;sa&quot; class=&quot;cc_js_icon&quot; />&lt;strong>' + cc_js_t('Share Alike') + '&lt;/strong> ' + cc_js_t('The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor\'s work.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()"><strong><span>Require Share-Alike</span></strong></label>
     </p>
-        
-    <br />
     
     
-    
-  </div>
-  
   <div id="cc_js_jurisdiction_box">
-    <p><strong class="cc_js_question" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>Jurisdiction&lt;/strong> ' + cc_js_t('If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()"><span>Jurisdiction of your license:</span></strong>  </p>
+    <strong class="cc_js_question" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>Jurisdiction&lt;/strong> ' + cc_js_t('If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()"><label for="cc_js_jurisdiction">Jurisdiction of your license:</label></strong>
     <select name="cc_js_jurisdiction" id="cc_js_jurisdiction"  onchange="cc_js_modify(this);" onclick="cc_js_modify(this);">
       
       <option tal:repeat="jurisdiction jurisdictions" tal:attributes="id jurisdiction/id; value jurisdiction/value" tal:content="jurisdiction/name">Sample jurisdiction</option>
     </select>
   </div>
+    
+  </div>
+  
   
   <div id="cc_js_license_selected">
     <div id="cc_js_license_example"></div>

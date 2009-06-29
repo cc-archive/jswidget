@@ -23,41 +23,41 @@
  */
  
  //TODO: PUT JURESDICTION BACK IN FOR CC0
- //MAKE SURE THAT IT ACTUALLY STORES USEFUL CC0 INFO WHERE IT NEEDS 
+ //MAKE SURE THAT IT ACTUALLY STORES USEFUL CC0 INFO WHERE IT NEEDS IT 
+
 
 var cc_js_secret_license_url;
 var cc_js_secret_disabled = [];
 
-
+//the cc0 info is all hard-coded
 var cc0_license_url = 'http://creativecommons.org/publicdomain/zero/1.0/';
 var cc0_license_image = 'http://i.creativecommons.org/l/zero/1.0/88x31.png';
 var cc0_license_name = 'CC0 Waiver';
 var cc0_license_version = '1';
-
-
 var cc0_license_html = '<a class="cc_js_a" rel="license" href="' + cc0_license_url + '" style="text-decoration:none;"><img src="' + cc0_license_image + '" border="0" alt="CC0" class="cc_js_cc-button" width="88"/></a><div class="cc_js_cc-info">To the extent possible under law, the author has waived all copyright and related or neighboring rights to this work.</div>';
 
 
-function cc_js_disable_widget(message) {
+function cc_js_disable_widget() {
 
 	//cc_js_$('cc_js_required').className = 'cc_js_hidden';
 	
-	message = cc_js_t(message);
+	//message = cc_js_t(message);
 	/* Clear the form fields out */
 	/* save the license URL, the rest will be calculated from that */
 	if (cc_js_license_array && 'url' in cc_js_license_array) {
 		cc_js_secret_license_url = cc_js_license_array['url'];
 		cc_js_license_array['url'] = '';
-		cc_js_license_array['text'] = message;
+		//cc_js_license_array['text'] = message;
 	}
 	//cc_js_$('result_name').value = message;
 	cc_js_secret_disabled = [];
-	cc_js_$('result_uri').value = '';
-	cc_js_$('result_img').value = '';
+	//cc_js_$('result_uri').value = '';
+	//cc_js_$('result_img').value = '';
 	
 	// FIXME: localize below
-	cc_js_insert_html(message, 'license_example');
+	//cc_js_insert_html(message, 'license_example');
 	
+	/*
 	var boxes = ['remix', 'nc', 'sa'];
 	for (var box_num = 0 ; box_num < boxes.length ; box_num++ ) { 
 		box = boxes[box_num];
@@ -66,15 +66,17 @@ function cc_js_disable_widget(message) {
 			cc_js_secret_disabled.push(box);
 		}
 	}
-	cc_js_$('required').class = 'cc_js_hidden';
-	if (cc_js_$('jurisdiction')) {
-		cc_js_$('jurisdiction').disabled = true;
-	}
+	*/
+	//cc_js_$('required').class = 'cc_js_hidden';
+	//if (cc_js_$('jurisdiction')) {
+	//	cc_js_$('jurisdiction').disabled = true;
+	//}
+	//alert("bang bang");
 	
 }
 
 function cc_js_set_cc0() {
-    //cc_js_disable_widget();
+    cc_js_disable_widget();
 	cc_js_$('required').className = 'cc_js_hidden';
 	cc_js_$('about_cc0').className = '';
 	cc_js_$('about_noLicense').className = 'cc_js_hidden';
@@ -97,22 +99,11 @@ function cc_js_set_cc0() {
     cc_js_$('result_img').value = cc_js_license_array['img'];
     // FIXME: Is this the right way to localize?
     cc_js_$('result_name').value = 'Creative Commons ' + cc_js_license_array['full_name'] + ' ' + cc_js_license_array['version'];// + ' ' + cc_js_t(cc_js_license_array['jurisdiction']);
-  /*
-  This work is licensed under a <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Attribution-ShareAlike Unported 3.0 License</a>
-  
-This work is published from
-<span about="kjh" property="vcard:Country" datatype="dct:ISO3166" content="FR">France</span>.
-</p>
-
-	
-	cc0_license_html = '<div id="cc_js_license_example"><!-- Creative Commonts License -->
-<a class="cc_js_a" rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-sa/3.0//88x31.png" class="cc_js_cc-button" border="0" height="31" width="88"></a><div class="cc_js_cc-info">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike Unported 3.0 License</a>.</div></div>'
-*/
 	
 }
 
 function cc_js_set_noLicense() {
-    //cc_js_disable_widget('No license chosen');
+    cc_js_disable_widget('No license chosen');
 	cc_js_$('required').className = 'cc_js_hidden';
 	cc_js_$('about_cc0').className = 'cc_js_hidden';
 	cc_js_$('jurisdiction_box').className = 'cc_js_hidden';
@@ -120,41 +111,8 @@ function cc_js_set_noLicense() {
 		cc_js_$('jurisdiction').disabled = true;
 	}
 	cc_js_$('about_noLicense').className = '';
+	cc_js_insert_html('No license chosen', 'license_example');
 	//alert("bang bang");
-	
-	
-	
-	
-	//cc_js_$('cc_js_required').className = 'cc_js_hidden';
-	
-	message = cc_js_t('No license chosen');
-	/* Clear the form fields out */
-	/* save the license URL, the rest will be calculated from that */
-	if (cc_js_license_array && 'url' in cc_js_license_array) {
-		cc_js_secret_license_url = cc_js_license_array['url'];
-		cc_js_license_array['url'] = '';
-		cc_js_license_array['text'] = message;
-	}
-	//cc_js_$('result_name').value = message;
-	cc_js_secret_disabled = [];
-	cc_js_$('result_uri').value = '';
-	cc_js_$('result_img').value = '';
-	
-	// FIXME: localize below
-	cc_js_insert_html(message, 'license_example');
-	
-	var boxes = ['remix', 'nc', 'sa'];
-	for (var box_num = 0 ; box_num < boxes.length ; box_num++ ) { 
-		box = boxes[box_num];
-		if (cc_js_$(box).disabled == false) {
-			//cc_js_option_off(box);
-			cc_js_secret_disabled.push(box);
-		}
-	}
-	if (cc_js_$('jurisdiction')) {
-		cc_js_$('jurisdiction').disabled = true;
-	}
-	
 }
 
 function cc_js_enable_widget() {
@@ -175,6 +133,9 @@ function cc_js_enable_widget() {
 	}
 	cc_js_secret_disabled = [];
 	cc_js_init();
+	cc_js_modify(this);
+	//cc_js_insert_html(message, 'license_example');
+	//alert("bang bang");
 }
 
 // NOTE we have the object freedoms for dealing with freedom style choosing
@@ -249,10 +210,11 @@ function cc_js_option_on (option) {
     cc_js_$(option).disabled = false;
     
     if (option != 'share')  {
-	//cc_js_$(short_label_name).style.color = 'black';
-	cc_js_$(short_label_name).style.visibility = '';
+    cc_js_$(short_label_name).style.color = 'black';
+	//cc_js_$(short_label_name).style.visibility = '';
     }
 }
+
 
 function cc_js_option_off (option) {
     var short_label_name = option + '-label';
@@ -267,10 +229,9 @@ function cc_js_option_off (option) {
     
     cc_js_$(option).disabled = true;
     cc_js_$(option).checked = false;
-    //cc_js_$(short_label_name).style.color = 'gray';
     cc_js_$(short_label_name).style.color = 'gray';
-    cc_js_$(short_label_name).className = 'cc_js_hidden';
-    cc_js_$(option).className = 'cc_js_hidden';
+    //cc_js_$(short_label_name).className = 'cc_js_hidden';
+    //cc_js_$(option).className = 'cc_js_hidden';
 }
 
 function cc_js_update_checkboxes_based_on_variables() {

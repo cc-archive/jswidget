@@ -62,7 +62,7 @@ a:hover.cs_js_a {
 #cc_js_jurisdiction_box
 {
     /* border: 1px solid black; */
-    padding: 0.5% 2% 1% 2%;
+    padding: 0.5% 2% 1% 5%;
     margin-bottom: 1%;
 }
 
@@ -127,7 +127,7 @@ a.cc_js_a img
 {
 
     border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    /*border-bottom: 1px solid #ccc;*/
     padding: 4% 2%;
     margin-bottom: 1%;
     margin-top: 2px;
@@ -135,6 +135,17 @@ a.cc_js_a img
     background: #eef6e6;*/
 
 }
+#cc_js_about_cc0 p.p1{
+    background: url('http://creativecommons.org/images/deed/nolaw.png') no-repeat top left;
+    padding-left: 60px;
+    
+}
+
+/*
+#cc_js_about_cc0{
+    padding-left: 60px;
+}
+*/
 
 #cc_js_work_title
 {
@@ -171,10 +182,12 @@ img.cc_js_info {
   
 }
 
+/*
 #cc_js_lic-menu p{
 	padding: 3px 0 5px 0;
   margin: 0 0 5px 0;
 }
+*/
 
 .cc_js_tooltip
 {
