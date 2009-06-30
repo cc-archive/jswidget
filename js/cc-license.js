@@ -22,9 +22,11 @@
  *
  */
  
- //TODO: PUT JURESDICTION BACK IN FOR CC0
+ //TODO: PUT JURISDICTION BACK IN FOR CC0
  //MAKE SURE THAT IT ACTUALLY STORES USEFUL CC0 INFO WHERE IT NEEDS IT 
-
+ //ESPECIALLY MAKE SURE THAT IT CORRECTLY INDICATES THE CHOICE "NO LICENSE"
+ 
+ //ALSO, INJECT THE STYLESHEET INTO THE DOCUMENT WITH SOME SHMANCY JS
 
 var cc_js_secret_license_url;
 var cc_js_secret_disabled = [];
@@ -36,12 +38,13 @@ var cc0_license_name = 'CC0 Waiver';
 var cc0_license_version = '1';
 var cc0_license_html = '<a class="cc_js_a" rel="license" href="' + cc0_license_url + '" style="text-decoration:none;"><img src="' + cc0_license_image + '" border="0" alt="CC0" class="cc_js_cc-button" width="88"/></a><div class="cc_js_cc-info">To the extent possible under law, the author has waived all copyright and related or neighboring rights to this work.</div>';
 
+var no_license_name = 'No license chosen';
 
+//save the selections from the license chooser
+//called whenever we switch out of the license chooser
+//user chooses cc0 or no license
+//this way, when they go back to the license chooser, their selections are as they were before
 function cc_js_disable_widget() {
-
-	//cc_js_$('cc_js_required').className = 'cc_js_hidden';
-	
-	//message = cc_js_t(message);
 	/* Clear the form fields out */
 	/* save the license URL, the rest will be calculated from that */
 	if (cc_js_license_array && 'url' in cc_js_license_array) {
@@ -49,43 +52,31 @@ function cc_js_disable_widget() {
 		cc_js_license_array['url'] = '';
 		//cc_js_license_array['text'] = message;
 	}
-	//cc_js_$('result_name').value = message;
 	cc_js_secret_disabled = [];
-	//cc_js_$('result_uri').value = '';
-	//cc_js_$('result_img').value = '';
-	
-	// FIXME: localize below
-	//cc_js_insert_html(message, 'license_example');
-	
-	/*
-	var boxes = ['remix', 'nc', 'sa'];
-	for (var box_num = 0 ; box_num < boxes.length ; box_num++ ) { 
-		box = boxes[box_num];
-		if (cc_js_$(box).disabled == false) {
-			cc_js_option_off(box);
-			cc_js_secret_disabled.push(box);
-		}
-	}
-	*/
-	//cc_js_$('required').class = 'cc_js_hidden';
-	//if (cc_js_$('jurisdiction')) {
-	//	cc_js_$('jurisdiction').disabled = true;
-	//}
-	//alert("bang bang");
-	
 }
 
+//fired when the user clicks the radio button next to cc0
+//(chooses cc0 license)
 function cc_js_set_cc0() {
+    //save selections from the license chooser (even if they were already saved)
     cc_js_disable_widget();
+    
+    //hide all the stuff we don't need from the GUI
+    //(information relevant to other licensing choices)
 	cc_js_$('required').className = 'cc_js_hidden';
-	cc_js_$('about_cc0').className = '';
 	cc_js_$('about_noLicense').className = 'cc_js_hidden';
 	cc_js_$('jurisdiction_box').className = 'cc_js_hidden';
+	//this is already hidden, but we're disabling it too, just for fun
 	if (cc_js_$('jurisdiction')) {
 		cc_js_$('jurisdiction').disabled = true;
 	}
-  
+	//show what we want
+	cc_js_$('about_cc0').className = '';
+
+    //display the cc0 license in the little box on the bottom
     cc_js_insert_html(cc0_license_html, 'license_example')
+    
+    //store info about cc0 in the cc_js_license_array
     cc_js_license_array['code'] = '';
     cc_js_license_array['version'] = cc0_license_version;
     cc_js_license_array['full_name'] = cc0_license_name; // 'name' is reserved
@@ -94,7 +85,8 @@ function cc_js_set_cc0() {
     cc_js_license_array['url'] = cc0_license_url;
     cc_js_license_array['jurisdiction'] = '';
     cc_js_license_array['generic'] = '';
-  
+
+    //also store information in this hidden form thing
     cc_js_$('result_uri').value = cc_js_license_array['url'];
     cc_js_$('result_img').value = cc_js_license_array['img'];
     // FIXME: Is this the right way to localize?
@@ -102,40 +94,61 @@ function cc_js_set_cc0() {
 	
 }
 
+//fired when the user clicks the radio button next to "No License"
+//(chooses no license)
 function cc_js_set_noLicense() {
-    cc_js_disable_widget('No license chosen');
+    //save selections from the license chooser (even if they were already saved)
+    cc_js_disable_widget();
+    
+    //hide all the stuff we don't need from the GUI
+    //(information relevant to other licensing choices)
 	cc_js_$('required').className = 'cc_js_hidden';
 	cc_js_$('about_cc0').className = 'cc_js_hidden';
 	cc_js_$('jurisdiction_box').className = 'cc_js_hidden';
+	//this is already hidden, but we're disabling it too, just for fun
 	if (cc_js_$('jurisdiction')) {
 		cc_js_$('jurisdiction').disabled = true;
 	}
+	//show what we want
 	cc_js_$('about_noLicense').className = '';
-	cc_js_insert_html('No license chosen', 'license_example');
-	//alert("bang bang");
+	
+	//put "no license" in the box at the bottom, where a license would go
+	cc_js_insert_html(no_license_name, 'license_example');
+	
+	//clear the license_array
+	cc_js_license_array = [];
+    cc_js_license_array['full_name'] = no_license_name; // 'name' is reserved
+	
+    //and clear the hidden form thing
+    cc_js_$('result_uri').value = '';
+    cc_js_$('result_img').value = '';
+    cc_js_$('result_name').value = no_license_name;
 }
 
+//fired when the user clicks the radio button next to "A CC License"
+//(chooses to use a cc license)
 function cc_js_enable_widget() {
-	//alert("bang bang");
-	cc_js_$('required').className = '';
-	cc_js_$('jurisdiction_box').className = '';
+    //hide all the stuff we don't need from the GUI
+    //(information relevant to other licensing choices)
 	cc_js_$('about_cc0').className = 'cc_js_hidden';
 	cc_js_$('about_noLicense').className = 'cc_js_hidden';
-	
+	//show what we want
+	cc_js_$('required').className = '';
+	cc_js_$('jurisdiction_box').className = '';
+	if (cc_js_$('jurisdiction')) {
+		cc_js_$('jurisdiction').disabled = false;
+	}
 	
 	/* restore the secret license URL, or if it's blank, the seed, or if that's blank, by 3.0 */
 	for (var box_num = 0 ; box_num < cc_js_secret_disabled.length ; box_num++) {
 		box = cc_js_secret_disabled[box_num];
 		cc_js_option_on(box);
 	}
-	if (cc_js_$('jurisdiction')) {
-		cc_js_$('jurisdiction').disabled = false;
-	}
+	
+	//this is the juicy stuff.  update the license choice, according to the checkbox selections.
 	cc_js_secret_disabled = [];
 	cc_js_init();
 	cc_js_modify(this);
-	//cc_js_insert_html(message, 'license_example');
-	//alert("bang bang");
 }
 
 // NOTE we have the object freedoms for dealing with freedom style choosing
@@ -153,7 +166,8 @@ var cc_js_default_jurisdiction = 'generic'; // the seed may change this
  * cc_js_license_array['code'] = '';
  * cc_js_license_array['version'] = '';
  * cc_js_license_array['full_name'] = ''; // 'name' is reserved
- * cc_js_license_array['text'] = ''; cc_js_license_array['img'] = '';
+ * cc_js_license_array['text'] = '';
+ * cc_js_license_array['img'] = '';
  * cc_js_license_array['jurisdiction'] = '';
  * cc_js_license_array['generic'] = '';
 */
