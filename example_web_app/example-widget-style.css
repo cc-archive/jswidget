@@ -13,6 +13,9 @@
         /*border: 1px solid #ddd;*/
 }
 
+body{
+    background-color: white;
+}
 
 .cc_js_body {
   background-color: #fff;
