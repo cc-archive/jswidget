@@ -58,6 +58,48 @@ echo file_get_contents('cc-translations.js.' . $gettextlang);
 
 $extras = array();
 
+/*
+options:
+
+show_jurisdiction_chooser = (y/n);
+show_cc0_option = (y/n);
+show_cc-license_option = (y/n);
+show_no-license_option = (y/n);
+
+default_option = (cc0/ccL/nL);
+
+(locale is handled differently)
+
+
+$show_jursidiction_chooser_default = y;
+$show_cc0_option_default = y;
+$show_cc-license_option_default = y;
+$show_no-license_option_default = y;
+
+$default_option_default = 'ccL';
+
+*/
+
+
+
+if (array_key_exists('show_jurisdiction_chooser', $_GET)){
+   $extras[] = 'show_jurisdiction_chooser_' . $_GET['show_jurisdiction_chooser'];
+}
+if (array_key_exists('show_cc0_option', $_GET)){
+   $extras[] = 'show_cc0_option_' . $_GET['show_cc0_option'];
+}
+if (array_key_exists('show_cc-license_option', $_GET)){
+   $extras[] = 'show_cc-license_option_' . $_GET['show_cc-license_option'];
+}
+if (array_key_exists('show_no-license_option', $_GET)){
+   $extras[] = 'show_no-license_option_' . $_GET['show_no-license_option'];
+}
+if (array_key_exists('default_option', $_GET)){
+   $extras[] = 'default_option_' . $_GET['default_option'];
+}
+
+
+/*
 if ((array_key_exists('jurisdictions', $_GET)) && ($_GET['jurisdictions'] == 'disabled')) {
     $extras[] = 'nojuri';
 }
@@ -72,7 +114,7 @@ if (array_key_exists('want_a_license', $_GET)) {
 	// the license box chooser will be in by default
     }
 }
-
+*/
 /* Now, send out the appropriate template. */
 /* First, calculate the base filename (without language) */
 
