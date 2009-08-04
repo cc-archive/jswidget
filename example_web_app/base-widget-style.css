@@ -149,6 +149,13 @@ a.cc_js_a img
 
 }
 
+p#cc_js_about_noLicense{
+   background: url('copyright.png') no-repeat top left;
+    padding-left: 60px;
+   margin-top: 20px;
+   padding-top: 0;  
+}
+
 p#cc_js_about_cc0{
     background: url('http://creativecommons.org/images/deed/nolaw.png') no-repeat top left;
     padding-left: 60px;
