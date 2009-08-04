@@ -6,6 +6,11 @@
  */
 
 /** Edit me to fit your particular look **/
+
+/*note: we use js to set display: '' for this div*/
+#cc_js_generated_box{
+}
+
 #cc_js_lic-menu 
 {
         width:500px;
@@ -16,6 +21,7 @@
 body{
     background-color: white;
 }
+
 
 .cc_js_body {
   background-color: #fff;
@@ -126,29 +132,39 @@ a.cc_js_a img
     border: 1px solid #ccc;
 }
 
-#cc_js_required, #cc_js_about_cc0, #cc_js_about_noLicense
-{
-
+#cc_js_body{
+   margin: 0;
+   padding: 0;
     border-top: 1px solid #ccc;
-    /*border-bottom: 1px solid #ccc;*/
+    border-bottom: 1px solid #ccc;
+
+}
+
+#cc_js_required, p#cc_js_about_cc0, p#cc_js_about_noLicense{
+
+    /*border-top: 1px solid #ccc;*/
     padding: 4% 2%;
     margin-bottom: 1%;
     margin-top: 2px;
-    /* background: #efefef; 
-    background: #eef6e6;*/
 
 }
-#cc_js_about_cc0 p.p1{
+
+p#cc_js_about_cc0{
     background: url('http://creativecommons.org/images/deed/nolaw.png') no-repeat top left;
     padding-left: 60px;
-    
+   margin-top: 20px;
+   padding-top: 0;
 }
 
-/*
-#cc_js_about_cc0{
-    padding-left: 60px;
+.cc_js_license_option{
+   margin-bottom: 50px;
 }
-*/
+
+#cc_js_about_cc-license{
+   margin: 0;
+   padding: 0;
+}
+
 
 #cc_js_work_title
 {
@@ -252,7 +268,6 @@ img.cc_js_info {
   padding: 0;
 }
 
-#cc_js_required p { padding-bottom: 50px; }
 
 #cc_js_remix-label span {
   background: url('http://creativecommons.org/images/deed/remix.png') no-repeat top left;

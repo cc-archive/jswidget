@@ -1,4 +1,4 @@
-<div id="cc_js_generated_box" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<div id="cc_js_generated_box" style="display:none" xmlns:tal="http://xml.zope.org/namespaces/tal">
 <div id="cc_js_lic-menu">
 
   <div id="cc_js_want_cc_license_at_all">
@@ -7,7 +7,7 @@
 	    <label for="cc_js_want_cc_license_zero"><span>CC0</span></label>
     </span>
     <span>
-      <input type="radio" onclick="cc_js_enable_widget();" id="cc_js_want_cc_license_sure" name="cc_js_want_cc_license" value="sure" checked="checked" /><label class="cc_js_infobox" for="cc_js_want_cc_license_sure"><span onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>' + cc_js_t('Creative Commons') + '&lt;/strong> ' + cc_js_t('With a Creative Commons license, you keep your copyright but allow people to copy and distribute your work provided they give you credit — and only on the conditions you specify here.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()">A <span class="cc_js_question">CC</span> license</span></label>
+      <input type="radio" onclick="cc_js_enable_widget();" id="cc_js_want_cc_license_sure" name="cc_js_want_cc_license" value="sure" checked="checked" /><label for="cc_js_want_cc_license_sure">A CC license</label>
     </span>
     <span>
 	    <input type="radio" onclick="cc_js_set_noLicense();" id="cc_js_want_cc_license_nah" name="cc_js_want_cc_license" value="nah" />
@@ -15,39 +15,40 @@
     </span>
   </div>
 
-  <div id="cc_js_about_cc0" class="cc_js_hidden">
-    
+<div id="cc_js_body">
 
-<p class="p1">CC0 is a waiver that allows others to copy, distribute, and remix your work without the restrictions of your copyrights and related or neighboring rights, to the extent permissible by law.</p>
+<p id="cc_js_about_cc0" class="cc_js_hidden"><strong>CC0</strong> is a waiver that allows others to copy, distribute, and remix your work without the restrictions of your copyrights and related or neighboring rights, to the extent permissible by law.</p>
 
 <!--
 <p>Keep in mind that you cannot waive rights to a work that you do not own unless you have permission from the owner. To avoid infringing third party rights, you should consult with your legal advisor if you are unsure whether you have all the rights you need to distribute the work.</p>
 -->
 
 
-  </div>
-  <div id="cc_js_about_noLicense" class="cc_js_hidden">
+  <p id="cc_js_about_noLicense" class="cc_js_hidden">
     With no alternative license or waiver, any copying, re-distribution, or remixing will be subject to copyright restrictions, where present.
-  </div>
+  </p>
   <div id="cc_js_required">
-    
+
     <p class="cc_js_hidden">
       <input name="cc_js_share" value="1" id="cc_js_share" checked="checked" type="checkbox" style="display: none;"/>
     </p>
+
+   <p id="cc_js_about_cc-license">
+   With a <strong>Creative Commons</strong> license, you keep your copyright but allow people to copy and distribute your work provided they give you credit — and only on the conditions you specify here.
+   </p>
       
-      
-    <p>
+    <p class="cc_js_license_option">
       <input  onclick="cc_js_modify(this);" name="cc_js_remix" value="" id="cc_js_remix" type="checkbox" />
       <label style="color: black;" onclick="cc_js_call_me_on_label_selection(this);" for="cc_js_remix" class="cc_js_question" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;strong>' + cc_js_t('Remix') + '&lt;/strong> ' + cc_js_t('Licensor permits others to make derivative works') + '&lt;/p>');" onmouseout="cc_js_hide_tip()" id="cc_js_remix-label"><strong><span>Allow Remixing</span></strong></label> 
     </p>
     
     
-    <p>
+    <p class="cc_js_license_option">
       <input  onclick="cc_js_modify(this);" name="cc_js_nc" value="" id="cc_js_nc" type="checkbox" />
       <label style="color: black;" onclick="cc_js_call_me_on_label_selection(this);" for="cc_js_nc" class="cc_js_question" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;img src=&quot;http://creativecommons.org/icon/nc/standard.gif&quot; alt=&quot;nc&quot; class=&quot;cc_js_icon&quot; />&lt;strong>' + cc_js_t('Noncommercial') + '&lt;/strong> ' + cc_js_t('The licensor permits others to copy, distribute and transmit the work. In return, licensees may not use the work for commercial purposes — unless they get the licensor\'s permission.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()" id="cc_js_nc-label"><strong><span>Prohibit Commercial Use</span></strong></label> 
     </p>
 
-    <p>
+    <p class="cc_js_license_option">
       <input  onclick="cc_js_modify(this);" name="cc_js_sa" value="" id="cc_js_sa" type="checkbox" />
       <label style="color: black;" onclick="cc_js_call_me_on_label_selection(this);" for="cc_js_sa" id="cc_js_sa-label" class="cc_js_question" onmouseover="cc_js_on_tooltip_html(event,'&lt;p>&lt;img src=&quot;http://creativecommons.org/icon/sa/standard.gif&quot; alt=&quot;sa&quot; class=&quot;cc_js_icon&quot; />&lt;strong>' + cc_js_t('Share Alike') + '&lt;/strong> ' + cc_js_t('The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor\'s work.') + '&lt;/p>');" onmouseout="cc_js_hide_tip()"><strong><span>Require Share-Alike</span></strong></label>
     </p>
@@ -62,7 +63,8 @@
   </div>
     
   </div>
-  
+
+</div>
   
   <div id="cc_js_license_selected">
     <div id="cc_js_license_example"></div>

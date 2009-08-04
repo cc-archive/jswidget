@@ -51,12 +51,10 @@ foreach ($pre_reqs as $pre_req) {
 /* Send out the translations, too. */
 echo file_get_contents('cc-translations.js.' . $gettextlang);
 
-/* NOTE: I do not include the CSS stylesheet
-   and instead I let others style our boxes the way they want. */
+/* NOTE: I shove a stylesheet into the header in init.js.
+   I put it before all the others, so they can still override our stuff. */
 
-/* Determine which template file the user wanted */
-
-$extras = array();
+/* Apply extras */
 
 /*
 options:
@@ -66,67 +64,95 @@ show_cc0_option = (y/n);
 show_cc-license_option = (y/n);
 show_no-license_option = (y/n);
 
-default_option = (cc0/ccL/nL);
+default_option = (cc0/cc-license/no-license);
 
 (locale is handled differently)
 
 
-$show_jursidiction_chooser_default = y;
-$show_cc0_option_default = y;
-$show_cc-license_option_default = y;
-$show_no-license_option_default = y;
+show_jursidiction_chooser_default = y;
+show_cc0_option_default = y;
+show_cc-license_option_default = y;
+show_no-license_option_default = y;
 
-$default_option_default = 'ccL';
+default_option_default = 'ccL';
 
 */
+/*this is about to get messy: php echoing javascript.  brace yourself.*/
 
-
-
-if (array_key_exists('show_jurisdiction_chooser', $_GET)){
-   $extras[] = 'show_jurisdiction_chooser_' . $_GET['show_jurisdiction_chooser'];
-}
-if (array_key_exists('show_cc0_option', $_GET)){
-   $extras[] = 'show_cc0_option_' . $_GET['show_cc0_option'];
-}
-if (array_key_exists('show_cc-license_option', $_GET)){
-   $extras[] = 'show_cc-license_option_' . $_GET['show_cc-license_option'];
-}
-if (array_key_exists('show_no-license_option', $_GET)){
-   $extras[] = 'show_no-license_option_' . $_GET['show_no-license_option'];
-}
-if (array_key_exists('default_option', $_GET)){
-   $extras[] = 'default_option_' . $_GET['default_option'];
+function extra_chosen($key, $value){
+   return (array_key_exists($key, $_GET) && $_GET[$key] == $value);
 }
 
+?>
+function cc_js_remove_item(item){
+   item.style.display = 'none';
+   //or we could have done this:
+   //item.parentNode.removeChild(item);
+}
+<?php
 
-/*
-if ((array_key_exists('jurisdictions', $_GET)) && ($_GET['jurisdictions'] == 'disabled')) {
-    $extras[] = 'nojuri';
+echo "function cc_js_apply_extras(){\n";
+
+//hide the jurisdiction chooser, if they want
+if (extra_chosen('show_jurisdiction_chooser', 'n')){
+   echo "cc_js_remove_item(cc_js_$('jurisdiction_box'));\n";
 }
-if (array_key_exists('want_a_license', $_GET)) {
-    if ($_GET['want_a_license'] == 'definitely') {
-	$extras[] = 'definitely_want_license';
-    } elseif ($_GET['want_a_license'] == 'no_license_by_default') {
-	$extras[] = 'no_license_by_default';
-    } elseif ($_GET['want_a_license'] == 'at_start') {
-	$extras[] = 'wrong_argument';
-	// No extras
-	// the license box chooser will be in by default
-    }
+
+//hide the various licensing options, if they want
+//we remove the parent node of the radio button, because each radio is inside of a span which also conains a label.
+
+$radios_removed = 0;
+if (extra_chosen('show_cc0_option', 'n')){
+   echo "cc_js_remove_item(cc_js_$('want_cc_license_zero').parentNode);\n";
+   $radios_removed++;
 }
-*/
+if (extra_chosen('show_cc-license_option', 'n')){
+   echo "cc_js_remove_item(cc_js_$('want_cc_license_sure').parentNode);\n";
+   $radios_removed++;
+}
+if (extra_chosen('show_no-license_option', 'n')){
+   echo "cc_js_remove_item(cc_js_$('want_cc_license_nah').parentNode);\n";
+   $radios_removed++;
+}
+//if they disabled all of the options except one, then no point displaying the radio button bar at all...
+if($radios_removed >= 2){
+   echo "cc_js_remove_item(cc_js_$('want_cc_license_at_all'));\n";
+}
+
+//set the default licensing option
+if (extra_chosen('default_option', 'cc0')){
+   echo "cc_js_$('want_cc_license_zero').checked = 'checked';\n";
+   echo "cc_js_$('want_cc_license_sure').checked = '';\n";
+   echo "cc_js_$('want_cc_license_nah').checked = '';\n";
+   echo "cc_js_set_cc0();";
+}
+else if (extra_chosen('default_option', 'cc-license')){
+   echo "cc_js_$('want_cc_license_zero').checked = '';\n";
+   echo "cc_js_$('want_cc_license_sure').checked = 'checked';\n";
+   echo "cc_js_$('want_cc_license_nah').checked = '';\n";
+   echo "cc_js_enable_widget();";
+}
+else if (extra_chosen('default_option', 'no-license')){
+   echo "cc_js_$('want_cc_license_zero').checked = '';\n";
+   echo "cc_js_$('want_cc_license_sure').checked = '';\n";
+   echo "cc_js_$('want_cc_license_nah').checked = 'checked';\n";
+   echo "cc_js_set_noLicense();";
+}
+//if they didn't specify, use this:
+//choose ccL by default
+else{
+   echo "cc_js_$('want_cc_license_zero').checked = '';\n";
+   echo "cc_js_$('want_cc_license_sure').checked = 'checked';\n";
+   echo "cc_js_$('want_cc_license_nah').checked = '';\n";
+   echo "cc_js_enable_widget();";
+
+}
+
+echo '}';
+
 /* Now, send out the appropriate template. */
-/* First, calculate the base filename (without language) */
-
-sort($extras);
-$extras_string = implode('.', $extras);
-if ($extras_string) {
-    $template_dot_js = 'template.' . $extras_string . '.js';
-} else {
-    $template_dot_js = 'template.js';
-}
-
-/* Then tack on the gettext language. */
+$template_dot_js = 'template.js';
+/* Just tack on the gettext language. */
 $template_filename = $template_dot_js . '.' . $gettextlang;
 
 /* Slurp them in and send them. */

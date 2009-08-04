@@ -38,7 +38,7 @@ var cc0_license_name = 'CC0 Waiver';
 var cc0_license_version = '1';
 var cc0_license_html = '<a class="cc_js_a" rel="license" href="' + cc0_license_url + '" style="text-decoration:none;"><img src="' + cc0_license_image + '" border="0" alt="CC0" class="cc_js_cc-button" width="88"/></a><div class="cc_js_cc-info">To the extent possible under law, the author has waived all copyright and related or neighboring rights to this work.</div>';
 
-var no_license_name = 'No license chosen';
+var no_license_name = 'All rights reserved';
 
 //save the selections from the license chooser
 //called whenever we switch out of the license chooser
@@ -378,7 +378,7 @@ function cc_js_license_url_to_attributes(url) {
     }
     cc_js_rest_of_modify();
     if (parts[1] != cc_js_license_array['version']) {
-	// if the versions are different, tell the user we upgraded his
+	// if the versions are different, tell the user we upgraded her
 	// license to the most recent license available for that jurisdiction
 	var strong_warning = document.createElement('strong');
 	
@@ -390,7 +390,9 @@ function cc_js_license_url_to_attributes(url) {
 	    strong_warning.appendChild(document.createTextNode(cc_js_t('We have updated the version of your license to the most recent one available.')));
 	}
 	
-	cc_js_$('license_example').appendChild(strong_warning);
+   
+   cc_js_$('license_example').appendChild(strong_warning);
+   //alert("updated license to most recent version");
     }
 }
 

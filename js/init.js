@@ -1,4 +1,4 @@
-var stylesheetURL = 'example-widget-style.css'
+var stylesheetURL = 'base-widget-style.css?bsvar=7'
 
 //thanks, http://www.ibm.com/developerworks/xml/library/x-matters41.html
 function prependChild(parent, node) {
@@ -8,7 +8,7 @@ function prependChild(parent, node) {
 //insert a stylesheet before all other stylesheets
 //more precisely, it inserts the stylesheet at the beginning of head
 //this way, it is overriden by other stylesheets
-function insert_stylesheet_first(stylesheetURL){
+function cc_js_insert_stylesheet_first(stylesheetURL){
 
     //build our stylesheet link node
     var cssNode = document.createElement('link');
@@ -23,16 +23,17 @@ function insert_stylesheet_first(stylesheetURL){
 }
 
 function cc_js_pageInit() {
-    if (cc_js_$('want_cc_license_nah') && cc_js_$('want_cc_license_nah').checked) {
-        // then do not init
-        cc_js_disable_widget();
-    } else {
-        cc_js_init();
-    }
+   //no peeking! (the widget is hidden by default)
+
     cc_js_init_tip();
 
     //shove our stylesheet in before all the others
-    insert_stylesheet_first(stylesheetURL);
+    cc_js_insert_stylesheet_first(stylesheetURL);
+
+    cc_js_apply_extras();
+
+   //ok, you can look now
+   cc_js_$('generated_box').style.display = '';
 }
 
 if (window.onload) {

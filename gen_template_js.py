@@ -84,68 +84,6 @@ def dom_elt_by_id(dom, id):
 	assert '"' not in id
 	return xpath.Evaluate('//*[@id="%s"]' % id, dom)[0]
 
-"""
-   "show_jurisdiction_chooser_n",
-   "show_jurisdiction_chooser_y"
-],[
-   "show_cc0_option_y",
-   "show_cc0_option_n"
-],[
-   "show_cc-license_option_y",
-   "show_cc-license_option_n"
-],[
-   "show_no-license_option_y",
-   "show_no-license_option_n"
-],[
-   "default_option_cc0",
-   "default_option_ccL",
-   "default_option_nL"
-"""
-
-def get_number_radio_options_enabled(variants):
-   retval = 3
-   if "show_cc0_option_n" in variants:
-      retval-=1
-   if "show_cc-license_option_n" in variants:
-      retval-=1
-   if "show_no-license_option_n" in variants:
-      retval-=1
-   return retval
-
-
-def apply_variants(variants, dom):
-   if "show_jurisdiction_chooser_n" in variants:
-	   juri_box = dom_elt_by_id(dom, 'cc_js_jurisdiction_box')
-	   juri_box.parentNode.removeChild(juri_box)
-
-   yes_radio = dom_elt_by_id(dom, 'cc_js_want_cc_license_sure')
-   no_radio = dom_elt_by_id(dom, 'cc_js_want_cc_license_nah')
-   cc0_radio = dom_elt_by_id(dom, 'cc_js_want_cc_license_zero')
-   #TODO: if necessary, account for case where an option is not shown, but it's defaulted to
-   if "default_option_nL" in variants:
-	   yes_radio.setAttribute('checked', '')
-	   no_radio.setAttribute('checked', 'checked')
-	   cc0_radio.setAttribute('checked', '')
-   if "default_option_ccL" in variants:
-	   yes_radio.setAttribute('checked', 'checked')
-	   no_radio.setAttribute('checked', '')
-	   cc0_radio.setAttribute('checked', '')
-   if "default_option_cc0" in variants:
-	   yes_radio.setAttribute('checked', '')
-	   no_radio.setAttribute('checked', '')
-	   cc0_radio.setAttribute('checked', 'checked')
-   if "show_no-license_option_n" in variants:
-      no_radio.parentNode.removeChild(no_radio)
-   if "show_cc-license_option_n" in variants:
-      cc0_radio.parentNode.removeChild(cc0_radio)
-   if "show_cc0_option_n" in variants:
-      yes_radio.parentNode.removeChild(yes_radio)
-
-   number_options = get_number_radio_options_enabled(variants)
-   if number_options <= 1:
-	   want_license_at_all_box = dom_elt_by_id(dom, 'cc_js_want_cc_license_at_all')
-	   want_license_at_all_box.parentNode.removeChild(want_license_at_all_box)
-
 def jsify(in_string):
 	# remove leading <?xml from in_string
 	in_string_lines = in_string.split('\n')
@@ -163,8 +101,8 @@ def jsify(in_string):
 	]
 	outlines.extend( (line for line in open('append_ourselves.js')) )
 	return '\n'.join(outlines)
-	
-def gen_templated_js(language, my_variants):
+
+def gen_templated_js(language):
 	jurisdiction_names = grab_license_ids()
 	jurisdictions = []
 	# First, handle generic
@@ -184,64 +122,21 @@ def gen_templated_js(language, my_variants):
 	# translate the spans, then pull out the changed text
 	translate_spans_with_only_text_children(expanded_dom.getElementsByTagName('span'), language)
 
-	apply_variants(my_variants, expanded_dom)
 	my_string = expanded_dom.toxml(encoding='utf-8')
-	if my_variants:
-		my_suffix = '.'.join(my_variants)
-		my_filename_base = 'template.' + my_suffix + '.js'
-	else:
-		my_filename_base = 'template.js'
+	my_filename_base = 'template.js'
 	my_filename = (my_filename_base + '.%s') % language
 	write_string_to(jsify(my_string), my_filename)
 	print my_filename #VERBOSE
 
-def full_variant_list():
-   myoptions = [
-                  [
-                     "show_jurisdiction_chooser_n",
-                     "show_jurisdiction_chooser_y"
-                  ],[
-                     "show_cc0_option_y",
-                     "show_cc0_option_n"
-                  ],[
-                     "show_cc-license_option_y",
-                     "show_cc-license_option_n"
-                  ],[
-                     "show_no-license_option_y",
-                     "show_no-license_option_n"
-                  ],[
-                     "default_option_cc0",
-                     "default_option_ccL",
-                     "default_option_nL"
-                  ]
-               ]
-   optionList = [[]]
-   for optionSet in myoptions:
-      newOptionList = optionList[:]
-      for listItem in optionList:
-         for option in optionSet:
-            newOptionList.append(listItem + [option])
-      optionList = newOptionList[:]
-   return optionList
-
 def main():
 	# For each language, generate templated JS for it
 	languages = sorted([ s.split(os.path.sep)[-2] for s in glob.glob('license_xsl/i18n/i18n_po/*/cc_org.po')])
-	
-	for my_variants in (full_variant_list()):
-		my_variants.sort()
-		for lang in languages:
-			gen_templated_js(lang, my_variants)
-		create_var_file(my_variants, languages)	
+	for lang in languages:
+		gen_templated_js(lang)
+	create_var_file(languages)	
 
-def create_var_file(my_variants, languages, base_filename='template.js'):
-	if my_variants:
-		middle = '.'.join(my_variants)
-		filename_parts = base_filename.rsplit('.', 1)
-		filename_parts.insert(1, middle)
-		template = '.'.join(filename_parts)
-	else:
-		template = base_filename
+def create_var_file(languages, base_filename='template.js'):
+	template = base_filename
 
 	# And for our final trick, we will generate the .var file with
 	# languages that controls dispatch of requests to the untranslated

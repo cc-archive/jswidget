@@ -60,7 +60,7 @@ def main():
 		fd.close()
 	# Whew.  Generated some JS files.  Now should also make some .var
 	# file for those who can't use these.
-	gen_template_js.create_var_file(my_variants = None, languages=languages, base_filename='cc-translations.js')
+	gen_template_js.create_var_file(languages=languages, base_filename='cc-translations.js')
 	
 
 if __name__ == '__main__':
