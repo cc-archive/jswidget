@@ -26,14 +26,20 @@ var cc_js_secret_license_url;
 var cc_js_secret_disabled = [];
 
 //the cc0 info is all hard-coded
-var cc0_license_url = 'http://creativecommons.org/publicdomain/zero/1.0/';
-var cc0_license_image = 'http://i.creativecommons.org/l/zero/1.0/88x31.png';
-var cc0_license_name = cc_js_t('CC0 Waiver');
-var license_what = cc_js_t('license.what');
-var cc0_license_version = '1';
-var cc0_license_html = '<a class="cc_js_a" rel="license" href="' + cc0_license_url + '" style="text-decoration:none;"><img src="' + cc0_license_image + '" border="0" alt="CC0" class="cc_js_cc-button" width="88"/></a><div class="cc_js_cc-info"> '+ cc_js_t('To the extent possible under law, the author has waived all copyright and related or neighboring rights to this work.') + '</div>';
+var cc_js_cc0_license_url = 'http://creativecommons.org/publicdomain/zero/1.0/';
+var cc_js_cc0_license_image = 'http://i.creativecommons.org/l/zero/1.0/88x31.png';
+var cc_js_cc0_license_name = cc_js_t('CC0 Waiver');
+var cc_js_cc0_license_version = '1';
+var cc_js_cc0_license_html = '<a class="cc_js_a" rel="license" href="' + cc_js_cc0_license_url + '" style="text-decoration:none;"><img src="' + cc_js_cc0_license_image + '" border="0" alt="CC0" class="cc_js_cc-button" width="88"/></a><div class="cc_js_cc-info"> '+ cc_js_t('To the extent possible under law, the author has waived all copyright and related or neighboring rights to this work.') + '</div>';
 
+//so is this
 var no_license_name = cc_js_t('All rights reserved');
+
+
+//helper function to translate and then print a string
+function cc_js_t_print(s){
+   document.write(cc_js_t(s));
+}
 
 //save the selections from the license chooser
 //called whenever we switch out of the license chooser
@@ -69,15 +75,15 @@ function cc_js_set_cc0() {
 	cc_js_$('about_cc0').className = '';
 
     //display the cc0 license in the little box on the bottom
-    cc_js_insert_html(cc0_license_html, 'license_example')
+    cc_js_insert_html(cc_js_cc0_license_html, 'license_example')
     
     //store info about cc0 in the cc_js_license_array
     cc_js_license_array['code'] = '';
-    cc_js_license_array['version'] = cc0_license_version;
-    cc_js_license_array['full_name'] = cc0_license_name; // 'name' is reserved
+    cc_js_license_array['version'] = cc_js_cc0_license_version;
+    cc_js_license_array['full_name'] = cc_js_cc0_license_name; // 'name' is reserved
     cc_js_license_array['text'] = '';
-    cc_js_license_array['img'] = cc0_license_image;
-    cc_js_license_array['url'] = cc0_license_url;
+    cc_js_license_array['img'] = cc_js_cc0_license_image;
+    cc_js_license_array['url'] = cc_js_cc0_license_url;
     cc_js_license_array['jurisdiction'] = '';
     cc_js_license_array['generic'] = '';
 
@@ -139,11 +145,11 @@ function cc_js_enable_widget() {
 		box = cc_js_secret_disabled[box_num];
 		cc_js_option_on(box);
 	}
-	
+
 	//this is the juicy stuff.  update the license choice, according to the checkbox selections.
 	cc_js_secret_disabled = [];
-	cc_js_init();
 	cc_js_modify(this);
+	cc_js_init();
 }
 
 // NOTE we have the object freedoms for dealing with freedom style choosing
@@ -381,7 +387,7 @@ function cc_js_license_url_to_attributes(url) {
 	       // if they selected no jurisdiction:
 	       strong_warning.appendChild(document.createTextNode(cc_js_t('We have updated the version of your license to the most recent one available.')));
 	   }
-      cc_js_$('license_selected').appendChild(strong_warning);
+      cc_js_$('license_example').appendChild(strong_warning);
     }
 }
 
