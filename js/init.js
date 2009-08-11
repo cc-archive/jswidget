@@ -1,11 +1,11 @@
-var stylesheetURL = 'base-widget-style.css?bsvar=7'
+var stylesheetURL = 'base-widget-style.css'
 
 //thanks, http://www.ibm.com/developerworks/xml/library/x-matters41.html
 function prependChild(parent, node) {
     parent.insertBefore(node, parent.firstChild);
 }
 
-//insert a stylesheet before all other stylesheets
+//function insert a stylesheet before all other stylesheets
 //more precisely, it inserts the stylesheet at the beginning of head
 //this way, it is overriden by other stylesheets
 function cc_js_insert_stylesheet_first(stylesheetURL){

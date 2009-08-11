@@ -60,21 +60,17 @@ echo file_get_contents('cc-translations.js.' . $gettextlang);
 options:
 
 show_jurisdiction_chooser = (y/n);
+   default = y;
 show_cc0_option = (y/n);
+   default = y;
 show_cc-license_option = (y/n);
+   default = y;
 show_no-license_option = (y/n);
-
+   default = y;
 default_option = (cc0/cc-license/no-license);
+   default = cc-license
 
-(locale is handled differently)
-
-
-show_jursidiction_chooser_default = y;
-show_cc0_option_default = y;
-show_cc-license_option_default = y;
-show_no-license_option_default = y;
-
-default_option_default = 'ccL';
+(locale is handled differently, see above)
 
 */
 /*this is about to get messy: php echoing javascript.  brace yourself.*/
@@ -83,6 +79,8 @@ function extra_chosen($key, $value){
    return (array_key_exists($key, $_GET) && $_GET[$key] == $value);
 }
 
+//we'll use the following javascript function to pluck stuff from the document tree
+//(for example, we use it to hide the No License option when the url includes ?show_no-license_option=n)
 ?>
 function cc_js_remove_item(item){
    item.style.display = 'none';
@@ -91,6 +89,8 @@ function cc_js_remove_item(item){
 }
 <?php
 
+//we'll use the following javascript function to do act on all of the "extras"
+//we only do this once, on document.onload
 echo "function cc_js_apply_extras(){\n";
 
 //hide the jurisdiction chooser, if they want
@@ -124,31 +124,31 @@ if (extra_chosen('default_option', 'cc0')){
    echo "cc_js_$('want_cc_license_zero').checked = 'checked';\n";
    echo "cc_js_$('want_cc_license_sure').checked = '';\n";
    echo "cc_js_$('want_cc_license_nah').checked = '';\n";
-   echo "cc_js_set_cc0();";
+   echo "cc_js_set_cc0();\n";
 }
 else if (extra_chosen('default_option', 'cc-license')){
    echo "cc_js_$('want_cc_license_zero').checked = '';\n";
    echo "cc_js_$('want_cc_license_sure').checked = 'checked';\n";
    echo "cc_js_$('want_cc_license_nah').checked = '';\n";
-   echo "cc_js_enable_widget();";
+   echo "cc_js_enable_widget();\n";
 }
 else if (extra_chosen('default_option', 'no-license')){
    echo "cc_js_$('want_cc_license_zero').checked = '';\n";
    echo "cc_js_$('want_cc_license_sure').checked = '';\n";
    echo "cc_js_$('want_cc_license_nah').checked = 'checked';\n";
-   echo "cc_js_set_noLicense();";
+   echo "cc_js_set_noLicense();\n";
 }
 //if they didn't specify, use this:
-//choose ccL by default
+//choose cc-license by default
 else{
    echo "cc_js_$('want_cc_license_zero').checked = '';\n";
    echo "cc_js_$('want_cc_license_sure').checked = 'checked';\n";
    echo "cc_js_$('want_cc_license_nah').checked = '';\n";
-   echo "cc_js_enable_widget();";
+   echo "cc_js_enable_widget();\n";
 
 }
 
-echo '}';
+echo '}'; //end of cc_js_apply_extras() definition
 
 /* Now, send out the appropriate template. */
 $template_dot_js = 'template.js';

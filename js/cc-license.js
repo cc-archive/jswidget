@@ -21,12 +21,6 @@
  * This is code that is used to generate licenses.
  *
  */
- 
- //TODO: PUT JURISDICTION BACK IN FOR CC0
- //MAKE SURE THAT IT ACTUALLY STORES USEFUL CC0 INFO WHERE IT NEEDS IT 
- //ESPECIALLY MAKE SURE THAT IT CORRECTLY INDICATES THE CHOICE "NO LICENSE"
- 
- //ALSO, INJECT THE STYLESHEET INTO THE DOCUMENT WITH SOME SHMANCY JS
 
 var cc_js_secret_license_url;
 var cc_js_secret_disabled = [];
@@ -34,11 +28,12 @@ var cc_js_secret_disabled = [];
 //the cc0 info is all hard-coded
 var cc0_license_url = 'http://creativecommons.org/publicdomain/zero/1.0/';
 var cc0_license_image = 'http://i.creativecommons.org/l/zero/1.0/88x31.png';
-var cc0_license_name = 'CC0 Waiver';
+var cc0_license_name = cc_js_t('CC0 Waiver');
+var license_what = cc_js_t('license.what');
 var cc0_license_version = '1';
-var cc0_license_html = '<a class="cc_js_a" rel="license" href="' + cc0_license_url + '" style="text-decoration:none;"><img src="' + cc0_license_image + '" border="0" alt="CC0" class="cc_js_cc-button" width="88"/></a><div class="cc_js_cc-info">To the extent possible under law, the author has waived all copyright and related or neighboring rights to this work.</div>';
+var cc0_license_html = '<a class="cc_js_a" rel="license" href="' + cc0_license_url + '" style="text-decoration:none;"><img src="' + cc0_license_image + '" border="0" alt="CC0" class="cc_js_cc-button" width="88"/></a><div class="cc_js_cc-info"> '+ cc_js_t('To the extent possible under law, the author has waived all copyright and related or neighboring rights to this work.') + '</div>';
 
-var no_license_name = 'All rights reserved';
+var no_license_name = cc_js_t('All rights reserved');
 
 //save the selections from the license chooser
 //called whenever we switch out of the license chooser
@@ -183,7 +178,6 @@ var cc_js_warning_text            = '';
 function cc_js_init() {
     /* default: by */
     
-    
     cc_js_share = true;
     cc_js_remix = true;
     cc_js_nc    = false;
@@ -192,8 +186,6 @@ function cc_js_init() {
 	cc_js_$("share").checked = true;
 	cc_js_$("remix").checked = true;
     }
-    
-    
     
     // But if there's a hidden form field telling us what to do,
     // then by Jove let's do that!
@@ -255,7 +247,7 @@ function cc_js_update_checkboxes_based_on_variables() {
     cc_js_$('sa').checked = cc_js_sa;
 }
 
-function cc_js_update_variables_based_on_checkboxes() {	
+function cc_js_update_variables_based_on_checkboxes() {
     cc_js_share = cc_js_$('share').checked;
     cc_js_remix = cc_js_$('remix').checked;
     cc_js_nc = cc_js_$('nc').checked;
@@ -378,21 +370,18 @@ function cc_js_license_url_to_attributes(url) {
     }
     cc_js_rest_of_modify();
     if (parts[1] != cc_js_license_array['version']) {
-	// if the versions are different, tell the user we upgraded her
-	// license to the most recent license available for that jurisdiction
-	var strong_warning = document.createElement('strong');
-	
-	if (cc_js_license_array['jurisdiction'] != "") {
-	    // if they selected a jurisdiction:
-	    strong_warning.appendChild(document.createTextNode(cc_js_t('We have updated the version of your license to the most recent one available in your jurisdiction.')));
-	} else {
-	    // if they selected no jurisdiction:
-	    strong_warning.appendChild(document.createTextNode(cc_js_t('We have updated the version of your license to the most recent one available.')));
-	}
-	
-   
-   cc_js_$('license_example').appendChild(strong_warning);
-   //alert("updated license to most recent version");
+	   // if the versions are different, tell the user we upgraded her
+	   // license to the most recent license available for that jurisdiction
+	   var strong_warning = document.createElement('strong');
+
+	   if (cc_js_license_array['jurisdiction'] != "") {
+	       // if they selected a jurisdiction:
+	       strong_warning.appendChild(document.createTextNode(cc_js_t('We have updated the version of your license to the most recent one available in your jurisdiction.')));
+	   } else {
+	       // if they selected no jurisdiction:
+	       strong_warning.appendChild(document.createTextNode(cc_js_t('We have updated the version of your license to the most recent one available.')));
+	   }
+      cc_js_$('license_selected').appendChild(strong_warning);
     }
 }
 
