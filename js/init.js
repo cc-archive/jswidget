@@ -1,7 +1,7 @@
-var stylesheetURL = 'base-widget-style.css'
+var cc_js_stylesheetURL = 'base-widget-style.css'
 
 //thanks, http://www.ibm.com/developerworks/xml/library/x-matters41.html
-function prependChild(parent, node) {
+function cc_js_prependChild(parent, node) {
     parent.insertBefore(node, parent.firstChild);
 }
 
@@ -19,7 +19,7 @@ function cc_js_insert_stylesheet_first(stylesheetURL){
     cssNode.title = 'dynamicLoadedSheet';
     
     //shove it in there!
-    prependChild(document.getElementsByTagName("head")[0], cssNode);
+    cc_js_prependChild(document.getElementsByTagName("head")[0], cssNode);
 }
 
 function cc_js_pageInit() {
@@ -28,7 +28,7 @@ function cc_js_pageInit() {
     cc_js_init_tip();
 
     //shove our stylesheet in before all the others
-    cc_js_insert_stylesheet_first(stylesheetURL);
+    cc_js_insert_stylesheet_first(cc_js_stylesheetURL);
 
     cc_js_apply_extras();
 
@@ -37,9 +37,9 @@ function cc_js_pageInit() {
 }
 
 if (window.onload) {
-    old_onload = window.onload;
+    cc_js_old_onload = window.onload;
     window.onload = function () {
-	old_onload();
+	cc_js_old_onload();
 	cc_js_pageInit();
     }
 }

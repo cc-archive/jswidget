@@ -33,7 +33,7 @@ var cc_js_cc0_license_version = '1';
 var cc_js_cc0_license_html = '<a class="cc_js_a" rel="license" href="' + cc_js_cc0_license_url + '" style="text-decoration:none;"><img src="' + cc_js_cc0_license_image + '" border="0" alt="CC0" class="cc_js_cc-button" width="88"/></a><div class="cc_js_cc-info"> '+ cc_js_t('To the extent possible under law, the author has waived all copyright and related or neighboring rights to this work.') + '</div>';
 
 //so is this
-var no_license_name = cc_js_t('All rights reserved');
+var cc_js_no_license_name = cc_js_t('All rights reserved');
 
 
 //helper function to translate and then print a string
@@ -114,16 +114,16 @@ function cc_js_set_noLicense() {
 	cc_js_$('about_noLicense').className = '';
 	
 	//put "no license" in the box at the bottom, where a license would go
-	cc_js_insert_html(no_license_name, 'license_example');
+	cc_js_insert_html(cc_js_no_license_name, 'license_example');
 	
 	//clear the license_array
 	cc_js_license_array = [];
-    cc_js_license_array['full_name'] = no_license_name; // 'name' is reserved
+    cc_js_license_array['full_name'] = cc_js_no_license_name; // 'name' is reserved
 	
     //and clear the hidden form thing
     cc_js_$('result_uri').value = '';
     cc_js_$('result_img').value = '';
-    cc_js_$('result_name').value = no_license_name;
+    cc_js_$('result_name').value = cc_js_no_license_name;
 }
 
 //fired when the user clicks the radio button next to "A CC License"
