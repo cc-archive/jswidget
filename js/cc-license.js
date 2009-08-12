@@ -39,6 +39,7 @@ var cc_js_no_license_name = cc_js_t('All rights reserved');
 //helper function to translate and then print a string
 function cc_js_t_print(s){
    document.write(cc_js_t(s));
+   alert("hi");
 }
 
 //save the selections from the license chooser

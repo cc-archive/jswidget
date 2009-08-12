@@ -60,6 +60,7 @@ def un_entities(s):
 	return u''.join(even_odd_mixup)
 
 def translate_spans_with_only_text_children(spans, lang):
+	#print "translating these span-bound strings in template.html" #VERBOSE
 	for span in spans:
 		if len(span.childNodes) == 1:
 			child = span.childNodes[0]
@@ -70,7 +71,9 @@ def translate_spans_with_only_text_children(spans, lang):
 				xml_data = child.data
 				unicode_data = un_entities(xml_data)
 				utf8_data = unicode_data.encode('utf-8')
+				#print child.data #VERBOSE
 				child.data = convert.extremely_slow_translation_function(utf8_data, lang)
+				
 
 def write_string_to(s, filename):
 	fd = open(filename + '.tmp', 'w')

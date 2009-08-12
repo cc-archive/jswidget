@@ -9,6 +9,7 @@
 
 /*note: we use js to set display: '' for this div*/
 #cc_js_generated_box{
+   
 }
 
 #cc_js_lic-menu 
@@ -268,7 +269,8 @@ img.cc_js_info {
 
 #cc_js_want_cc_license_at_all span {
   margin-right: .5em;
-  padding: 0.5em;
+  padding: 0.1em;
+  font-size: .95em;
 }
 #cc_js_want_cc_license_at_all span span {
   margin: 0;
