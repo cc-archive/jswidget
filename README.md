@@ -16,7 +16,7 @@ The code is structured as follows:
     `complete.en.js`, etc.
 - `complete.js` loads the CSS and static JS files that hardly change
 - `complete.js` loads `template.js.var` (for Apache Content Negotiation to pick
-  a language) or `template.js.`**`LANG_ID if`** a language was specified
+  a language) or `template.js.LANG_ID` if a language was specified
 
 All of our JS and HTML and CSS is prefixed with `cc_js_` to avoid namespace
 collisions with others' applications.
