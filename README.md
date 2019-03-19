@@ -6,6 +6,14 @@ JavaScript widget.
 Web browsers can only be expected to load a single file from us.
 
 
+## Deprecated
+
+This project is deprecated by
+[creativecommons/LicenseChooser.js][licensechooser]
+
+[licensechooser]:https://github.com/creativecommons/LicenseChooser.js
+
+
 ## Overview
 
 The code is structured as follows:
