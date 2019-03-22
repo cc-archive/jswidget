@@ -8,10 +8,10 @@ Web browsers can only be expected to load a single file from us.
 
 ## Deprecated
 
-This project is deprecated by
-[creativecommons/LicenseChooser.js][licensechooser]
+**:no_entry: This project is deprecated by
+[creativecommons/LicenseChooser.js][licensechooser]**
 
-[licensechooser]:https://github.com/creativecommons/LicenseChooser.js
+[licensechooser]:https://github.com/creativecommons/cc-license-chooser
 
 
 ## Overview
